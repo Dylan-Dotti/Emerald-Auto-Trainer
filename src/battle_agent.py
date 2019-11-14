@@ -12,10 +12,14 @@ class BattleAgent:
         self.__menu_state = BAState.Main
 
     def handle_battle(self):
-        self._wait_for_red_arrow()
+        self.wait_for_red_arrow()
         kc.press_a()
-        self._wait_for_black_arrow()
-        self.print_health()
+        self.wait_for_black_arrow()
+        self.use_move((1, 0))
+        self.wait_for_black_arrow()
+        for _ in range(2):
+            self.use_move((0, 0))
+            self.wait_for_black_arrow()
         self.run_from_battle()
 
     def move_cursor_to(self, target_coords):
@@ -26,11 +30,25 @@ class BattleAgent:
             self._press_cursor_buttons(self.__moves_index, target_coords)
             self.__moves_index = target_coords
 
+    def select_fight(self):
+        if self.__menu_state == BAState.Main:
+            self.move_cursor_to((0, 0))
+            kc.press_a()
+            self.__menu_state = BAState.Moves
+        elif self.__menu_state != BAState.Moves:
+            raise Exception('transition not implemented')
+
+    def use_move(self, move_coords):
+        self.select_fight()
+        self.move_cursor_to(move_coords)
+        kc.press_a()
+        self.__menu_state = BAState.Main
+
     def run_from_battle(self):
         # need to account for failing to escape
         self.move_cursor_to((1, 1))
         kc.press_a()
-        self._wait_for_red_arrow()
+        self.wait_for_red_arrow()
         kc.press_a()
 
     def _press_cursor_buttons(self, curr_coords, tar_coords):
@@ -47,11 +65,11 @@ class BattleAgent:
         elif curr_col > tar_col:
             kc.press_left()
 
-    def _wait_for_red_arrow(self):
+    def wait_for_red_arrow(self):
         while not self._red_arrow_exists():
             time.sleep(.1)
 
-    def _wait_for_black_arrow(self):
+    def wait_for_black_arrow(self):
         while not self._black_arrow_exists():
             time.sleep(.1)
 
@@ -65,10 +83,12 @@ class BattleAgent:
         return va.is_on_screen('img/battle_start_stripes.png', confidence=0.35, num_attempts=num_attempts)
 
     def print_health(self):
-        if va.is_on_screen('img/health_bars/health_30.png', quadrant=3, confidence=0.9):
-            print('Health is about 30%')
-        else:
-            print('Health is some other amount')
+        check_percents = ['30', '50', '100']
+        for percent in check_percents:
+            if va.is_on_screen('img/health_bars/health_' + percent + '.png', quadrant=3, confidence=0.975):
+                print('Health is about ' + percent + '%')
+                return
+        print('Health is some other amount')
 
 
 class BAState(enum.Enum):
