@@ -1,32 +1,31 @@
 import win32gui as wgui
 
-_resolutions = {
-    1: (320, 274),
-    2: (620, 474),
-    3: (920, 674),
-    4: (1220, 874)
-}
+
+def find_window(scale_limit=500):
+    for i in range(scale_limit):
+        window = wgui.FindWindow(None, 'VisualBoyAdvance-' + str(i) + '%')
+        if window != 0:
+            return window
+    return None
 
 
-def init_to_foreground_window():
-    global __window
-    __window = wgui.GetForegroundWindow()
+def set_window_foreground():
+    wgui.SetForegroundWindow(__window)
 
 
 def get_scale():
     _, _, width, height = get_window_rect()
-    for key, value in _resolutions.items():
+    for key, value in __resolutions.items():
         if value == (width, height):
             return key
     return 0
 
 
 def get_resolution(scale):
-    return _resolutions[scale]
+    return __resolutions[scale]
 
 
 def get_window_rect():
-    global __window
     rect = wgui.GetWindowRect(__window)
     x = rect[0]
     y = rect[1]
@@ -65,3 +64,12 @@ def get_hemisphere_rect(hemi_name):
         return mid_x, y, half_width, height
     else:
         raise Exception('invalid hemisphere name')
+
+
+__resolutions = {
+    1: (320, 274),
+    2: (620, 474),
+    3: (920, 674),
+    4: (1220, 874)
+}
+__window = find_window()

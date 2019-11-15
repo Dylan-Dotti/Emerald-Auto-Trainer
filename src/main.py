@@ -27,8 +27,6 @@ def battle_loop():
         time.sleep(1)
 
 
-kc.alt_tab()
-time.sleep(.33)
-wc.init_to_foreground_window()
+wc.set_window_foreground()
 battle_loop()
 kc.alt_tab()
