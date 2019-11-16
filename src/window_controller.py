@@ -34,10 +34,10 @@ def get_resolution(scale):
 
 def get_window_rect():
     rect = wgui.GetWindowRect(__window)
-    x = rect[0]
-    y = rect[1]
-    width = rect[2] - x
-    height = rect[3] - y
+    x = rect[0] + 10
+    y = rect[1] + 65
+    width = rect[2] - x - 10
+    height = rect[3] - y - 12
     return x, y, width, height
 
 

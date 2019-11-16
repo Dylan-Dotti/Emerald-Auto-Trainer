@@ -14,7 +14,7 @@ def move_and_check_battle(move_func):
 
 
 def check_battle_start(num_attempts=3):
-    return va.is_on_screen('img/battle_start_stripes.png', confidence=0.35, num_attempts=num_attempts)
+    return va.is_in_window('img/battle_start_stripes.png', confidence=0.35, num_attempts=num_attempts)
 
 
 def battle_loop():
