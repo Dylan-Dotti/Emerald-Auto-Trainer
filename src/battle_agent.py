@@ -73,6 +73,7 @@ class BattleAgent:
     def on_pokemon_leveled(self):
         kc.press_a()
         kc.press_a()
+        # handle move learning
 
     def _press_cursor_buttons(self, curr_coords, tar_coords):
         curr_row, curr_col = curr_coords

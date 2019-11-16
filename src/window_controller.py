@@ -1,9 +1,16 @@
 import win32gui as wgui
+import pyautogui as pag
 
 
 def find_window(scale_limit=500):
     for i in range(scale_limit):
-        window = wgui.FindWindow(None, 'VisualBoyAdvance-' + str(i) + '%')
+        query = 'VisualBoyAdvance-'
+        if i < 100:
+            query += ' '
+        if i < 10:
+            query += ' '
+        query += str(i) + '%'
+        window = wgui.FindWindow(None, query)
         if window != 0:
             return window
     return None
@@ -50,20 +57,26 @@ def get_quadrant_rect(index):
         raise Exception('invalid quadrant index')
 
 
-def get_hemisphere_rect(hemi_name):
+def get_half_rect(half_name):
     x, y, width, height = get_window_rect()
     mid_x, mid_y = round(x + width / 2), round(y + height / 2)
     half_width, half_height = mid_x - x, mid_y - y
-    if hemi_name == 'top':
+    if half_name == 'top':
         return x, y, width, half_height
-    if hemi_name == 'bottom':
+    if half_name == 'bottom':
         return x, mid_y, width, half_height
-    if hemi_name == 'left':
+    if half_name == 'left':
         return x, y, half_width, height
-    if hemi_name == 'right':
+    if half_name == 'right':
         return mid_x, y, half_width, height
     else:
-        raise Exception('invalid hemisphere name')
+        raise Exception('invalid half name')
+
+
+def screen_to_window_coords(coords):
+    x, y = coords
+    window_x, window_y, _, _ = get_window_rect()
+    return x - window_x, y - window_y
 
 
 __resolutions = {

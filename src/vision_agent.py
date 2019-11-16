@@ -23,7 +23,7 @@ def locate_on_screen_quad(img_url, quadrant, confidence=0.99, num_attempts=1):
 
 
 def locate_on_screen_half(img_url, half_name, confidence=0.99, num_attempts=1):
-    return locate_on_screen(img_url, region=wc.get_hemisphere_rect(half_name), confidence=confidence, num_attempts=num_attempts)
+    return locate_on_screen(img_url, region=wc.get_half_rect(half_name), confidence=confidence, num_attempts=num_attempts)
 
 
 def is_in_image(needle, haystack, confidence=0.99):
