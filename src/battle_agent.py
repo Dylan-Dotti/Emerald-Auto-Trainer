@@ -1,6 +1,7 @@
 import enum
 import vision_agent as va
 import keyboard_controller as kc
+import pokemon_party as pparty
 import pyautogui as pag
 import time
 import time_controller as tc
@@ -8,6 +9,7 @@ import time_controller as tc
 
 class BattleAgent:
     def __init__(self):
+        self.__active_pokemon = pparty.get_active_pokemon()
         self.__main_index = (0, 0)
         self.__moves_index = (0, 0)
         self.__menu_state = BAState.Main
@@ -22,9 +24,8 @@ class BattleAgent:
         tc.activate_speedup()
         self.wait_for_red_arrow()
         kc.press_a()
-        print('Waiting for battle start...')
         self.wait_for_black_arrow()
-        moves = [(0, 1), (0, 0), (0, 0), (0, 0), (0, 0)]
+        moves = self.__active_pokemon.get_move_sequence()
         for move in moves:
             # use move and check for enemy faint
             if self.use_move_and_check_faint(move):
@@ -50,7 +51,7 @@ class BattleAgent:
             raise Exception('transition not implemented')
 
     def use_move(self, move_coords):
-        print('Selecting move: ' + str(move_coords) + '...')
+        print('Selecting move: ' + str(move_coords))
         self.select_fight()
         self.move_cursor_to(move_coords)
         kc.press_a()
@@ -58,7 +59,6 @@ class BattleAgent:
 
     def use_move_and_check_faint(self, move_coords):
         self.use_move(move_coords)
-        print('Waiting for move results...')
         va.wait_for_one_image(
             self._red_arrow_url, self._blk_arrow_url, confidence=0.95, timeout=10.0)
         return self.is_enemy_fainted()
@@ -81,9 +81,9 @@ class BattleAgent:
         kc.press_a()
 
     def on_pokemon_leveled(self):
+        self.__active_pokemon.increment_level()
         for _ in range(3):
             kc.press_a()
-        # handle move learning
 
     def on_move_learned(self):
         self.wait_for_red_arrow()
