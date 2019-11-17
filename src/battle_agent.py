@@ -3,6 +3,7 @@ import vision_agent as va
 import keyboard_controller as kc
 import pyautogui as pag
 import time
+import time_controller as tc
 
 
 class BattleAgent:
@@ -18,11 +19,11 @@ class BattleAgent:
 
     def handle_battle(self):
         print('Battle agent starting battle')
+        tc.activate_speedup()
         self.wait_for_red_arrow()
         kc.press_a()
         print('Waiting for battle start...')
         self.wait_for_black_arrow()
-        # right doesn't work if game isn't fast enough
         moves = [(0, 1), (0, 0), (0, 0), (0, 0), (0, 0)]
         for move in moves:
             # use move and check for enemy faint
@@ -36,6 +37,7 @@ class BattleAgent:
                         self.on_move_learned()
                 # check move attempt learn
                 # check evolution
+                tc.deactivate_speedup()
                 return
         self.run_from_battle()
 
@@ -67,6 +69,7 @@ class BattleAgent:
         kc.press_a()
         self.wait_for_red_arrow()
         kc.press_a()
+        tc.deactivate_speedup()
 
     def is_enemy_fainted(self):
         return va.is_in_window_half('img/fainted.png', 'bottom', confidence=0.9)

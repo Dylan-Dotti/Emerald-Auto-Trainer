@@ -10,6 +10,14 @@ def press_key(key_name, num_times=1, duration=0, interval=0):
         time.sleep(interval)
 
 
+def press_key_down(key_name):
+    pag.keyDown(key_name)
+
+
+def press_key_up(key_name):
+    return pag.keyUp(key_name)
+
+
 def press_left(num_times=1, duration=0, interval=0):
     press_key('a', num_times=num_times, duration=duration, interval=interval)
 
@@ -31,7 +39,8 @@ def press_a(num_times=1, duration=0, interval=0):
 
 
 def press_b(num_times=1, duration=0, interval=0):
-    press_key('space', num_times=num_times, duration=duration, interval=interval)
+    press_key('space', num_times=num_times,
+              duration=duration, interval=interval)
 
 
 def alt_tab():
