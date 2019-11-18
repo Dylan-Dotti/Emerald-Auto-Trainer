@@ -19,7 +19,7 @@ def check_battle_start(num_attempts=3):
 
 def battle_loop():
     left = True
-    while True:
+    for _ in range(3):
         while not move_and_check_battle((kc.press_left if left else kc.press_right)):
             left = not left
         left = not left

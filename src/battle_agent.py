@@ -39,6 +39,7 @@ class BattleAgent:
                 # check move attempt learn
                 # check evolution
                 tc.deactivate_speedup()
+                pparty.save_party()
                 return
         self.run_from_battle()
 
@@ -70,6 +71,7 @@ class BattleAgent:
         self.wait_for_red_arrow()
         kc.press_a()
         tc.deactivate_speedup()
+        pparty.save_party()
 
     def is_enemy_fainted(self):
         return va.is_in_window_half('img/fainted.png', 'bottom', confidence=0.9)
@@ -102,7 +104,7 @@ class BattleAgent:
         return va.wait_for_one_image(self._red_arrow_url, self._blk_arrow_url, confidence=.95, timeout=timeout)
 
     def wait_for_level_up(self):
-        return va.wait_for_one_image(self._leveled_url, confidence=.95)
+        return va.wait_for_one_image(self._leveled_url, confidence=.95, timeout=1.5)
 
     def wait_for_move_learned(self):
         return va.wait_for_one_image(self._learned_url, confidence=.95)
