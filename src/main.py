@@ -24,7 +24,7 @@ def battle_loop():
             left = not left
         left = not left
         ba.BattleAgent().handle_battle()
-        time.sleep(1)
+        time.sleep(.5)
 
 
 wc.set_window_foreground()

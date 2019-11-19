@@ -2,114 +2,89 @@
   "pokemon": [
     {
       "name": "Mareep",
-      "level": 7,
-      "move_sequence": [
-        [
-          0,
-          0
-        ],
-        [
-          0,
-          0
-        ],
-        [
-          0,
-          0
-        ],
-        [
-          0,
-          0
-        ],
-        [
-          0,
-          0
-        ],
-        [
-          0,
-          0
-        ]
+      "level": 9,
+      "move_priority": [
+        {
+          "coords": [
+            0,
+            0
+          ],
+          "initial": 1,
+          "consecutive": 1,
+          "periodic": 1
+        }
       ]
     },
     {
       "name": "Ralts",
       "level": 11,
-      "move_sequence": [
-        [
-          1,
-          0
-        ],
-        [
-          0,
-          0
-        ],
-        [
-          0,
-          0
-        ],
-        [
-          0,
-          0
-        ],
-        [
-          0,
-          0
-        ]
+      "move_priority": [
+        {
+          "coords": [
+            1,
+            0
+          ],
+          "initial": 1,
+          "consecutive": 1,
+          "periodic": null
+        },
+        {
+          "coords": [
+            0,
+            0
+          ],
+          "initial": 1,
+          "consecutive": 1,
+          "periodic": 1
+        }
       ]
     },
     {
       "name": "Torchic",
       "level": 12,
-      "move_sequence": [
-        [
-          1,
-          0
-        ],
-        [
-          1,
-          1
-        ],
-        [
-          1,
-          1
-        ],
-        [
-          1,
-          1
-        ],
-        [
-          1,
-          1
-        ]
+      "move_priority": [
+        {
+          "coords": [
+            1,
+            0
+          ],
+          "initial": 1,
+          "consecutive": 1,
+          "periodic": null
+        },
+        {
+          "coords": [
+            1,
+            1
+          ],
+          "initial": 1,
+          "consecutive": 1,
+          "periodic": 1
+        }
       ]
     },
     {
       "name": "Pidgey",
-      "level": 10,
-      "move_sequence": [
-        [
-          0,
-          1
-        ],
-        [
-          0,
-          1
-        ],
-        [
-          0,
-          0
-        ],
-        [
-          0,
-          0
-        ],
-        [
-          0,
-          0
-        ],
-        [
-          0,
-          0
-        ]
+      "level": 11,
+      "move_priority": [
+        {
+          "coords": [
+            0,
+            1
+          ],
+          "initial": 1,
+          "consecutive": 2,
+          "periodic": null
+        },
+        {
+          "coords": [
+            0,
+            0
+          ],
+          "initial": 1,
+          "consecutive": 1,
+          "periodic": 1
+        }
       ]
     }
   ]

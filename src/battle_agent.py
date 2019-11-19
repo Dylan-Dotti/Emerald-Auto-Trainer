@@ -25,7 +25,7 @@ class BattleAgent:
         self.wait_for_red_arrow()
         kc.press_a()
         self.wait_for_black_arrow()
-        moves = self.__active_pokemon.get_move_sequence()
+        moves = self.__active_pokemon.get_move_sequence(1)
         for move in moves:
             # use move and check for enemy faint
             if self.use_move_and_check_faint(move):
@@ -66,6 +66,7 @@ class BattleAgent:
 
     def run_from_battle(self):
         # need to account for failing to escape
+        print('Attempting to run from battle')
         self.move_cursor_to((1, 1))
         kc.press_a()
         self.wait_for_red_arrow()
@@ -88,6 +89,7 @@ class BattleAgent:
             kc.press_a()
 
     def on_move_learned(self):
+        print(self.__active_pokemon.get_name() + ' learned move')
         self.wait_for_red_arrow()
         kc.press_a()
 
@@ -122,22 +124,14 @@ class BattleAgent:
         tar_row, tar_col = tar_coords
         # up and down movement
         if curr_row < tar_row:
-            print('pressing down')
             kc.press_down()
         elif curr_row > tar_row:
-            print('pressing up')
             kc.press_up()
         # left and right movement
         if curr_col < tar_col:
-            print('pressing right')
             kc.press_right()
         elif curr_col > tar_col:
-            print('pressing left')
             kc.press_left()
-
-    # remove?
-    def _battle_start_stripes_exists(self, num_attempts=1):
-        return va.is_in_window('img/battle_start_stripes.png', confidence=0.35, num_attempts=num_attempts)
 
 
 class BAState(enum.Enum):
