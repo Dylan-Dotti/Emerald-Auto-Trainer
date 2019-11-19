@@ -28,8 +28,18 @@ def get_scale():
     return 0
 
 
-def get_resolution(scale):
-    return __resolutions[scale]
+def get_window_width():
+    _, _, width, _ = get_window_rect()
+    return width
+
+
+def get_window_height():
+    _, _, _, height = get_window_rect()
+    return height
+
+
+def get_resolution():
+    return __resolutions[get_scale()]
 
 
 def get_window_rect():
@@ -77,6 +87,12 @@ def screen_to_window_coords(coords):
     x, y = coords
     window_x, window_y, _, _ = get_window_rect()
     return x - window_x, y - window_y
+
+
+def window_to_screen_coords(coords):
+    x, y = coords
+    window_x, window_y, _, _ = get_window_rect()
+    return x + window_x, y + window_y
 
 
 __resolutions = {
