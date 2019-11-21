@@ -25,7 +25,7 @@ class BattleAgent:
         self.wait_for_red_arrow()
         kc.press_a()
         self.wait_for_black_arrow()
-        moves = self.__active_pokemon.get_move_sequence(1)
+        moves = self.__active_pokemon.get_move_sequence(10)
         for move in moves:
             # use move and check for enemy faint
             if self.use_move_and_check_faint(move):
@@ -41,6 +41,12 @@ class BattleAgent:
                 tc.deactivate_speedup()
                 pparty.save_party()
                 return
+            else:
+                # handle additional dialogues
+                while not self.wait_for_black_arrow(timeout=0.1):
+                    if self.wait_for_red_arrow(timeout=0.1):
+                        print('additional dialogue detected')
+                        kc.press_a()
         self.run_from_battle()
 
     def select_fight(self):
@@ -61,7 +67,7 @@ class BattleAgent:
     def use_move_and_check_faint(self, move_coords):
         self.use_move(move_coords)
         va.wait_for_one_image(
-            self._red_arrow_url, self._blk_arrow_url, confidence=0.95, timeout=10.0)
+            self._red_arrow_url, self._blk_arrow_url, timeout=10.0)
         return self.is_enemy_fainted()
 
     def run_from_battle(self):
@@ -96,13 +102,13 @@ class BattleAgent:
     def on_move_attempt_learn(self):
         pass
 
-    def wait_for_red_arrow(self, timeout=1.0):
+    def wait_for_red_arrow(self, timeout=5.0):
         return va.wait_for_one_image(self._red_arrow_url, confidence=.95, timeout=timeout)
 
-    def wait_for_black_arrow(self, timeout=1.0):
+    def wait_for_black_arrow(self, timeout=5.0):
         return va.wait_for_one_image(self._blk_arrow_url, confidence=.95, timeout=timeout)
 
-    def wait_for_red_or_black_arrow(self, timeout=1.0):
+    def wait_for_red_or_black_arrow(self, timeout=5.0):
         return va.wait_for_one_image(self._red_arrow_url, self._blk_arrow_url, confidence=.95, timeout=timeout)
 
     def wait_for_level_up(self):
@@ -137,3 +143,9 @@ class BattleAgent:
 class BAState(enum.Enum):
     Main = 'Main'
     Moves = 'Moves'
+
+
+if __name__ == '__main__':
+    import window_controller as wc
+    wc.set_window_foreground()
+    BattleAgent().handle_battle()

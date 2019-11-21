@@ -26,7 +26,6 @@ def attempt_move_in_direction(direct, num_attempts=10):
             print('Move confirmed')
             return True
         print('Move failed. Retrying...')
-        #time.sleep(.1)
     print('Gave up after %s attempts' % str(num_attempts))
     return False
 
