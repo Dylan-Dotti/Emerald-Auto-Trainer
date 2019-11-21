@@ -1,8 +1,8 @@
-import win32gui as wgui
 import pyautogui as pag
+import win32gui as wgui
 
 
-def find_window(scale_limit=500):
+def find_window(scale_limit=1500):
     for i in range(scale_limit):
         query = 'VisualBoyAdvance-'
         if i < 100:
