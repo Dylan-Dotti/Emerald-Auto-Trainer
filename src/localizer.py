@@ -23,7 +23,7 @@ class Localizer:
             'img/localizer/old_img.png', region=old_region)
 
     @staticmethod
-    def has_moved_in_direction(direct, confidence=0.9):
+    def has_moved_in_direction(direct, confidence=0.8):
         if direct == Direction.up:
             new_region = grid.get_row_range_rect(2, grid.num_rows() - 1)
         elif direct == Direction.down:

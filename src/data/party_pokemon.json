@@ -2,7 +2,7 @@
   "pokemon": [
     {
       "name": "Mareep",
-      "level": 10,
+      "level": 12,
       "move_priority": [
         {
           "coords": [

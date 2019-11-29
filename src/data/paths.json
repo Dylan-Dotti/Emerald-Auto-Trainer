@@ -1,0 +1,44 @@
+{
+  "paths": [
+    {
+      "start": "verdanturf town",
+      "end": "route 111 left",
+      "sequence": [
+        {
+          "direction": "down",
+          "steps": "7"
+        },
+        {
+          "direction": "right",
+          "steps": "22"
+        },
+        {
+          "direction": "down",
+          "steps": "2"
+        }
+      ]
+    },
+    {
+      "start": "mauville city",
+      "end": "route 111 right",
+      "sequence": [
+        {
+          "direction": "down",
+          "steps": "3"
+        },
+        {
+          "direction": "left",
+          "steps": "31"
+        },
+        {
+          "direction": "down",
+          "steps": "6"
+        },
+        {
+          "direction": "left",
+          "steps": "19"
+        }
+      ]
+    }
+  ]
+}
