@@ -1,12 +1,13 @@
 import win32gui as wgui
 import pyautogui as pag
-import battle_agent as ba
+from battle_agent import BattleAgent
 from path_data_service import get_path
 from pokecenter_agent import PokeCenterAgent
 import keyboard_controller as kc
 import navigator as nav
 import sys
 import time
+import time_controller as tc
 import vision_agent as va
 import window_controller as wc
 from direction import Direction
@@ -19,7 +20,10 @@ def move_and_check_battle(move_func):
 
 
 def check_battle_start():
-    return va.is_in_window('img/battle_start_stripes.png', confidence=0.35)
+    return va.is_in_window_quad('img/trainer_battle_sprite.png', 2,confidence=0.95)
+
+def wait_for_battle_start(timeout=1.0):
+    return va.wait_for_one_image('img/trainer_battle_sprite.png', region=wc.get_quadrant_rect(2), confidence=0.95, timeout=timeout)
 
 
 def battle_loop(num_battles=1):
@@ -28,8 +32,27 @@ def battle_loop(num_battles=1):
         while not move_and_check_battle((kc.press_left if left else kc.press_right)):
             left = not left
         left = not left
-        ba.BattleAgent().handle_battle()
+        BattleAgent().handle_battle()
         time.sleep(.5)
+
+
+def train_loop(num_battles=1):
+    path = get_path('verdanturf town', 'route 111 left')
+    nav.attempt_follow_path(path)
+    tc.activate_speedup()
+    if wait_for_battle_start():
+        BattleAgent().handle_battle()
+    kc.press_select()
+    for _ in range(num_battles):
+        kc.press_key_down('space')
+        while not check_battle_start():
+            pass
+        kc.press_key_up('space')
+        BattleAgent().handle_battle()
+    tc.deactivate_speedup()
+    kc.press_select()
+    nav.attempt_follow_path(path, reversed=True)
+    PokeCenterAgent().handle_pokecenter()
 
 
 def follow_demo_path(reverse=False):
@@ -54,9 +77,6 @@ elif sys.argv[1] == 'battle_loop':
         battle_loop(int(sys.argv[2]))
     else:
         battle_loop()
-elif sys.argv[1] == 'map_test':
-    kc.press_right()
-    time.sleep(.5)
-    kc.press_right()
-    time.sleep(.5)
+elif sys.argv[1] == 'train_loop':
+    train_loop(num_battles=2)
 kc.alt_tab()

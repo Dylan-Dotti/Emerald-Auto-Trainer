@@ -8,7 +8,9 @@ import time
 import time_controller as tc
 
 
-def attempt_follow_path(path, check_combat=False):
+def attempt_follow_path(path, check_combat=False, reversed=False):
+    if reversed:
+        path = _get_reverse_path(path)
     print('Attempting to follow path...')
     for direct in path:
         if not attempt_move_in_direction(direct, check_combat=check_combat):
@@ -47,6 +49,11 @@ def move_in_direction(direct):
         kc.press_right()
     else:
         raise ValueError('Invalid direction')
+
+
+def _get_reverse_path(path):
+    return reversed(
+        [direct.get_opposite_direction() for direct in path])
 
 
 def check_battle_start():

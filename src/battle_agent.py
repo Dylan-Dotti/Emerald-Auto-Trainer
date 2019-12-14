@@ -21,7 +21,7 @@ class BattleAgent:
 
     def handle_battle(self):
         print('Battle agent starting battle')
-        tc.activate_speedup()
+        #tc.activate_speedup()
         self.wait_for_red_arrow()
         kc.press_a()
         self.wait_for_black_arrow()
@@ -38,7 +38,7 @@ class BattleAgent:
                         self.on_move_learned()
                 # check move attempt learn
                 # check evolution
-                tc.deactivate_speedup()
+                #tc.deactivate_speedup()
                 pparty.save_party()
                 return
             else:
