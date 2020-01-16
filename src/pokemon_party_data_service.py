@@ -1,3 +1,4 @@
+# loads/saves pokemon data from/to the party_pokemon data file
 import json
 import os
 import pokemon

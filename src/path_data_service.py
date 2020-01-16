@@ -1,4 +1,4 @@
-import json
+import json_data_service as jds
 import sys
 from direction import Direction
 
@@ -18,16 +18,11 @@ def get_path(start, end):
 
 
 def __load_data():
-    f = open(_path_file_url)
-    data = json.loads(f.read())
-    f.close()
-    return data
+    return jds.load_data(_path_file_url)
 
 
 def __save_data(data):
-    f = open(_path_file_url, 'w')
-    f.write(json.dumps(data, indent=2))
-    f.close()
+    jds.save_data(_path_file_url, data)
 
 
 def __create_path_from_input():

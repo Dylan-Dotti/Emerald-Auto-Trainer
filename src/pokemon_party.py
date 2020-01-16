@@ -1,3 +1,4 @@
+
 import pokemon
 import pokemon_party_data_service as ppds
 
@@ -26,9 +27,7 @@ def increment_pokemon_level(p_index):
 
 def to_dictionary():
     pokemon = [pkm.to_dictionary() for pkm in _party_pokemon]
-    return {
-        'pokemon': pokemon
-    }
+    return { 'pokemon': pokemon }
 
 
 def save_party():

@@ -2,20 +2,6 @@ import pyautogui as pag
 import win32gui as wgui
 
 
-def find_window(scale_limit=1500):
-    for i in range(scale_limit):
-        query = 'VisualBoyAdvance-'
-        if i < 100:
-            query += ' '
-        if i < 10:
-            query += ' '
-        query += str(i) + '%'
-        window = wgui.FindWindow(None, query)
-        if window != 0:
-            return window
-    return None
-
-
 def set_window_foreground():
     wgui.SetForegroundWindow(__window)
 
@@ -95,10 +81,24 @@ def window_to_screen_coords(coords):
     return x + window_x, y + window_y
 
 
+def _find_window(scale_limit=1500):
+    for i in range(scale_limit):
+        query = 'VisualBoyAdvance-'
+        if i < 100:
+            query += ' '
+        if i < 10:
+            query += ' '
+        query += str(i) + '%'
+        window = wgui.FindWindow(None, query)
+        if window != 0:
+            return window
+    return None
+
+
 __resolutions = {
     1: (320, 274),
     2: (620, 474),
     3: (920, 674),
     4: (1220, 874)
 }
-__window = find_window()
+__window = _find_window()
