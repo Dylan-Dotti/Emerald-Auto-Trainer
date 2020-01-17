@@ -95,6 +95,7 @@ def _find_window(scale_limit=1500):
     return None
 
 
+# not consistent between computers
 __resolutions = {
     1: (320, 274),
     2: (620, 474),

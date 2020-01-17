@@ -1,10 +1,10 @@
-import json_data_service as jds
+import services.json_data_service as jds
 import sys
 from direction import Direction
 
 
 def get_path(start, end):
-    paths = __load_data()['paths']
+    paths = __load_path()['paths']
     path_dict = list(
         filter(lambda p: p['start'] == start and p['end'] == end, paths))[0]
     path_sequence = path_dict['sequence']
@@ -17,11 +17,11 @@ def get_path(start, end):
     return path
 
 
-def __load_data():
+def __load_path():
     return jds.load_data(_path_file_url)
 
 
-def __save_data(data):
+def __save_path(data):
     jds.save_data(_path_file_url, data)
 
 
@@ -49,9 +49,9 @@ def __create_path_from_input():
         'end': end,
         'sequence': path_components
     }
-    data = __load_data()
+    data = __load_path()
     data['paths'].append(new_path)
-    __save_data(data)
+    __save_path(data)
 
 
 _path_file_url = 'data/paths.json'

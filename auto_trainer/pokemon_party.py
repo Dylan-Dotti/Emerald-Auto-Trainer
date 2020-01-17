@@ -1,6 +1,6 @@
 
 import pokemon
-import pokemon_party_data_service as ppds
+import services.pokemon_party_data_service as ppds
 
 
 def get_party():
