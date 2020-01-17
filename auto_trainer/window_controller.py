@@ -83,13 +83,13 @@ def window_to_screen_coords(coords):
 
 def _find_window(scale_limit=1500):
     for i in range(scale_limit):
-        query = 'VisualBoyAdvance-'
+        win_name = 'VisualBoyAdvance-'
         if i < 100:
-            query += ' '
+            win_name += ' '
         if i < 10:
-            query += ' '
-        query += str(i) + '%'
-        window = wgui.FindWindow(None, query)
+            win_name += ' '
+        win_name += str(i) + '%'
+        window = wgui.FindWindow(None, win_name)
         if window != 0:
             return window
     return None

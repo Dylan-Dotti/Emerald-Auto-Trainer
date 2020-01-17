@@ -1,6 +1,6 @@
-import window_grid as grid
-import vision_agent as va
-import window_controller as wc
+import auto_trainer.window_grid as grid
+import auto_trainer.vision_agent as va
+import auto_trainer.window_controller as wc
 import testing.test_runtime as tr
 
 

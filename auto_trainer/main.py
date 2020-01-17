@@ -4,13 +4,12 @@ from battle_agent import BattleAgent
 from services.path_data_service import get_path
 from pokecenter_agent import PokeCenterAgent
 import keyboard_controller as kc
-import navigator as nav
+import navigation.navigator as nav
 import sys
 import time
 import time_controller as tc
 import vision_agent as va
 import window_controller as wc
-from direction import Direction
 
 
 def move_and_check_battle(move_func):

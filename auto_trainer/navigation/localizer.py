@@ -1,4 +1,4 @@
-from direction import Direction
+from navigation.direction import Direction
 import vision_agent as va
 import window_grid as grid
 import window_controller as wc

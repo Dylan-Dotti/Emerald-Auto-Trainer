@@ -1,6 +1,6 @@
-import vision_agent as va
+from .. import vision_agent as va
+from .. import window_controller as wc
 import testing.test_runtime as trt
-import window_controller as wc
 
 
 def test_window_screenshot():

@@ -1,6 +1,6 @@
 import services.json_data_service as jds
 import sys
-from direction import Direction
+from navigation.direction import Direction
 
 
 def get_path(start, end):

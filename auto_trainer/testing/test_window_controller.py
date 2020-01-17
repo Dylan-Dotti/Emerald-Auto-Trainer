@@ -1,4 +1,4 @@
-import window_controller as wc
+import auto_trainer.window_controller as wc
 
 
 def test_init_window():
@@ -6,4 +6,5 @@ def test_init_window():
     wc.set_window_foreground()
 
 
-test_init_window()
+if __name__ == '__main__':
+    test_init_window()
