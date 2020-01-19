@@ -19,10 +19,12 @@ def move_and_check_battle(move_func):
 
 
 def check_battle_start():
-    return va.is_in_window_quad('img/trainer_battle_sprite.png', 2,confidence=0.95)
+    return va.is_in_window_quad('img/trainer_battle_sprite.png', 
+        2, confidence=0.95)
 
 def wait_for_battle_start(timeout=1.0):
-    return va.wait_for_one_image('img/trainer_battle_sprite.png', region=wc.get_quadrant_rect(2), confidence=0.95, timeout=timeout)
+    return va.wait_for_one_image('img/trainer_battle_sprite.png', 
+        region=wc.get_quadrant_rect(2), confidence=0.95, timeout=timeout)
 
 
 def battle_loop(num_battles=1):
@@ -61,21 +63,21 @@ def follow_demo_path(reverse=False):
             [direct.get_opposite_direction() for direct in path])
     nav.attempt_follow_path(path, check_combat=True)
 
-
-if len(sys.argv) == 1:
-    raise Exception('Expected at least one argument')
-wc.set_window_foreground()
-time.sleep(.5)
-if sys.argv[1] == 'path_to':
-    follow_demo_path()
-elif sys.argv[1] == 'path_from':
-    follow_demo_path(reverse=True)
-    PokeCenterAgent().handle_pokecenter()
-elif sys.argv[1] == 'battle_loop':
-    if len(sys.argv) >= 3:
-        battle_loop(int(sys.argv[2]))
-    else:
-        battle_loop()
-elif sys.argv[1] == 'train_loop':
-    train_loop(num_battles=2)
-kc.alt_tab()
+if __name__ == '__main':
+    if len(sys.argv) == 1:
+        raise Exception('Expected at least one argument')
+    wc.set_window_foreground()
+    time.sleep(.5)
+    if sys.argv[1] == 'path_to':
+        follow_demo_path()
+    elif sys.argv[1] == 'path_from':
+        follow_demo_path(reverse=True)
+        PokeCenterAgent().handle_pokecenter()
+    elif sys.argv[1] == 'battle_loop':
+        if len(sys.argv) >= 3:
+            battle_loop(int(sys.argv[2]))
+        else:
+            battle_loop()
+    elif sys.argv[1] == 'train_loop':
+        train_loop(num_battles=2)
+    kc.alt_tab()

@@ -1,0 +1,11 @@
+{
+    "up": "w",
+    "down": "s",
+    "left": "a",
+    "right": "d",
+    "a": "e",
+    "b": "space",
+    "start": "f",
+    "select": "g",
+    "speedup": "r"
+}

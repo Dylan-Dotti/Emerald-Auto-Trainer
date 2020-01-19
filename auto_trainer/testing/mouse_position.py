@@ -1,5 +1,5 @@
 import pyautogui as pag
-import window_controller as wc
+import auto_trainer.window_controller as wc
 
 
 if __name__ == '__main__':

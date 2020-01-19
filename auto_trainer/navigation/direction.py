@@ -10,13 +10,13 @@ class Direction(Enum):
     @staticmethod
     def from_str(dir_str):
         dir_str = dir_str.lower()
-        if dir_str == 'up':
+        if dir_str.lower() == 'up':
             return Direction.up
-        if dir_str == 'down':
+        if dir_str.lower() == 'down':
             return Direction.down
-        if dir_str == 'left':
+        if dir_str.lower() == 'left':
             return Direction.left
-        if dir_str == 'right':
+        if dir_str.lower() == 'right':
             return Direction.right
 
     def get_opposite_direction(self):
