@@ -3,6 +3,7 @@ import mouse_controller as mc
 import time_controller as tc
 import window_controller as wc
 import window_options_controller as woc
+import services.locations_data_service as lds
 import time
 import sys
 
@@ -15,14 +16,28 @@ def get_num_cols():
     return 28
 
 
-def fly_to_city(city_name):
-    #woc.set_frame_skip(0)
-    city_coords = _city_data[city_name]["coords"][0]
+def get_city_by_name(city_name):
+    for city in _cities:
+        if city.get_name() == city_name:
+            return city
+    return None
+
+
+def fly_to_city(city):
+    woc.set_frame_skip(0)
+    _move_to_city(city)
+    kc.press_a()
+    woc.set_frame_skip(1)
+    tc.activate_speedup()
+    time.sleep(.5)
+    tc.deactivate_speedup()
+
+
+def _move_to_city(city):
+    city_coords = city.get_coords()[0]
     corner_index = _get_closest_reachable_corner(city_coords)
     _move_to_corner(corner_index)
-    _move_to_coords(
-        _corner_coords[corner_index], city_coords)
-    #woc.set_frame_skip(1)
+    _move_to_coords(_corner_coords[corner_index], city_coords)
 
 
 def _move_to_coords(start_coords, end_coords):
@@ -123,8 +138,8 @@ def _get_corner_dists(start_coords):
 
 
 def _demo():
-    for city in _city_data:
-        fly_to_city(city)
+    for city in _cities:
+        _move_to_city(city)
         time.sleep(1)
 
 
@@ -133,76 +148,7 @@ _corner_coords = [
     (get_num_rows() - 1, 0), 
     (get_num_rows() - 1, get_num_cols() - 1)
 ]
-_city_data = {
-    "dewford town": {
-        "coords": [(14, 2)],
-        "img": "fly_locations/dewford.png"
-    },
-    "ever grande city - center": {
-        "coords": [(9, 27)],
-        "img": "fly_locations/center.png"
-    },
-    "ever grande city - league": {
-        "coords": [(8, 27)],
-        "img": "fly_locations/league.png"
-    },
-    "fallarbor town": {
-        "coords": [(0, 3)],
-        "img": "fly_locations/fallarbor.png"
-    },
-    "fortree city": {
-        "coords": [(0, 12)],
-        "img": "fly_locations/fortree.png"
-    },
-    "lavaridge town": {
-        "coords": [(3, 5)],
-        "img": "fly_locations/lavaridge.png"
-    },
-    "lilycove city": {
-        "coords": [(3, 18), (3, 19)],
-        "img": "fly_locations/lilycove.png"
-    },
-    "littleroot town": {
-        "coords": [(11, 4)],
-        "img": "fly_locations/littleroot.png"
-    },
-    "mauville city": {
-        "coords": [(6, 8), (6, 9)],
-        "img": "fly_locations/mauville.png"
-    },
-    "mossdeep city": {
-        "coords": [(5, 24), (5, 25)],
-        "img" : "fly_locations/mossdeep.png"
-    },
-    "oldale town": {
-        "coords": [(9, 4)],
-        "img": "fly_locations/oldale.png"
-    },
-    "pacifidlog town": {
-        "coords": [(10, 17)],
-        "img": "fly_locations/pacifidlog.png"
-    },
-    "petalburg city": {
-        "coords": [(9, 1)],
-        "img": "fly_locations/petalburg.png"
-    },
-    "rustboro city": {
-        "coords": [(5, 0), (6, 0)],
-        "img": "fly_locations/rustboro.png"
-    },
-    "slateport city": {
-        "coords": [(10, 8), (11, 8)],
-        "img": "fly_locations/slateport.png"
-    },
-    "sootopolis city": {
-        "coords": [(7, 21)],
-        "img": "fly_locations/sootopolis.png"
-    },
-    "verdanturf town": {
-        "coords": [(6, 4)],
-        "img": "fly_locations/verdanturf.png"
-    }
-}
+_cities = lds.get_all_cities()
 
 
 if __name__ == '__main__':
@@ -213,4 +159,4 @@ if __name__ == '__main__':
     if sys.argv[1] == 'demo':
         _demo()
     else:
-        fly_to_city(sys.argv[1])
+        fly_to_city(get_city_by_name(sys.argv[1]))

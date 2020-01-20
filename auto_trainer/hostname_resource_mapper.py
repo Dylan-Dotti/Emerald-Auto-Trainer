@@ -1,6 +1,6 @@
 # maps computer hostname to the name of folders
 # containing computer-specific data
-import json_data_service as jds
+import services.json_data_service as jds
 import socket
 import os
 
