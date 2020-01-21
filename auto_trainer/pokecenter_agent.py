@@ -7,9 +7,11 @@ import time
 class PokeCenterAgent:
     def __init__(self):
         self._target_url = 'img/pokecenter_target.png'
-        self._door_url = 'img/pokecenter_open_door.png'
+        #self._door_url = 'img/pokecenter_open_door.png'
         self._red_arrow_url = 'img/chat_red_arrow.png'
-        self._blk_arrow_url = 'img/battle_black_arrow.png'
+        self._blk_arrow_url = 'img/chat_black_arrow.png'
+        self._wht_arrow_url = 'img/pokecenter_white_arrow.png'
+        self._grn_arrow_url = 'img/pokecenter_green_arrow.png'
     
     def handle_pokecenter(self):
         tc.activate_speedup()
@@ -25,10 +27,14 @@ class PokeCenterAgent:
         kc.press_a()
         time.sleep(.5)
         kc.press_a()
-        kc.press_down()
         tc.deactivate_speedup()
-        while not va.is_in_window(self._door_url, confidence=0.75):
+        while (not va.is_in_window_half(
+            self._wht_arrow_url, 'bottom', 0.9) and
+            not va.is_in_window_half(
+            self._grn_arrow_url, 'bottom', 0.9)):
             kc.press_down()
+        kc.press_down()
+        time.sleep(1)
     
     def wait_for_red_arrow(self):
         if not va.wait_for_one_image(self._red_arrow_url, 

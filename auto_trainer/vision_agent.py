@@ -1,3 +1,5 @@
+# searches for images in specified regions 
+# of the game window
 import pyautogui as pag
 import window_controller as wc
 import time

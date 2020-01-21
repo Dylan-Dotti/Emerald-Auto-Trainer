@@ -1,10 +1,13 @@
-
 import pokemon
 import services.pokemon_party_data_service as ppds
 
 
 def get_party():
     return _party_pokemon
+
+
+def party_size():
+    return len(_party_pokemon)
 
 
 def get_pokemon(index):
