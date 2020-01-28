@@ -1,4 +1,4 @@
-import services.json_data_service as jds
+import auto_trainer.services.json_data_service as jds
 
 
 def get_controls_map():

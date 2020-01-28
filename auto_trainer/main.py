@@ -28,13 +28,14 @@ def wait_for_battle_start(timeout=1.0):
 
 
 def battle_loop(num_battles=1):
+    print('battle loop')
     left = True
     for _ in range(num_battles):
         while not move_and_check_battle((kc.press_left if left else kc.press_right)):
             left = not left
         left = not left
         BattleAgent().handle_battle()
-        time.sleep(.5)
+        time.sleep(.75)
 
 
 def train_loop(num_battles=1):
@@ -63,7 +64,7 @@ def follow_demo_path(reverse=False):
             [direct.get_opposite_direction() for direct in path])
     nav.attempt_follow_path(path, check_combat=True)
 
-if __name__ == '__main':
+if __name__ == '__main__':
     if len(sys.argv) == 1:
         raise Exception('Expected at least one argument')
     wc.set_window_foreground()

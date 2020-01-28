@@ -1,0 +1,41 @@
+{
+  "name": "chikorita",
+  "level": 5,
+  "gender": "male",
+  "moves": [
+    "tackle",
+    "growl"
+  ],
+  "moves_to_learn": [
+    {
+      "name": "razor leaf",
+      "level": 8,
+      "replace": null
+    },
+    {
+      "name": "reflect",
+      "level": 12,
+      "replace": null
+    },
+    {
+      "name": "poison powder",
+      "level": 15,
+      "replace": "growl"
+    },
+    {
+      "name": "synthesis",
+      "level": 22,
+      "replace": "tackle"
+    },
+    {
+      "name": "body slam",
+      "level": 29,
+      "replace": "poison powder"
+    },
+    {
+      "name": "solar beam",
+      "level": 50,
+      "replace": "razor leaf"
+    }
+  ]
+}

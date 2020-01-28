@@ -7,7 +7,6 @@ import time
 class PokeCenterAgent:
     def __init__(self):
         self._target_url = 'img/pokecenter_target.png'
-        #self._door_url = 'img/pokecenter_open_door.png'
         self._red_arrow_url = 'img/chat_red_arrow.png'
         self._blk_arrow_url = 'img/chat_black_arrow.png'
         self._wht_arrow_url = 'img/pokecenter_white_arrow.png'

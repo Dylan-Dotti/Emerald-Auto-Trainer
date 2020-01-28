@@ -1,17 +1,17 @@
-import services.json_data_service as jds
+import auto_trainer.services.pokeapi_http_service as phs
 
 
-def _create_pokemon_from_input():
-    print('Creating new pokemon file:')
-    p_name = input('Enter the pokemon species name: ')
-    p_lvl = input('Enter the pokemon level: ')
-    print('Enter the pokemon\'s moves, separated by a comma:')
-    p_moves = input().split(',')
-    print(p_name, p_lvl, p_moves)
+def does_pokemon_exist_in_version(pkm_name, version='emerald'):
+    pkm_id = get_pokemon_id_by_name(pkm_name)
+    if version == 'emerald':
+        return pkm_id <= 386
+    return False
 
 
-if __name__ == '__main__':
-    import sys
-    if len(sys.argv) == 2:
-        if sys.argv[1] == 'create':
-            _create_pokemon_from_input()
+def get_all_pokemon_names():
+    results = phs.get_results('pokemon-species')
+    return [r['name'] for r in results]
+
+
+def get_pokemon_id_by_name(pkm_name):
+    return phs.get_one('pokemon-species', pkm_name)['id']

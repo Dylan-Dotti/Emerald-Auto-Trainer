@@ -1,5 +1,5 @@
 # loads/saves pokemon data from/to the party_pokemon data file
-import services.json_data_service as jds
+import auto_trainer.services.json_data_service as jds
 import os
 import pokemon
 

@@ -69,6 +69,11 @@ def get_half_rect(half_name):
         raise Exception('invalid half name')
 
 
+def get_center_rect(width_percentage, height_percentage):
+    x, y, width, height = get_window_rect()
+    
+
+
 def screen_to_window_coords(coords):
     x, y = coords
     window_x, window_y, _, _ = get_window_rect()
