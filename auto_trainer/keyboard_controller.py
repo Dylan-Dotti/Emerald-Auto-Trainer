@@ -1,23 +1,30 @@
 import pyautogui as pag
 import services.controls_data_service as cds
 import time
+import window_controller as wc
 
 
 def press_key(key_name, num_times=1, duration=0, interval=0):
     for _ in range(num_times):
         pag.keyDown(key_name)
-        if duration > 0:
+        if duration > 0 and wc.is_window_foreground():
             time.sleep(duration)
         pag.keyUp(key_name)
-        if interval > 0:
+        if interval > 0 and wc.is_window_foreground():
             time.sleep(interval)
 
 
 def press_key_down(key_name):
+    while not wc.is_window_foreground():
+        print('waiting for window to be foreground for key event...')
+        time.sleep(1)
     pag.keyDown(key_name)
 
 
 def press_key_up(key_name):
+    while not wc.is_window_foreground():
+        print('waiting for window to be foreground for key event...')
+        time.sleep(1)
     return pag.keyUp(key_name)
 
 

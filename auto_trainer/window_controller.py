@@ -1,9 +1,15 @@
 import pyautogui as pag
 import win32gui as wgui
+import time
+
+
+def is_window_foreground():
+    return wgui.GetForegroundWindow() == __window
 
 
 def set_window_foreground():
     wgui.SetForegroundWindow(__window)
+    time.sleep(.001)
 
 
 def get_scale():
@@ -108,3 +114,7 @@ __resolutions = {
     4: (1220, 874)
 }
 __window = _find_window()
+
+if __name__ == '__main__':
+    set_window_foreground()
+    print(is_window_foreground())

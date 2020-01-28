@@ -3,7 +3,7 @@ import mouse_controller as mc
 import time_controller as tc
 import window_controller as wc
 import window_options_controller as woc
-import services.locations_data_service as lds
+import services.cities_data_service as cds
 import time
 import sys
 
@@ -148,7 +148,7 @@ _corner_coords = [
     (get_num_rows() - 1, 0), 
     (get_num_rows() - 1, get_num_cols() - 1)
 ]
-_cities = lds.get_all_cities()
+_cities = cds.get_all_cities()
 
 
 if __name__ == '__main__':

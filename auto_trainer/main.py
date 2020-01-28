@@ -10,6 +10,7 @@ import time
 import time_controller as tc
 import vision_agent as va
 import window_controller as wc
+import window_options_controller as woc
 
 
 def move_and_check_battle(move_func):
@@ -39,6 +40,7 @@ def battle_loop(num_battles=1):
 
 
 def train_loop(num_battles=1):
+    woc.set_frame_skip(1)
     path = get_path('verdanturf town', 'route 111 left')
     nav.attempt_follow_path(path)
     tc.activate_speedup()

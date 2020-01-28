@@ -8,6 +8,8 @@ def get_mouse_position():
 
 
 def move_mouse_to(x, y, is_global_coords=False):
+    while not wc.is_window_foreground():
+        print('waiting for window to be foreground for mouse event')
     if not is_global_coords:
         x, y = wc.window_to_screen_coords((x, y))
     pag.moveTo(x, y)

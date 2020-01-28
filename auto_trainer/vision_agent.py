@@ -6,17 +6,26 @@ import time
 
 
 def screenshot(file_name=None, region=wc.get_window_rect()):
+    while not wc.is_window_foreground():
+        print('waiting for window to be foreground for screenshot...')
+        time.sleep(1)
     return pag.screenshot(
         imageFilename=file_name, region=region)
 
 
 def locate_in_image(needle, haystack, confidence=0.99):
+    while not wc.is_window_foreground():
+        print('waiting for window to be foreground for image search...')
+        time.sleep(1)
     return pag.locate(
         needle, haystack, confidence=confidence, 
         region=wc.get_window_rect())
 
 
 def locate_in_region(img_url, region, confidence=0.99):
+    while not wc.is_window_foreground():
+        print('waiting for window to be foreground for image search...')
+        time.sleep(1)
     return pag.locateOnScreen(
         img_url, region=region, confidence=confidence)
 

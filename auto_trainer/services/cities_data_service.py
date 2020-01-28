@@ -14,4 +14,4 @@ def get_city(city_name):
     return None
 
 
-_locations_data_url = 'data/locations.json'
+_locations_data_url = 'data/city_coords.json'
