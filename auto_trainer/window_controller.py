@@ -34,6 +34,11 @@ def get_resolution():
     return __resolutions[get_scale()]
 
 
+def get_window_center():
+    x, y, width, height = wgui.GetWindowRect(__window)
+    return x + round(width / 2), y + round(height / 2)
+
+
 def get_window_rect():
     rect = wgui.GetWindowRect(__window)
     x = rect[0] + 10
@@ -44,8 +49,8 @@ def get_window_rect():
 
 
 def get_quadrant_rect(index):
-    x, y, width, height = get_window_rect()
-    mid_x, mid_y = round(x + width / 2), round(y + height / 2)
+    x, y, _, _ = get_window_rect()
+    mid_x, mid_y = get_window_center()
     half_width, half_height = mid_x - x, mid_y - y
     if index == 0:
         return x, y, half_width, half_height
@@ -61,7 +66,7 @@ def get_quadrant_rect(index):
 
 def get_half_rect(half_name):
     x, y, width, height = get_window_rect()
-    mid_x, mid_y = round(x + width / 2), round(y + height / 2)
+    mid_x, mid_y = get_window_center()
     half_width, half_height = mid_x - x, mid_y - y
     if half_name == 'top':
         return x, y, width, half_height
@@ -76,8 +81,12 @@ def get_half_rect(half_name):
 
 
 def get_center_rect(width_percentage, height_percentage):
-    x, y, width, height = get_window_rect()
-    
+    _, _, width, height = get_window_rect()
+    center_x, center_y = get_window_center()
+    half_percent_width = round(width * width_percentage / 2)
+    half_percent_height = round(height * height_percentage / 2)
+    return (center_x - half_percent_width, center_y - half_percent_height,
+        half_percent_width * 2, half_percent_height * 2)
 
 
 def screen_to_window_coords(coords):

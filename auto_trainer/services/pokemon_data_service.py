@@ -1,7 +1,7 @@
 import auto_trainer.services.pokeapi_http_service as phs
 
 
-def does_pokemon_exist_in_version(pkm_name, version='emerald'):
+def does_pokemon_exist(pkm_name, version='emerald'):
     pkm_id = get_pokemon_id_by_name(pkm_name)
     if version == 'emerald':
         return pkm_id <= 386

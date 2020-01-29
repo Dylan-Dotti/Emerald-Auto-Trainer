@@ -37,12 +37,12 @@ class PokeCenterAgent:
     
     def wait_for_red_arrow(self):
         if not va.wait_for_one_image(self._red_arrow_url, 
-            region=wc.get_half_rect('bottom'), confidence=0.9):
+            region=wc.get_half_rect('bottom'), confidence=0.8):
             raise Exception('Failed to find red arrow')
     
     def wait_for_black_arrow(self):
         if not va.wait_for_one_image(self._blk_arrow_url, 
-            region=wc.get_half_rect('right'), confidence=0.9):
+            region=wc.get_half_rect('right'), confidence=0.8):
             raise Exception('Failed to find black arrow')
 
 

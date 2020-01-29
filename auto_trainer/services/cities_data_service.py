@@ -3,7 +3,7 @@ from city import City
 
 
 def get_all_cities():
-    cities = jds.load_data(_locations_data_url)['cities']
+    cities = jds.load_data(_cities_data_url)['cities']
     return [City.from_dictionary(c) for c in cities]
 
 
@@ -14,4 +14,4 @@ def get_city(city_name):
     return None
 
 
-_locations_data_url = 'data/city_coords.json'
+_cities_data_url = 'data/city_coords.json'

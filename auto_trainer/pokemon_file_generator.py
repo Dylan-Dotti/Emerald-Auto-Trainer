@@ -1,6 +1,7 @@
 import services.json_data_service as jds
 import services.pokemon_evolution_data_service as peds
 import services.pokemon_moves_data_service as pmds
+import services.pokemon_data_service as pds
 import os
 from evolution import Evolution
 
@@ -23,7 +24,7 @@ def create_pokemon_from_input():
             next_evo.get_after_name(), next_evo.get_evo_level())
     # determine moves to learn leveling up
     moves_to_learn, running_move_pool = _get_level_up_moves_to_learn(
-        p_name, p_lvl, p_moves,
+        p_name, p_lvl, p_moves, False,
         max_lvl=100 if len(evolutions) == 0 else 
         evolutions[0].get_evo_level())
     for i, evo in enumerate(evolutions):
@@ -31,7 +32,8 @@ def create_pokemon_from_input():
             (evo.get_evo_level(), evo.get_before_name(), 
             evo.get_after_name()))
         mtl, running_move_pool = _get_level_up_moves_to_learn(
-            evo.get_after_name(), evo.get_evo_level(), running_move_pool,
+            evo.get_after_name(), evo.get_evo_level(), 
+            running_move_pool, True, 
             max_lvl=100 if i == len(evolutions) - 1 else
             evolutions[i + 1].get_evo_level())
         moves_to_learn += mtl
@@ -95,10 +97,11 @@ def _get_next_evolution(p_name, p_lvl):
         evo_level, next_evo_conditions)
 
 
-def _get_level_up_moves_to_learn(p_name, p_lvl, p_moves, max_lvl=100):
+def _get_level_up_moves_to_learn(p_name, p_lvl, p_moves, 
+    incl_curr_lvl, max_lvl=100):
     level_up_moves = pmds.get_all_level_up_moves(p_name)
     level_up_moves = [(m, l) for (m, l) in level_up_moves
-                      if l >= p_lvl]
+                      if (l >= p_lvl if incl_curr_lvl else l > p_lvl)]
     running_move_pool = [m for m in p_moves]
     moves_to_learn = []
     for mv, lv in level_up_moves:
@@ -152,10 +155,10 @@ def _get_y_or_n_input(prompt):
         'please answer with "y" or "n"')
 
 
-def _get_choice_from_options(prompt, options):
+def _get_choice_from_options(prompt, options,
+    err_msg='invalid selection'):
     return _get_user_input(prompt,
-        lambda x: x in options,
-        'invalid selection')
+        lambda x: x in options, err_msg)
 
 
 def _get_level_input(prompt, min_lvl=1, max_lvl=100):

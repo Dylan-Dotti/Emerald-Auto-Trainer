@@ -24,7 +24,7 @@ def get_next_evolutions(pkm_name, version='emerald'):
         pkm_name, evo_data)
     # return list of evolution data
     return [evo for evo in evo_data['evolves_to']
-            if pds.does_pokemon_exist_in_version(
+            if pds.does_pokemon_exist(
                 evo['species']['name'], version)]
 
 
