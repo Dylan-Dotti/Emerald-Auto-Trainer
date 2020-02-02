@@ -1,3 +1,4 @@
-**/testing/
+auto_trainer/testing/
+auto_trainer/data/pokemon/*.json
 **/__pycache__/
 **/.vscode/
