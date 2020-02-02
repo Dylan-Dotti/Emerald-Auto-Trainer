@@ -35,8 +35,8 @@ def get_resolution():
 
 
 def get_window_center():
-    x, y, width, height = wgui.GetWindowRect(__window)
-    return x + round(width / 2), y + round(height / 2)
+    x, y, width, height = get_window_rect()
+    return round(x + width / 2), round(y + height / 2)
 
 
 def get_window_rect():

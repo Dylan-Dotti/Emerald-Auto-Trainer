@@ -8,6 +8,7 @@ def get_possible_genders(pkm_name):
         genders.append('genderless')
     return genders
 
+
 def can_pokemon_be_gender(pkm_name, gender):
     return pkm_name in _get_all_pokemon_with_gender(gender)
 
