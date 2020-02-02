@@ -14,6 +14,10 @@ def press_key(key_name, num_times=1, duration=0, interval=0):
             time.sleep(interval)
 
 
+def press_key_sequence(keys):
+    pag.hotkey('shift', '0')
+
+
 def press_key_down(key_name):
     while not wc.is_window_foreground():
         print('waiting for window to be foreground for key event...')

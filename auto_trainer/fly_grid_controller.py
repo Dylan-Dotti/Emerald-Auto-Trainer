@@ -24,20 +24,20 @@ def get_city_by_name(city_name):
 
 
 def fly_to_city(city):
-    woc.set_frame_skip(0)
     _move_to_city(city)
     kc.press_a()
-    woc.set_frame_skip(1)
     tc.activate_speedup()
     time.sleep(.5)
     tc.deactivate_speedup()
 
 
 def _move_to_city(city):
+    woc.set_frame_skip(0)
     city_coords = city.get_coords()[0]
     corner_index = _get_closest_reachable_corner(city_coords)
     _move_to_corner(corner_index)
     _move_to_coords(_corner_coords[corner_index], city_coords)
+    woc.set_frame_skip(1)
 
 
 def _move_to_coords(start_coords, end_coords):
@@ -61,10 +61,10 @@ def _move_to_row(start_row, end_row):
     time.sleep(.2)
     while start_row != end_row:
         if start_row < end_row:
-            kc.press_down(duration=.05)
+            kc.press_down()
             start_row += 2
         else:
-            kc.press_up(duration=.05)
+            kc.press_up(duration=0.01)
             start_row -= 2
         time.sleep(.2)
 
