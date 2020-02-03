@@ -1,4 +1,5 @@
 auto_trainer/testing/
 auto_trainer/data/pokemon/*.json
+auto_trainer/img/sprites/*.png
 **/__pycache__/
 **/.vscode/
