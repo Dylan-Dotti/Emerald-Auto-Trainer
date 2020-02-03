@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import ttk
 
 
 class NextBackButtonsGroup(tk.Frame):
@@ -15,3 +16,18 @@ class NextBackButtonsGroup(tk.Frame):
         self._back_button.grid(row=0, column=0, padx=2)
         self._next_button.grid(row=0, column=1, padx=2)
         self._quit_button.grid(row=0, column=2, padx=5)
+    
+    def set_next_button_enabled(self, enabled):
+        self._next_button.config(
+            state='active' if enabled else 'disabled')
+
+    def set_back_button_enabled(self, enabled):
+        self._back_button.config(
+            state='active' if enabled else 'disabled')
+
+    def set_quit_button_enabled(self, enabled):
+        self._quit_button.config(
+            state='active' if enabled else 'disabled')
+    
+    def update(self):
+        print('Buttons update')

@@ -8,8 +8,10 @@ def does_pokemon_exist(pkm_name, version='emerald'):
     return False
 
 
-def get_all_pokemon_names():
+def get_all_pokemon_names(version=None):
     results = phs.get_results('pokemon-species')
+    if version == 'emerald':
+        results = results[:386]
     return [r['name'] for r in results]
 
 
