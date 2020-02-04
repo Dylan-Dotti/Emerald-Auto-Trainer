@@ -3,7 +3,7 @@ import auto_trainer.services.pokemon_sprite_data_service as psds
 from PIL import ImageTk, Image
 
 
-class SpriteDisplay(tk.Label):
+class PokemonSpriteComponent(tk.Label):
 
     def __init__(self, master, pkm_name):
         if pkm_name is not None:
