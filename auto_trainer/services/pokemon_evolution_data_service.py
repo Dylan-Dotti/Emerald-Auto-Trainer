@@ -2,10 +2,12 @@ import auto_trainer.services.pokeapi_http_service as phs
 import auto_trainer.services.pokemon_data_service as pds
 
 
+# gets all evolutions in next stage of chain trigged by level-up
 def get_level_up_evolutions(pkm_name, version='emerald'):
-    next_evos = get_next_evolutions(pkm_name, version)
+    next_evos = get_next_evolutions(pkm_name)
     level_evos = [evo for evo in next_evos if 
-        evo['evolution_details'][0]['trigger']['name'] == 'level-up']
+        evo['evolution_details'][0]['trigger']['name'] == 'level-up'
+        and pds.does_pokemon_exist(evo['species']['name'], version)]
     evos_formatted = []
     for evo in level_evos:
         evo_name = evo['species']['name']
@@ -17,15 +19,14 @@ def get_level_up_evolutions(pkm_name, version='emerald'):
     return evos_formatted
 
 
-def get_next_evolutions(pkm_name, version='emerald'):
+# gets all evolutions in next stage of chain regardless of trigger
+def get_next_evolutions(pkm_name):
     evo_data = _get_evo_chain(pkm_name)
     # find pokemon in chain
     evo_data = _find_pokemon_in_chain_recursive(
         pkm_name, evo_data)
     # return list of evolution data
-    return [evo for evo in evo_data['evolves_to']
-            if pds.does_pokemon_exist(
-                evo['species']['name'], version)]
+    return [evo for evo in evo_data['evolves_to']]
 
 
 def evolves_on_level_up(pkm_name, version='emerald'):

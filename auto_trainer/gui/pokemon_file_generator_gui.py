@@ -29,26 +29,30 @@ class PokemonFileGeneratorGUI(tk.Tk, UpdatableComponent):
         self.option_add('*TCombobox*Listbox.selectBackground', 'green')
         self.option_add('*TCombobox*Listbox.highlightcolor', 'green')
 
-        self.frame = tk.Frame(self)
-        self.frame.rowconfigure(1, minsize=100)
-        self.frame.pack(padx=25, pady=15)
+        self.main_frame = tk.Frame(self)
+        self.main_frame.grid(row=0, column=0, padx=25, pady=15)
+
+        self.upper_frame = tk.Frame(self.main_frame)
+        self.upper_frame.rowconfigure(1, minsize=100)
+        self.upper_frame.grid(row=0, column=0)
 
         self.pkm_data = {}
 
-        self.name_component = PokemonNameComponent(self.frame,
+        self.name_component = PokemonNameComponent(self.upper_frame,
             change_event=self._on_name_changed, combo_style='G.TCombobox')
-        self.sprite_display = PokemonSpriteComponent(self.frame, None)
+        self.sprite_display = PokemonSpriteComponent(self.upper_frame, None)
         self.gender_component = None
         self.level_component = None
-        self.buttons = NextBackButtonsGroup(self.frame,
+        self.buttons = NextBackButtonsGroup(self.main_frame,
             next_action=self._on_next_clicked,
             back_action=self._on_back_clicked,
             quit_action=self.quit)
+        self.buttons.set_next_button_enabled(False)
         self.buttons.set_back_button_enabled(False)
         
         self.name_component.grid(row=0, column=0, columnspan=2)
         self.sprite_display.grid(row=1, column=0, columnspan=2)
-        self.buttons.grid(row=3, column=1, sticky='se')
+        self.buttons.grid(row=1, column=0, columnspan=2, pady=(10, 0))
         self.resizable(False, False)
 
     def time_update(self, deltatime):
@@ -60,20 +64,21 @@ class PokemonFileGeneratorGUI(tk.Tk, UpdatableComponent):
                 self.frame_index += 1
                 self.name_component.set_entry_enabled(False)
                 self.gender_component = PokemonGenderComponent(
-                    self.frame, self.name_component.get_name(),
+                    self.upper_frame, self.name_component.get_name(),
                     change_event=self._on_gender_changed,
                     combo_style='G.TCombobox')
                 self.level_component = PokemonLevelComponent(
-                    self.frame, change_event=self._on_level_changed)
-                self.gender_component.grid(row=2, column=0, pady=10)
-                self.level_component.grid(row=2, column=1, pady=10)
+                    self.upper_frame, change_event=self._on_level_changed,
+                    combo_style='G.TCombobox')
+                self.gender_component.grid(row=2, column=0, padx=(0, 5), pady=(0, 10))
+                self.level_component.grid(row=2, column=1, padx=(5, 0), pady=(0, 10))
                 self.buttons.set_back_button_enabled(True)
         elif self.frame_index == 1:
             if self.level_component.is_valid():
                 self.frame_index += 1
                 self._clear_frame()
                 evo_component = PokemonEvolutionComponent(
-                    self.frame, self.pkm_data)
+                    self.upper_frame, self.pkm_data)
                 evo_component.pack()
     
     def _on_back_clicked(self):
@@ -87,6 +92,8 @@ class PokemonFileGeneratorGUI(tk.Tk, UpdatableComponent):
     def _on_name_changed(self, new_name):
         self.pkm_data['name'] = new_name
         self._display_image()
+        self.buttons.set_next_button_enabled(
+            self.name_component.is_valid())
     
     def _on_gender_changed(self, new_gender):
         self.pkm_data['gender'] = new_gender
@@ -97,11 +104,10 @@ class PokemonFileGeneratorGUI(tk.Tk, UpdatableComponent):
     def _display_image(self):
         self.sprite_display.grid_forget()
         if self.name_component.is_valid():
-            self.sprite_display = PokemonSpriteComponent(self.frame, 
-                self.name_component.get_name())
-            self.sprite_display.grid(row=1, column=0, 
-                rowspan=1, columnspan=2)
+            self.sprite_display = PokemonSpriteComponent(
+                self.upper_frame, self.name_component.get_name())
+            self.sprite_display.grid(row=1, column=0, columnspan=2)
     
     def _clear_frame(self):
-        for s in self.frame.grid_slaves():
+        for s in self.upper_frame.grid_slaves():
             s.grid_forget()

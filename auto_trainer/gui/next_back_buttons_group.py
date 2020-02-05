@@ -15,7 +15,7 @@ class NextBackButtonsGroup(tk.Frame):
             padx=10, command=quit_action)
         self._back_button.grid(row=0, column=0, padx=2)
         self._next_button.grid(row=0, column=1, padx=2)
-        self._quit_button.grid(row=0, column=2, padx=5)
+        self._quit_button.grid(row=0, column=2, padx=(15, 0))
     
     def set_next_button_enabled(self, enabled):
         self._next_button.config(
