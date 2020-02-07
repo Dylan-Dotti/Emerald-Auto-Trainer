@@ -9,7 +9,8 @@ class PokemonGenderComponent(tk.Frame):
         super().__init__(master)
         self.gender_var = tk.StringVar()
         self.gender_label = tk.Label(self, text='Gender:')
-        possible_genders = gds.get_possible_genders(pkm_name)
+        possible_genders = (gds.get_possible_genders(pkm_name) if
+            pkm_name is not None else ['male', 'female', 'genderless'])
         self.gender_combobox = ttk.Combobox(self, state='readonly',
             values=[g.capitalize() for g in possible_genders],
             textvariable=self.gender_var, width=10, style=combo_style)
@@ -24,3 +25,16 @@ class PokemonGenderComponent(tk.Frame):
     
     def get_gender(self):
         return self.gender_combobox.get()
+    
+    def is_valid(self):
+        return self.get_gender() != ''
+    
+    def is_active(self):
+        return (self.gender_label.cget('state') == tk.NORMAL and
+            self.gender_combobox.cget('state') == tk.NORMAL)
+    
+    def set_active(self, active):
+        self.gender_label.configure(state='active' 
+            if active else 'disabled')
+        self.gender_combobox.configure(state='active' 
+            if active else 'disabled')
