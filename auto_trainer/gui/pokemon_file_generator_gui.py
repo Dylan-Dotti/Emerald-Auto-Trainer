@@ -52,7 +52,8 @@ class PokemonFileGeneratorGUI(tk.Tk, UpdatableComponent):
                 self.pkm_data[k] = v
             self.basic_info_frame.grid_remove()
             self.evolution_select_frame = PokemonEvolutionComponent(
-                self.main_frame, self.pkm_data, 
+                self.main_frame, self.pkm_data,
+                exit_next_action=self._on_component_exit_next, 
                 exit_back_action=self._on_component_exit_back,
                 exit_quit_action=self.quit)
             self.evolution_select_frame.grid(row=0, column=0)

@@ -28,7 +28,16 @@ class EvolutionSelectionComponent(tk.Frame):
             self.evo_cbox.grid(row=1, column=0)
     
     def get_evo_data(self):
-        return self.evo_data
+        return {
+            'name': self.evo_cbox.get().lower(),
+            'level': self.level_cbox.get_level(),
+            'conditions': self.evolutions[self.evo_cbox.get().lower()]
+        }
+    
+    def is_valid(self):
+        return (self.evo_cbox.get() != '' and 
+            self.level_cbox is not None and 
+            self.level_cbox.is_valid())
     
     def _on_evo_selected(self):
         self.prompt_label.grid_forget()
