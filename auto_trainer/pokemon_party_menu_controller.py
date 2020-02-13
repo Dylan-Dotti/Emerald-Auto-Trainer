@@ -7,7 +7,6 @@ import time
 
 
 def switch_pokemon(index_1, index_2):
-    wc.set_window_foreground()
     select_pokemon(index_1)
     kc.press_down()
     kc.press_a()
@@ -46,7 +45,7 @@ __cursor_index = 0
 if __name__ == '__main__':
     import sys
     if len(sys.argv) == 2:
-        wc.set_window_foreground()
+        wc.set_window_foreground_and_resize()
         move_cursor_to(int(sys.argv[1]))
     else:
         raise Exception('Expected 1 argument')

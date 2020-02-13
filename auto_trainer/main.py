@@ -69,7 +69,7 @@ def follow_demo_path(reverse=False):
 if __name__ == '__main__':
     if len(sys.argv) == 1:
         raise Exception('Expected at least one argument')
-    wc.set_window_foreground()
+    wc.set_window_foreground_and_resize()
     time.sleep(.5)
     if sys.argv[1] == 'path_to':
         follow_demo_path()

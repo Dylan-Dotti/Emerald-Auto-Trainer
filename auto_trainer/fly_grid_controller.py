@@ -155,7 +155,7 @@ if __name__ == '__main__':
     if len(sys.argv) != 2:
         raise Exception(
             'Expected 1 argument for destination')
-    wc.set_window_foreground()
+    wc.set_window_foreground_and_resize()
     if sys.argv[1] == 'demo':
         _demo()
     else:

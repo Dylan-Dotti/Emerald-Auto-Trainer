@@ -48,5 +48,5 @@ class PokeCenterAgent:
 
 
 if __name__ == '__main__':
-    wc.set_window_foreground()
+    wc.set_window_foreground_and_resize()
     PokeCenterAgent().handle_pokecenter()

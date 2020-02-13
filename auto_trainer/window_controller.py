@@ -12,16 +12,9 @@ def set_window_foreground():
     time.sleep(.001)
 
 
-def get_scale():
-    _, _, width, height = get_window_rect()
-    for key, value in __resolutions.items():
-        if value == (width, height):
-            return key
-    return 0
-
-
-def get_resolution():
-    return __resolutions[get_scale()]
+def set_window_foreground_and_resize():
+    resize_window_default()
+    set_window_foreground()
 
 
 def get_window_width():
@@ -37,6 +30,10 @@ def get_window_height():
 def resize_window(width, height):
     x, y, _, _ = get_window_rect_raw()
     wgui.MoveWindow(__window, x, y, width, height, True)
+
+
+def resize_window_default():
+    resize_window(819, 600)
 
 
 def move_window(x, y):
@@ -134,15 +131,4 @@ def _find_window(scale_limit=1500):
     return None
 
 
-# not consistent between computers
-__resolutions = {
-    1: (320, 274),
-    2: (620, 474),
-    3: (920, 674),
-    4: (1220, 874)
-}
 __window = _find_window()
-
-if __name__ == '__main__':
-    set_window_foreground()
-    print(is_window_foreground())

@@ -147,5 +147,5 @@ class BAState(enum.Enum):
 
 if __name__ == '__main__':
     import window_controller as wc
-    wc.set_window_foreground()
+    wc.set_window_foreground_and_resize()
     BattleAgent().handle_battle()
