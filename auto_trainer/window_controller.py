@@ -20,6 +20,10 @@ def get_scale():
     return 0
 
 
+def get_resolution():
+    return __resolutions[get_scale()]
+
+
 def get_window_width():
     _, _, width, _ = get_window_rect()
     return width
@@ -30,13 +34,28 @@ def get_window_height():
     return height
 
 
-def get_resolution():
-    return __resolutions[get_scale()]
+def resize_window(width, height):
+    x, y, _, _ = get_window_rect_raw()
+    wgui.MoveWindow(__window, x, y, width, height, True)
+
+
+def move_window(x, y):
+    _, _, w, h = get_window_rect_raw()
+    wgui.MoveWindow(__window, x, y, w, h, True)
 
 
 def get_window_center():
     x, y, width, height = get_window_rect()
     return round(x + width / 2), round(y + height / 2)
+
+
+def get_window_rect_raw():
+    rect = wgui.GetWindowRect(__window)
+    x = rect[0]
+    y = rect[1]
+    width = rect[2] - x
+    height = rect[3] - y
+    return x, y, width, height
 
 
 def get_window_rect():
