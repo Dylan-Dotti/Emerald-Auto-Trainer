@@ -1,5 +1,6 @@
 import pyautogui as pag
 import time
+import game_window_grid as gwg
 import window_controller as wc
 
 
@@ -8,10 +9,11 @@ def get_mouse_position():
 
 
 def move_mouse_to(x, y, is_global_coords=False):
-    while not wc.is_window_foreground():
+    if not wc.is_window_foreground():
         print('waiting for window to be foreground for mouse event')
+        wc.wait_for_window_foreground()
     if not is_global_coords:
-        x, y = wc.window_to_screen_coords((x, y))
+        x, y = gwg.local_to_global_coords((x, y))
     pag.moveTo(x, y)
 
 

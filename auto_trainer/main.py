@@ -3,6 +3,7 @@ import pyautogui as pag
 from battle_agent import BattleAgent
 from services.path_data_service import get_path
 from pokecenter_agent import PokeCenterAgent
+import game_window_grid as gwg
 import keyboard_controller as kc
 import navigation.navigator as nav
 import sys
@@ -25,14 +26,15 @@ def check_battle_start():
 
 def wait_for_battle_start(timeout=1.0):
     return va.wait_for_one_image('img/trainer_battle_sprite.png', 
-        region=wc.get_quadrant_rect(2), confidence=0.95, timeout=timeout)
+        region=gwg.get_quadrant_rect(2), confidence=0.95, timeout=timeout)
 
 
 def battle_loop(num_battles=1):
     print('battle loop')
     left = True
     for _ in range(num_battles):
-        while not move_and_check_battle((kc.press_left if left else kc.press_right)):
+        while not move_and_check_battle(
+            kc.press_left if left else kc.press_right):
             left = not left
         left = not left
         BattleAgent().handle_battle()

@@ -1,4 +1,5 @@
 import vision_agent as va
+import game_window_grid as gwg
 import keyboard_controller as kc
 import window_controller as wc
 import time_controller as tc
@@ -37,17 +38,16 @@ class PokeCenterAgent:
     
     def wait_for_red_arrow(self):
         if not va.wait_for_one_image(self._red_arrow_url, 
-            region=wc.get_half_rect('bottom'), confidence=0.9):
+            region=gwg.get_half_rect('bottom'), confidence=0.9):
             raise Exception('Failed to find red arrow')
     
     def wait_for_black_arrow(self):
         if not va.wait_for_one_image(self._blk_arrow_url, 
-            region=wc.get_half_rect('right'), 
+            region=gwg.get_half_rect('right'), 
             confidence=0.9):
             raise Exception('Failed to find black arrow')
 
 
 if __name__ == '__main__':
     wc.set_window_foreground_and_resize()
-    #PokeCenterAgent().wait_for_red_arrow()
     PokeCenterAgent().handle_pokecenter()

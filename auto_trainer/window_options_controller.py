@@ -4,4 +4,6 @@ import time
 
 
 def set_frame_skip(index):
-    kc.press_key_sequence(['shiftleft', str(index)])
+    if index < 0 or index > 9:
+        raise ValueError('Invalid frame skip index')
+    kc.press_key_sequence('shiftleft', str(index))

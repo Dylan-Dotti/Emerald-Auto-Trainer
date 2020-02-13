@@ -3,7 +3,6 @@ from navigation.direction import Direction
 from navigation.localizer import Localizer
 import keyboard_controller as kc
 import vision_agent as va
-import window_grid as grid
 import time
 import time_controller as tc
 
@@ -29,9 +28,6 @@ def attempt_move_in_direction(direct, num_attempts=10, check_combat=False):
         if Localizer.has_moved_in_direction(direct):
             print('Move confirmed')
             return True
-       # elif check_combat and check_battle_start():
-        #    print('Checking for combat start...')
-         #   ba.BattleAgent().handle_battle()
         else:
             print('Move failed. Retrying...')
     print('Gave up after %s attempts' % str(num_attempts))

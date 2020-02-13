@@ -6,29 +6,32 @@ import window_controller as wc
 
 def press_key(key_name, num_times=1, duration=0, interval=0):
     for _ in range(num_times):
-        pag.keyDown(key_name)
+        press_key_down(key_name)
         if duration > 0 and wc.is_window_foreground():
             time.sleep(duration)
-        pag.keyUp(key_name)
+        press_key_up(key_name)
         if interval > 0 and wc.is_window_foreground():
             time.sleep(interval)
 
 
-def press_key_sequence(keys):
-    pag.hotkey('shift', '0')
+def press_key_sequence(*keys):
+    if not wc.is_window_foreground():
+        print('waiting for window to be foreground for key event...')
+        wc.wait_for_window_foreground()
+    pag.hotkey(*keys)
 
 
 def press_key_down(key_name):
-    while not wc.is_window_foreground():
+    if not wc.is_window_foreground():
         print('waiting for window to be foreground for key event...')
-        time.sleep(1)
+        wc.wait_for_window_foreground()
     pag.keyDown(key_name)
 
 
 def press_key_up(key_name):
-    while not wc.is_window_foreground():
+    if not wc.is_window_foreground():
         print('waiting for window to be foreground for key event...')
-        time.sleep(1)
+        wc.wait_for_window_foreground()
     return pag.keyUp(key_name)
 
 
@@ -73,7 +76,7 @@ def press_select(num_times=1, duration=0, interval=0):
 
 
 def alt_tab():
-    pag.hotkey('alt', 'tab')
+    press_key_sequence('alt', 'tab')
 
 
 _controls_map = cds.get_controls_map()
