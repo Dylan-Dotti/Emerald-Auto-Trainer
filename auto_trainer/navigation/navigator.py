@@ -24,7 +24,7 @@ def attempt_move_in_direction(direct, num_attempts=10, check_combat=False):
     for _ in range(num_attempts):
         Localizer.prepare_for_move(direct)
         move_in_direction(direct)
-        time.sleep(.2)
+        time.sleep(.225)
         if Localizer.has_moved_in_direction(direct):
             print('Move confirmed')
             return True
