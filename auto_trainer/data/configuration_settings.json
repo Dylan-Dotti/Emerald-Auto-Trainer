@@ -1,0 +1,18 @@
+{
+  "default_win_height": 819,
+  "default_win_width": 600,
+  "win_border_mods": {
+    "vba": {
+      "top": 0,
+      "bottom": 0,
+      "left": 0,
+      "right": 0
+    },
+    "game": {
+      "top": 77,
+      "bottom": -13,
+      "left": 12,
+      "right": -14
+    }
+  }
+}

@@ -3,14 +3,21 @@
 import json
 
 
+_cache = {}
+
+
 def load_data(file_url):
-    f = open(file_url)
-    data = json.loads(f.read())
-    f.close()
-    return data
+    if file_url not in _cache:
+        f = open(file_url)
+        data = json.loads(f.read())
+        _cache[file_url] = data
+        f.close()
+    return _cache[file_url]
 
 
 def save_data(file_url, data):
     f = open(file_url, 'w')
-    f.write(json.dumps(data, indent=2))
+    data_json = json.dumps(data, indent=2)
+    _cache[file_url] = data_json
+    f.write(data_json)
     f.close()

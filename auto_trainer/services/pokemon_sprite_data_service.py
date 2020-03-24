@@ -1,4 +1,4 @@
-import auto_trainer
+import auto_trainer.directory_manager as dm
 import auto_trainer.services.pokeapi_http_service as phs
 import requests
 import os
@@ -6,9 +6,9 @@ import os
 
 def get_front_sprite_direct(pkm_name):
     pkm_name = pkm_name.lower()
-    auto_trainer_direct = auto_trainer.__file__.replace('__init__.py', '')
-    file_direct = (auto_trainer_direct + 
-        'img\\sprites\\%s_front_default.png' % pkm_name)
+    img_directory = dm.get_img_directory()
+    file_direct = (img_directory + 
+        'sprites\\%s_front_default.png' % pkm_name)
     # retrieve from file if exists
     if os.path.exists(file_direct):
         return file_direct

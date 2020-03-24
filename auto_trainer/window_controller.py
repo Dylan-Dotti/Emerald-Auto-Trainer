@@ -1,10 +1,13 @@
+import auto_trainer.services.config_settings_data_service as csds
+from auto_trainer.exceptions import WindowNotFoundError
 import pyautogui as pag
 import win32gui as wgui
+import win32con as wcon
 import time
 
 
 def is_window_foreground():
-    return wgui.GetForegroundWindow() == __window
+    return wgui.GetForegroundWindow() == _get_window()
 
 
 def wait_for_window_foreground(check_interval=1):
@@ -13,13 +16,21 @@ def wait_for_window_foreground(check_interval=1):
 
 
 def set_window_foreground():
-    wgui.SetForegroundWindow(__window)
-    time.sleep(.005)
+    if is_window_minimized():
+        wgui.ShowWindow(_get_window(), wcon.SW_RESTORE)
+        time.sleep(.4)
+    else:
+        wgui.SetForegroundWindow(_get_window())
+        time.sleep(.005)
 
 
 def set_window_foreground_and_resize():
     resize_window_default()
     set_window_foreground()
+
+
+def is_window_minimized():
+    return wgui.IsIconic(_get_window()) == 1
 
 
 def get_window_width():
@@ -34,11 +45,13 @@ def get_window_height():
 
 def resize_window(width, height):
     x, y, _, _ = get_window_rect()
-    wgui.MoveWindow(__window, x, y, width, height, True)
+    wgui.MoveWindow(_get_window(), x, y, width, height, True)
 
 
 def resize_window_default():
-    resize_window(819, 600)
+    settings = csds.get_config_settings()
+    resize_window(settings['default_win_height'],
+        settings['default_win_width'])
 
 
 def get_window_position_global():
@@ -48,15 +61,16 @@ def get_window_position_global():
 
 def move_window(x, y):
     _, _, w, h = get_window_rect()
-    wgui.MoveWindow(__window, x, y, w, h, True)
+    wgui.MoveWindow(_get_window(), x, y, w, h, True)
 
 
 def get_window_rect():
-    rect = wgui.GetWindowRect(__window)
-    x = rect[0] + 12
-    y = rect[1] + 1
-    width = rect[2] - x - 12
-    height = rect[3] - y - 14
+    mods = csds.get_win_border_mods('vba')
+    rect = wgui.GetWindowRect(_get_window())
+    x = rect[0] + mods['left']
+    y = rect[1] + mods['top']
+    width = rect[2] - x + mods['right']
+    height = rect[3] - y + mods['bottom']
     return x, y, width, height
 
 
@@ -77,6 +91,13 @@ def local_to_global_coords(coords):
     return x + window_x, y + window_y
 
 
+def _get_window():
+    global __window
+    if __window is None:
+        __window = _find_window()
+    return __window
+
+
 def _find_window(speed_percent_limit=10000):
     for speed in range(speed_percent_limit):
         win_name = 'VisualBoyAdvance-'
@@ -87,7 +108,7 @@ def _find_window(speed_percent_limit=10000):
         window = wgui.FindWindow(None, win_name)
         if window != 0:
             return window
-    return None
+    raise WindowNotFoundError('Could not find VBA window')
 
 
-__window = _find_window()
+__window = None

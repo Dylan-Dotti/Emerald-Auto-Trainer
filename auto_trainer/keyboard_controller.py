@@ -1,7 +1,7 @@
+import auto_trainer.services.controls_data_service as cds
+import auto_trainer.window_controller as wc
 import pyautogui as pag
-import services.controls_data_service as cds
 import time
-import window_controller as wc
 
 
 def press_key(key_name, num_times=1, duration=0, interval=0):

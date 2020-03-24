@@ -17,7 +17,6 @@ def get_square_width():
 def get_square_height():
     _, _, _, height = get_game_window_rect()
     return height / float(num_rows() - 1)
-    # why -1 here but not in width?
 
 
 def get_game_window_width():
@@ -37,7 +36,7 @@ def get_game_window_center():
 
 def get_game_window_rect():
     x, y, w, h = wc.get_window_rect()
-    return x, y + 76, w, h - 76
+    return x, y, w, h - 76
 
 
 def get_quadrant_rect(index):
