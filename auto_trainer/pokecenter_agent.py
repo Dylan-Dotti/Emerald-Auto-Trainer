@@ -15,7 +15,8 @@ class PokeCenterAgent:
     
     def handle_pokecenter(self):
         tc.activate_speedup()
-        while not va.is_in_window_half(self._target_url, 'top', confidence=0.65):
+        while not va.is_in_window_half(
+            self._target_url, 'top', confidence=0.65):
             kc.press_up()
         kc.press_a()
         for _ in range(2):

@@ -20,7 +20,7 @@ class Localizer:
         else:
             raise ValueError('Invalid direction')
         Localizer._old_region_img = va.screenshot(
-            #'img/ss_test/localizer/old_img.png',
+            'img/ss_test/localizer/old_img.png',
             region=old_region)
 
     @staticmethod
@@ -35,6 +35,6 @@ class Localizer:
             new_region = gwg.get_col_range_rect(0, gwg.num_cols() - 1)
         else:
             raise ValueError('Invalid direction: ' + direct)
-        #va.screenshot('img/ss_test/localizer/new_img.png', region=new_region)
+        va.screenshot('img/ss_test/localizer/new_img.png', region=new_region)
         return va.is_in_region(Localizer._old_region_img,
             region=new_region, confidence=confidence)
