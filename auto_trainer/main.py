@@ -12,6 +12,7 @@ import time_controller as tc
 import vision_agent as va
 import window_controller as wc
 import window_options_controller as woc
+from navigation.direction import Direction
 
 
 def move_and_check_battle(move_func):

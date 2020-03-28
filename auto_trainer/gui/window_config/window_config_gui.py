@@ -1,9 +1,11 @@
 import tkinter as tk
+
 import auto_trainer.gui.window_config.screenshot_display as ssd
 import auto_trainer.gui.window_config.sliders_display as sd
 import auto_trainer.gui.window_config.window_config_side_bar as sb
 import auto_trainer.services.config_settings_data_service as csds
 import auto_trainer.services.image_directory_service as ids
+import auto_trainer.game_window_grid as gwg
 import auto_trainer.keyboard_controller as kc
 import auto_trainer.window_controller as wc
 import auto_trainer.vision_agent as va
@@ -45,7 +47,7 @@ class WindowConfigGUI(tk.Tk):
         self._confirm_button.grid(row=0, column=1, padx=(5, 0))
 
         self.resizable(False, False)
-        self.on_ss_button_pressed()
+        self.display_window_ss()
     
     def take_window_ss(self):
         wc.set_window_foreground_and_resize()
