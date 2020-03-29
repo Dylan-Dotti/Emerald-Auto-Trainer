@@ -15,7 +15,7 @@ def screenshot(file_name=None, region=None):
         region is not None else gwg.get_game_window_rect())
 
 
-def locate_in_image(needle, haystack, confidence=0.99):
+def locate_in_image(needle, haystack, confidence=0.95):
     if not wc.is_window_foreground():
         print('waiting for window to be foreground for image search...')
         wc.wait_for_window_foreground()
@@ -24,7 +24,7 @@ def locate_in_image(needle, haystack, confidence=0.99):
         region=gwg.get_game_window_rect())
 
 
-def locate_in_region(img_url, region, confidence=0.99):
+def locate_in_region(img_url, region, confidence=0.95):
     if not wc.is_window_foreground():
         print('waiting for window to be foreground for image search...')
         wc.wait_for_window_foreground()
@@ -32,50 +32,50 @@ def locate_in_region(img_url, region, confidence=0.99):
         img_url, region=region, confidence=confidence)
 
 
-def locate_in_window(img_url, confidence=0.99):
+def locate_in_window(img_url, confidence=0.95):
     return locate_in_region(
         img_url, region=gwg.get_game_window_rect(), 
         confidence=confidence)
 
 
-def locate_in_window_quad(img_url, quadrant, confidence=0.99):
+def locate_in_window_quad(img_url, quadrant, confidence=0.95):
     return locate_in_region(
         img_url, gwg.get_quadrant_rect(quadrant), confidence=confidence)
 
 
-def locate_in_window_half(img_url, half_name, confidence=0.99):
+def locate_in_window_half(img_url, half_name, confidence=0.95):
     return locate_in_region(
         img_url, gwg.get_half_rect(half_name), confidence=confidence)
 
 
-def is_in_image(needle, haystack, confidence=0.99):
+def is_in_image(needle, haystack, confidence=0.95):
     return locate_in_image(
         needle, haystack, confidence=0.99) is not None
 
 
-def is_in_region(img_url, region, confidence=0.99):
+def is_in_region(img_url, region, confidence=0.95):
     return locate_in_region(
         img_url, region, confidence=confidence) is not None
 
 
-def is_in_window(img_url, confidence=0.99):
+def is_in_window(img_url, confidence=0.95):
     return locate_in_window(
         img_url, confidence=confidence) is not None
 
 
-def is_in_window_quad(img_url, quadrant, confidence=0.99):
+def is_in_window_quad(img_url, quadrant, confidence=0.95):
     return locate_in_window_quad(
         img_url, quadrant, confidence=confidence) is not None
 
 
-def is_in_window_half(img_url, half_name, confidence=0.99):
+def is_in_window_half(img_url, half_name, confidence=0.95):
     return locate_in_window_half(
         img_url, half_name=half_name, 
         confidence=confidence) is not None
 
 
 def wait_for_one_image(*img_urls, region=None, 
-        confidence=0.99, timeout=2.0):
+        confidence=0.95, timeout=5.0):
     start_time = time.time()
     elapsed = 0
     while elapsed < timeout:
@@ -88,7 +88,7 @@ def wait_for_one_image(*img_urls, region=None,
 
 
 def wait_for_all_images(*img_urls, region=None, 
-        confidence=0.99, timeout=2.0):
+        confidence=0.95, timeout=5.0):
     start_time = time.time()
     elapsed = 0
     while elapsed < timeout:
