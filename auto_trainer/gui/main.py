@@ -9,5 +9,5 @@ def update_loop(last_upd_time):
     gui.after(16, lambda: update_loop(upd_time))
 
 gui = PokemonFileGeneratorGUI()
-update_loop(time.time())
+#update_loop(time.time())
 gui.mainloop()

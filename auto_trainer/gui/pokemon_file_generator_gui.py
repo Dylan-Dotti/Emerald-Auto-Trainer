@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
+from auto_trainer.gui.emerald_gui_window_base import EmeraldGUIWindowBase
 from auto_trainer.gui.pokemon_basic_info_component import PokemonBasicInfoComponent
 from auto_trainer.gui.pokemon_evolution_component import PokemonEvolutionComponent
 from auto_trainer.gui.pokemon_name_component import PokemonNameComponent
@@ -8,25 +9,11 @@ from auto_trainer.gui.updatable_component import UpdatableComponent
 from auto_trainer.gui.pokemon_sprite_component import PokemonSpriteComponent
 
 
-class PokemonFileGeneratorGUI(tk.Tk, UpdatableComponent):
+class PokemonFileGeneratorGUI(EmeraldGUIWindowBase):
 
     def __init__(self):
         super().__init__()
         self.frame_index = 0
-        self.title('Emerald Auto-Trainer')
-        self.iconbitmap('emerald.ico')
-
-        style = ttk.Style()
-        style.map('G.TCombobox',
-            darkcolor=[('pressed', 'green'), ('focus', 'green'),
-                ('readonly', 'green')],
-            focusfill=[('readonly', 'green'), ('focus', 'green')],
-            selectbackground=[('focus', 'green'), ('pressed', 'green'),
-                ('readonly', 'green')],
-            selectforeground=[('pressed', 'white')],
-        )
-        self.option_add('*TCombobox*Listbox.selectBackground', 'green')
-        self.option_add('*TCombobox*Listbox.highlightcolor', 'green')
 
         self.main_frame = tk.Frame(self)
         self.main_frame.grid(row=0, column=0, padx=25, pady=15)
@@ -40,9 +27,6 @@ class PokemonFileGeneratorGUI(tk.Tk, UpdatableComponent):
         self.evolution_select_frame = None
         self.basic_info_frame.grid(row=0, column=0)
         self.resizable(False, False)
-
-    def time_update(self, deltatime):
-        pass
 
     def _on_component_exit_next(self):
         print('component exit next')
