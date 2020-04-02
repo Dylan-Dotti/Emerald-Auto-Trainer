@@ -2,26 +2,25 @@ import tkinter as tk
 import auto_trainer.services.pokemon_evolution_data_service as peds
 from auto_trainer.gui.evolution_selection_component import EvolutionSelectionComponent
 from auto_trainer.gui.evolution_stage_display_component import EvolutionStageDisplayComponent
-from auto_trainer.gui.navigable_component import NavigableComponent
+from auto_trainer.gui.next_back_frame import NextBackFrame
 from auto_trainer.gui.pokemon_sprite_component import PokemonSpriteComponent
 
 
-class PokemonEvolutionComponent(tk.Frame, NavigableComponent):
+class PokemonEvolutionComponent(NextBackFrame):
 
-    def __init__(self, master, pkm_data, exit_next_action=None,
-            exit_back_action=None, exit_quit_action=None):
-        tk.Frame.__init__(self, master)
-        NavigableComponent.__init__(self, self,
+    def __init__(self, master, pkm_data, 
+        exit_next_action=None, exit_back_action=None, quit_action=None):
+        super().__init__(master,
             exit_next_action=exit_next_action,
             exit_back_action=exit_back_action,
-            exit_quit_action=exit_quit_action)
+            quit_action=quit_action)
         
         self.evo_data = {}
         self._stage_displays = []
         self._selection_comps = []
 
         self._upper_frame = tk.Frame(self)
-        self._upper_frame.grid(row=0, column=0)
+        self.set_content(self._upper_frame)
 
         original_evo_display = EvolutionStageDisplayComponent(
             self._upper_frame, pkm_data)
@@ -41,15 +40,15 @@ class PokemonEvolutionComponent(tk.Frame, NavigableComponent):
     def get_evo_data(self):
         return self.evo_data
     
-    def _on_next(self):
+    def _on_next_pressed(self):
         if len(self._selection_comps) == 0:
-            self.exit_next_action()
+            self._exit_next_action()
         else:
             evo_selection_comp = self._selection_comps[-1]
             if evo_selection_comp.is_valid():
                 evo_data = evo_selection_comp.get_evo_data()
                 if len(peds.get_level_up_evolutions(evo_data['name'])) == 0:
-                    self.exit_next_action()
+                    self._exit_next_action()
                 else:
                     stage_display = EvolutionStageDisplayComponent(
                         self._upper_frame, evo_data)
@@ -62,5 +61,5 @@ class PokemonEvolutionComponent(tk.Frame, NavigableComponent):
                     self._selection_comps.append(next_selection_comp)
                     next_selection_comp.grid(row=0, column=current_column + 1)
 
-    def _on_back(self):
-        self.exit_back_action()
+    def _on_back_pressed(self):
+        self._exit_back_action()

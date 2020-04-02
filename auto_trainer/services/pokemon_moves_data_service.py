@@ -1,7 +1,7 @@
 import auto_trainer.services.pokeapi_http_service as phs
 
 
-def get_all_version_moves(pkm_id, version='emerald'):
+def get_all_learnable_moves(pkm_id, version='emerald'):
     moves = phs.get_one('pokemon', pkm_id)['moves']
     version_moves = [m for m in moves if _is_move_in_version(m)]
     for m in version_moves:
@@ -10,7 +10,7 @@ def get_all_version_moves(pkm_id, version='emerald'):
 
 
 def get_all_level_up_moves(pkm_id):
-    moves = get_all_version_moves(pkm_id)
+    moves = get_all_learnable_moves(pkm_id)
     moves_filtered = []
     for move in moves:
         for version_details in move['version_group_details']:
