@@ -13,7 +13,8 @@ class PokemonCurrentMovesComponent(tk.Frame):
         self._cbox_frame = tk.Frame(self)
         self._cbox_frame.grid(row=1, column=0)
 
-        moves = [m[0] for m in pmds.get_all_level_up_moves('charmander')]
+        moves = [m[0].title() for m in 
+            pmds.get_all_level_up_moves('charmander')]
         self._move_0_cbox = ttk.Combobox(self._cbox_frame, 
             state='readonly', values=moves, style=combo_style)
         self._move_1_cbox = ttk.Combobox(self._cbox_frame, 
