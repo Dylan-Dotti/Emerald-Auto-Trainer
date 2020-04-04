@@ -12,7 +12,6 @@ class EvolutionSelectionComponent(tk.Frame):
         self.evolutions = {name : conds for name, conds in 
             peds.get_level_up_evolutions(pkm_data['name'])}
         self.pkm_data = pkm_data
-        self.evo_data = {}
         self.combo_style = combo_style
         if len(self.evolutions) > 0:
             self.prompt_label = tk.Label(self, text='Select Evolution:')

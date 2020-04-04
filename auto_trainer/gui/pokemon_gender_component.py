@@ -24,7 +24,7 @@ class PokemonGenderComponent(tk.Frame):
         self.gender_combobox.grid(row=0, column=1)
     
     def get_gender(self):
-        return self.gender_combobox.get()
+        return self.gender_combobox.get().lower()
     
     def is_valid(self):
         return self.get_gender() != ''

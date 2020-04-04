@@ -4,7 +4,7 @@ import auto_trainer.services.pokemon_moves_data_service as pmds
 
 
 class PokemonCurrentMovesComponent(tk.Frame):
-    def __init__(self, master, pkm_data=None, combo_style=None):
+    def __init__(self, master, pkm_name=None, combo_style=None):
         super().__init__(master)
 
         self._prompt_label = tk.Label(self, text='Current Moves:')
@@ -13,10 +13,8 @@ class PokemonCurrentMovesComponent(tk.Frame):
         self._cbox_frame = tk.Frame(self)
         self._cbox_frame.grid(row=1, column=0)
 
-        #moves = [m[0].title() for m in 
-        #    pmds.get_all_level_up_moves('charmander')]
-        moves = [m['move']['name'].title() for m in
-            pmds.get_all_learnable_moves('charmander')]
+        moves = [] if pkm_name is None else [m.title() for m in
+            pmds.get_all_learnable_moves(pkm_name)]
         self._cboxes = [ttk.Combobox(self._cbox_frame, 
             state='readonly', values=moves, style=combo_style)
             for _ in range(4)]
@@ -39,10 +37,27 @@ class PokemonCurrentMovesComponent(tk.Frame):
         return self._cboxes[move_index].get().lower()
     
     def set_move(self, move_index, move):
-        self._cboxes[move_index].set(move)
+        self._cboxes[move_index].set(move.title())
     
     def get_all_moves(self):
-        return [self.get_move(i) for i in range(4)]
+        return [self.get_move(i) for i in range(4)
+            if self.get_move(i) != '']
+
+    def set_active(self, active):
+        self._prompt_label.configure(
+            state = 'active' if active else 'disabled')
+        for cbox in self._cboxes:
+            cbox.configure(state='active' if active else 'disabled')
+    
+    def is_valid(self):
+        if self.get_move(0) == '':
+            return False
+        for i in range(3):
+            if self.get_move(i) == '':
+                for j in range(i + 1, 4):
+                    if self.get_move(j) != '':
+                        return False
+        return True
     
     def _on_move_changed(self, move_index):
         new_move = self.get_move(move_index)

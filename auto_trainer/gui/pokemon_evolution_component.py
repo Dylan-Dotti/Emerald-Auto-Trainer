@@ -15,50 +15,52 @@ class PokemonEvolutionComponent(NextBackFrame):
             exit_back_action=exit_back_action,
             quit_action=quit_action)
         
-        self.evo_data = {}
-        self._stage_displays = []
-        self._selection_comps = []
+        self.evolutions = []
+        self.evo_stage_displays = []
+        self.evo_selection_comps = []
 
-        self._upper_frame = tk.Frame(self)
-        self.set_content(self._upper_frame)
+        self._content_frame = tk.Frame(self)
+        self.set_content(self._content_frame)
 
         original_evo_display = EvolutionStageDisplayComponent(
-            self._upper_frame, pkm_data)
-        self._stage_displays.append(original_evo_display)
+            self._content_frame, pkm_data)
+        self.evo_stage_displays.append(original_evo_display)
         original_evo_display.grid(row=0, column=0, pady=(0, 5))
 
         if len(peds.get_level_up_evolutions(pkm_data['name'])) == 0:
-            self.no_evo_label = tk.Label(self._upper_frame,
+            self.no_evo_label = tk.Label(self._content_frame,
                 text='Pokemon does not\nevolve by leveling')
             self.no_evo_label.grid(row=0, column=1)
         else:
             evo_selection_comp = EvolutionSelectionComponent(
-                self._upper_frame, pkm_data, combo_style='G.TCombobox')
-            self._selection_comps.append(evo_selection_comp)
+                self._content_frame, pkm_data, combo_style='G.TCombobox')
+            self.evo_selection_comps.append(evo_selection_comp)
             evo_selection_comp.grid(row=0, column=1)
     
-    def get_evo_data(self):
-        return self.evo_data
+    def get_evolutions(self):
+        return [evo_select.get_evo_data() for 
+            evo_select in self.evo_selection_comps]
     
     def _on_next_pressed(self):
-        if len(self._selection_comps) == 0:
+        if len(self.evo_selection_comps) == 0:
             self._exit_next_action()
         else:
-            evo_selection_comp = self._selection_comps[-1]
+            evo_selection_comp = self.evo_selection_comps[-1]
             if evo_selection_comp.is_valid():
                 evo_data = evo_selection_comp.get_evo_data()
+                self.evolutions
                 if len(peds.get_level_up_evolutions(evo_data['name'])) == 0:
                     self._exit_next_action()
                 else:
                     stage_display = EvolutionStageDisplayComponent(
-                        self._upper_frame, evo_data)
-                    self._stage_displays.append(stage_display)
-                    current_column = len(self._selection_comps)
+                        self._content_frame, evo_data)
+                    self.evo_stage_displays.append(stage_display)
+                    current_column = len(self.evo_selection_comps)
                     evo_selection_comp.grid_forget()
                     stage_display.grid(row=0, column=current_column)
                     next_selection_comp = EvolutionSelectionComponent(
-                        self._upper_frame, evo_data, combo_style='G.TCombobox')
-                    self._selection_comps.append(next_selection_comp)
+                        self._content_frame, evo_data, combo_style='G.TCombobox')
+                    self.evo_selection_comps.append(next_selection_comp)
                     next_selection_comp.grid(row=0, column=current_column + 1)
 
     def _on_back_pressed(self):
