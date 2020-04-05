@@ -26,6 +26,6 @@ class PokemonNameComponent(tk.Frame):
     def is_valid(self):
         return self.get_name() in pds.get_all_pokemon_names('emerald')
     
-    def set_entry_enabled(self, enabled):
+    def set_active(self, active):
         self.name_entry.configure(state=(
-            'active' if enabled else 'disabled'))
+            'active' if active else 'disabled'))

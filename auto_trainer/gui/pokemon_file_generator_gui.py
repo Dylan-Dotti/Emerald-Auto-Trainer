@@ -4,6 +4,7 @@ import os
 import auto_trainer.services.pokemon_data_directory_service as pdds
 import auto_trainer.services.json_data_service as jds
 from auto_trainer.gui.emerald_gui_window_base import EmeraldGUIWindowBase
+from auto_trainer.gui.next_back_frame import NextBackFrame
 from auto_trainer.gui.pokemon_basic_info_component import PokemonBasicInfoComponent
 from auto_trainer.gui.pokemon_evolution_component import PokemonEvolutionComponent
 from auto_trainer.gui.pokemon_move_rotation_component import PokemonMoveRotationComponent
@@ -13,25 +14,32 @@ from auto_trainer.gui.updatable_component import UpdatableComponent
 from auto_trainer.gui.pokemon_sprite_component import PokemonSpriteComponent
 
 
-class PokemonFileGeneratorGUI(EmeraldGUIWindowBase):
+class PokemonFileGeneratorGUI(EmeraldGUIWindowBase, UpdatableComponent):
 
     def __init__(self):
         super().__init__()
         self.frame_index = 0
-
-        self.main_frame = tk.Frame(self)
-        self.main_frame.grid(row=0, column=0, padx=25, pady=15)
-
         self.pkm_data = {}
 
-        self.basic_info_frame = PokemonBasicInfoComponent(
-            self.main_frame,
+        self._main_frame = NextBackFrame(self,
             exit_next_action=self._on_component_exit_next,
-            exit_back_action=None, quit_action=self.quit)
+            exit_back_action=self._on_component_exit_back,
+            quit_action=self.quit)
+        self.main_frame = tk.Frame(self)
+        self._main_frame.grid(row=0, column=0, padx=25, pady=15)
+
+        self.basic_info_frame = PokemonBasicInfoComponent(
+            self._main_frame,
+            exit_next_action=self._on_component_exit_next,
+            exit_prev_action=None)
         self.rotation_component = None
         self.evolution_select_frame = None
-        self.basic_info_frame.grid(row=0, column=0)
+        #self.basic_info_frame.grid(row=0, column=0)
+        self._main_frame.set_content(self.basic_info_frame)
         self.resizable(False, False)
+    
+    def time_update(self, delta_time):
+        self._main_frame.time_update(delta_time)
 
     def _on_component_exit_next(self):
         print('component exit next')

@@ -5,36 +5,30 @@ from auto_trainer.gui.pokemon_current_moves_component import PokemonCurrentMoves
 from auto_trainer.gui.pokemon_gender_component import PokemonGenderComponent
 from auto_trainer.gui.pokemon_level_component import PokemonLevelComponent
 from auto_trainer.gui.pokemon_name_component import PokemonNameComponent
+from auto_trainer.gui.multistage_frame import MultiStageFrame
 from auto_trainer.gui.next_back_frame import NextBackFrame
 from auto_trainer.gui.pokemon_sprite_component import PokemonSpriteComponent
 
 
-class PokemonBasicInfoComponent(NextBackFrame):
+class PokemonBasicInfoComponent(MultiStageFrame):
 
-    def __init__(self, master, exit_next_action=None,
-            exit_back_action=None, quit_action=None):
-        super().__init__(master,
-            exit_next_action=exit_next_action,
-            exit_back_action=exit_back_action,
-            quit_action=quit_action)
+    def __init__(self, master, exit_next_action=None, exit_prev_action=None):
+        super().__init__(master, exit_next_action, exit_prev_action)
         self._index = 0
-        self.upper_frame = tk.Frame(self)
-        self.set_content(self.upper_frame)
 
-        self.name_component = PokemonNameComponent(self.upper_frame,
+        self.name_component = PokemonNameComponent(self,
             change_event=self._on_name_changed, combo_style='G.TCombobox')
-        self.sprite_display = PokemonSpriteComponent(self.upper_frame, None)
-        self.gender_component = PokemonGenderComponent(self.upper_frame, None)
-        self.level_component = PokemonLevelComponent(self.upper_frame,
+        self.sprite_display = PokemonSpriteComponent(self, None)
+        self.gender_component = PokemonGenderComponent(self, None)
+        self.level_component = PokemonLevelComponent(self,
             combo_style='G.TCombobox')
         self.curr_moves_component = PokemonCurrentMovesComponent(
-            self.upper_frame, combo_style='G.TCombobox')
+            self, combo_style='G.TCombobox')
         self.gender_component.set_active(False)
         self.level_component.set_active(False)
         self.curr_moves_component.set_active(False)
-        self.set_back_button_enabled(exit_back_action != None)
         
-        self.upper_frame.rowconfigure(1, minsize=100)
+        self.rowconfigure(1, minsize=100)
         self.name_component.grid(row=0, column=0, columnspan=2)
         self.sprite_display.grid(row=1, column=0, columnspan=2)
         self.gender_component.grid(row=2, column=0, padx=(0, 5))
@@ -59,46 +53,50 @@ class PokemonBasicInfoComponent(NextBackFrame):
     def _on_name_changed(self, new_name):
         self.sprite_display.grid_forget()
         if self.name_component.is_valid():
-            self.sprite_display = PokemonSpriteComponent(
-                self.upper_frame, new_name)
+            self.sprite_display = PokemonSpriteComponent(self, new_name)
             self.sprite_display.grid(row=1, column=0, columnspan=2)
     
-    def _on_next_pressed(self):
-        print('basic info next')
+    def next_stage(self):
         if self._index == 0 and self.name_component.is_valid():
             self._index += 1
-            self.name_component.set_entry_enabled(False)
+            self.name_component.set_active(False)
             self._refresh_gender_component(self.name_component.get_name())
             self._refresh_curr_moves_component(self.name_component.get_name())
             self.level_component.set_active(True)
-            self.set_back_button_enabled(True)
         elif self._index == 1 and self.is_valid():
             self._exit_next_action()
 
-    def _on_back_pressed(self):
+    def prev_stage(self):
         if self._index == 0:
-            self._exit_back_action()
+            self._exit_prev_action()
         if self._index == 1:
             self._index -= 1
             self._refresh_gender_component(None)
-            self._refresh_curr_moves_component(None)
             self.gender_component.set_active(False)
             self.level_component.set_active(False)
             self.curr_moves_component.set_active(False)
-            self.name_component.set_entry_enabled(True)
-            self.set_back_button_enabled(
-                self._exit_back_action != None)
+            self._refresh_curr_moves_component(None)
+            self.name_component.set_active(True)
+    
+    def can_transition_next(self):
+        if self._index == 0:
+            return self.name_component.is_valid()
+        else:
+            return True
+    
+    def can_transition_prev(self):
+        return self._index > 0 or self._exit_prev_action != None
     
     def _refresh_gender_component(self, pkm_name):
         self.gender_component.grid_forget()
         self.gender_component = PokemonGenderComponent(
-            self.upper_frame, pkm_name, combo_style='G.TCombobox')
+            self, pkm_name, combo_style='G.TCombobox')
         self.gender_component.grid(row=2, column=0, padx=(0, 5))
     
     def _refresh_curr_moves_component(self, pkm_name):
         self.curr_moves_component.grid_forget()
         self.curr_moves_component = PokemonCurrentMovesComponent(
-            self.upper_frame, pkm_name=pkm_name, 
+            self, pkm_name=pkm_name, 
             combo_style='G.TCombobox')
         self.curr_moves_component.grid(row=3, column=0, 
             columnspan=2, pady=(15, 0))
