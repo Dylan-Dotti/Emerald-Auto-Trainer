@@ -50,7 +50,8 @@ class PokemonFileGeneratorGUI(EmeraldGUIWindowBase, UpdatableComponent):
             self.rotation_component = PokemonMoveRotationComponent(
                 self._main_frame, self.pkm_data['moves'],
                 exit_next_action=self._on_component_exit_next,
-                exit_prev_action=self._on_component_exit_back)
+                exit_prev_action=self._on_component_exit_back,
+                combo_style='G.TCombobox')
             self._main_frame.set_content(self.rotation_component)
         elif self.frame_index == 2:
             self.rotation_component.grid_forget()

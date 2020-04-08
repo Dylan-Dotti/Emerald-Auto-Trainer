@@ -31,14 +31,12 @@ class MoveRotationTable(tk.Frame):
         widgets['consecutive'].grid(row=irow + 1, column=2)
         widgets['periodic'].grid(row=irow + 1, column=3)
         widgets['delete'].grid(row=irow + 1, column=4)
+        self._rows.append(widgets)
 
     def remove_row(self, irow):
         widgets = self._rows[irow]
-        widgets['move'].grid_forget()
-        widgets['initial'].grid_forget()
-        widgets['consecutive'].grid_forget()
-        widgets['periodic'].grid_forget()
-        widgets['delete'].grid_forget()
+        for widget in widgets.values():
+            widget.grid_forget()
         return widgets
 
     def _on_move_changed(self, irow):
@@ -46,20 +44,22 @@ class MoveRotationTable(tk.Frame):
     
     def _on_delete_pressed(self, irow):
         print('Delete %s' % (irow + 1))
+        self.remove_row(irow)
 
     def _get_row_widgets(self, irow):
         move_cbox = ttk.Combobox(self, values=self._moves, 
-            style=self._combo_style, state='readonly')
+            style=self._combo_style, state='readonly',
+            width=18)
             #command=lambda e: self._on_move_changed(irow))
         initial_cbox = ttk.Combobox(self,
             values=[i for i in range(1, 31)], state='readonly',
-            style=self._combo_style)
+            width=5, style=self._combo_style)
         consecutive_cbox = ttk.Combobox(self,
             values=[i for i in range(1, 31)], state='readonly',
-            style=self._combo_style)
+            width=5, style=self._combo_style)
         periodic_cbox = ttk.Combobox(self,
             values=[i for i in range(1, 31)], state='readonly',
-            style=self._combo_style)
+            width=5, style=self._combo_style)
         delete_button = tk.Button(self, text='Delete',
             command=lambda: self._on_delete_pressed(irow))
         return {
