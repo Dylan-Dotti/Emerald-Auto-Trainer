@@ -54,14 +54,15 @@ class PokemonFileGeneratorGUI(EmeraldGUIWindowBase, UpdatableComponent):
                 combo_style='G.TCombobox')
             self._main_frame.set_content(self.rotation_component)
         elif self.frame_index == 2:
+            self.pkm_data['move_priority'] = (
+                self.rotation_component.get_data())
             self.rotation_component.grid_forget()
             self.evolution_select_frame = PokemonEvolutionComponent(
                 self.main_frame, self.pkm_data,
                 exit_next_action=self._on_component_exit_next,
-                exit_back_action=self._on_component_exit_back,
-                quit_action=self.quit)
+                exit_back_action=self._on_component_exit_back)
             self.evolution_select_frame.grid(row=0, column=0)
-        elif self.frame_index == 2:
+        elif self.frame_index == 3:
             self.pkm_data['evolutions'] = (
                 self.evolution_select_frame.get_evolutions())
             self._generate_pokemon_file()

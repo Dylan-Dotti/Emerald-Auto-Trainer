@@ -23,7 +23,8 @@ class MoveRotationTable(tk.Frame):
 
         self._add_button = tk.Button(self, text='Add',
             command=self._on_add_pressed)
-        self._add_button.grid(row=1, column=0)
+        if self.num_moves() > 1:
+            self._add_button.grid(row=1, column=0)
 
         self._rows = []
         self.add_row()
@@ -31,16 +32,19 @@ class MoveRotationTable(tk.Frame):
     def num_rows(self):
         return len(self._rows)
     
+    def num_moves(self):
+        return len(self._moves)
+    
     def add_row(self):
         irow = self.num_rows()
-        if irow == 3:
+        if irow == self.num_moves() - 1:
             self._add_button.grid_forget()
         widgets = self._get_row_widgets(irow)
-        widgets['move'].grid(row=irow + 1, column=0)
+        widgets['move'].grid(row=irow + 1, column=0, padx=(0, 10))
         widgets['initial'].grid(row=irow + 1, column=1)
         widgets['consecutive'].grid(row=irow + 1, column=2)
         widgets['periodic'].grid(row=irow + 1, column=3)
-        widgets['delete'].grid(row=irow + 1, column=4)
+        widgets['delete'].grid(row=irow + 1, column=4, padx=(10, 0))
         self._rows.append(widgets)
 
     def remove_row(self, irow):
@@ -48,7 +52,7 @@ class MoveRotationTable(tk.Frame):
         for widget in widgets.values():
             widget.grid_forget()
         self._rows.remove(widgets)
-        if self.num_rows() == 3:
+        if self.num_rows() == self.num_moves() - 1:
             self._add_button.grid(row=1, column=0)
         return widgets
     
@@ -84,7 +88,8 @@ class MoveRotationTable(tk.Frame):
         move_cbox = ttk.Combobox(self._rows_frame, values=self._moves, 
             style=self._combo_style, state='readonly',
             width=18)
-            #command=lambda e: self._on_move_changed(irow))
+        move_cbox.bind('<<ComboboxSelected>>', 
+            lambda e: self._on_move_changed(irow))
         initial_cbox = ttk.Combobox(self._rows_frame,
             values=[i for i in range(1, 31)], state='readonly',
             width=5, style=self._combo_style)

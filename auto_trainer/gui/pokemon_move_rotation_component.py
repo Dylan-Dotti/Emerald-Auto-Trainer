@@ -24,7 +24,6 @@ class PokemonMoveRotationComponent(MultiStageFrame):
         return self._rotation_table.get_data()
     
     def next_stage(self):
-        print(self._rotation_table.get_data())
         self._exit_next_action()
     
     def prev_stage(self):

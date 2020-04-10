@@ -28,4 +28,6 @@ class PokemonMove:
 
     @staticmethod
     def from_dictionary(move_data):
-        return PokemonMove(move_data['coords'], move_data['initial'], move_data['consecutive'], move_data['periodic'])
+        return PokemonMove(
+            move_data['coords'], move_data['initial'],
+            move_data['consecutive'], move_data['periodic'])
