@@ -57,6 +57,18 @@ class MoveRotationTable(tk.Frame):
     
     def get_moves(self):
         return [self.get_move(i) for i in range(self.num_rows())]
+    
+    def get_data(self):
+        return [self._get_row_data(i) for i in range(self.num_rows())]
+    
+    def _get_row_data(self, irow):
+        widgets = self._rows[irow]
+        return {
+            'move': widgets['move'].get(),
+            'initial': widgets['initial'].get(),
+            'consecutive': widgets['consecutive'].get(),
+            'periodic': widgets['periodic'].get()
+        }
 
     def _on_move_changed(self, irow):
         print('Move %s changed' % (irow + 1))

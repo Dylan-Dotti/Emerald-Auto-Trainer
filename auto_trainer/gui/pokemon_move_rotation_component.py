@@ -20,7 +20,11 @@ class PokemonMoveRotationComponent(MultiStageFrame):
             moves, combo_style=combo_style)
         self._rotation_table.grid(row=1, column=0)
     
+    def get_data(self):
+        return self._rotation_table.get_data()
+    
     def next_stage(self):
+        print(self._rotation_table.get_data())
         self._exit_next_action()
     
     def prev_stage(self):
