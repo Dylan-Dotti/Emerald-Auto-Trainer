@@ -58,10 +58,10 @@ class PokemonFileGeneratorGUI(EmeraldGUIWindowBase, UpdatableComponent):
                 self.rotation_component.get_data())
             self.rotation_component.grid_forget()
             self.evolution_select_frame = PokemonEvolutionComponent(
-                self.main_frame, self.pkm_data,
+                self._main_frame, self.pkm_data,
                 exit_next_action=self._on_component_exit_next,
-                exit_back_action=self._on_component_exit_back)
-            self.evolution_select_frame.grid(row=0, column=0)
+                exit_prev_action=self._on_component_exit_back)
+            self._main_frame.set_content(self.evolution_select_frame)
         elif self.frame_index == 3:
             self.pkm_data['evolutions'] = (
                 self.evolution_select_frame.get_evolutions())

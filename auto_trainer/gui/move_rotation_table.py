@@ -53,7 +53,7 @@ class MoveRotationTable(tk.Frame):
         return widgets
     
     def get_move(self, irow):
-        return self._rows[irow]['move']
+        return self._rows[irow]['move'].get()
     
     def get_moves(self):
         return [self.get_move(i) for i in range(self.num_rows())]
@@ -83,6 +83,12 @@ class MoveRotationTable(tk.Frame):
 
     def _on_move_changed(self, irow):
         print('Move %s changed' % (irow + 1))
+        new_move = self.get_move(irow)
+        print('New:', new_move)
+        for i in [x for x in range(self.num_rows()) if x != irow]:
+            print('%s: %s' % (i, self.get_move(i)))
+            if self.get_move(i) == new_move:
+                self._rows[i]['move'].set('')
     
     def _on_add_pressed(self):
         self.add_row()
