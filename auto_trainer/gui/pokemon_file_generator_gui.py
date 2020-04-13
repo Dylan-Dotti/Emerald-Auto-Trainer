@@ -7,6 +7,7 @@ from auto_trainer.gui.emerald_gui_window_base import EmeraldGUIWindowBase
 from auto_trainer.gui.next_back_frame import NextBackFrame
 from auto_trainer.gui.pokemon_basic_info_component import PokemonBasicInfoComponent
 from auto_trainer.gui.pokemon_evolution_component import PokemonEvolutionComponent
+from auto_trainer.gui.pokemon_learn_moves_component import PokemonLearnMovesComponent
 from auto_trainer.gui.pokemon_move_rotation_component import PokemonMoveRotationComponent
 from auto_trainer.gui.pokemon_name_component import PokemonNameComponent
 from auto_trainer.gui.next_back_buttons_group import NextBackButtonsGroup
@@ -34,6 +35,7 @@ class PokemonFileGeneratorGUI(EmeraldGUIWindowBase, UpdatableComponent):
             exit_prev_action=None)
         self.rotation_component = None
         self.evolution_select_frame = None
+        self.learn_moves_frame = None
         #self.basic_info_frame.grid(row=0, column=0)
         self._main_frame.set_content(self.basic_info_frame)
         self.resizable(False, False)
@@ -46,7 +48,6 @@ class PokemonFileGeneratorGUI(EmeraldGUIWindowBase, UpdatableComponent):
         self.frame_index += 1
         if self.frame_index == 1:
             self.pkm_data.update(self.basic_info_frame.get_pokemon_data())
-            self.basic_info_frame.grid_forget()
             self.rotation_component = PokemonMoveRotationComponent(
                 self._main_frame, self.pkm_data['moves'],
                 exit_next_action=self._on_component_exit_next,
@@ -56,7 +57,6 @@ class PokemonFileGeneratorGUI(EmeraldGUIWindowBase, UpdatableComponent):
         elif self.frame_index == 2:
             self.pkm_data['move_priority'] = (
                 self.rotation_component.get_data())
-            self.rotation_component.grid_forget()
             self.evolution_select_frame = PokemonEvolutionComponent(
                 self._main_frame, self.pkm_data,
                 exit_next_action=self._on_component_exit_next,
@@ -65,8 +65,11 @@ class PokemonFileGeneratorGUI(EmeraldGUIWindowBase, UpdatableComponent):
         elif self.frame_index == 3:
             self.pkm_data['evolutions'] = (
                 self.evolution_select_frame.get_evolutions())
-            self._generate_pokemon_file()
-            self.quit()
+            self.learn_moves_frame = PokemonLearnMovesComponent(
+                self._main_frame, self.pkm_data,
+                exit_next_action=self._on_component_exit_next,
+                exit_prev_action=self._on_component_exit_back)
+            self._main_frame.set_content(self.learn_moves_frame)
         else:
             self._generate_pokemon_file()
             self.quit()
