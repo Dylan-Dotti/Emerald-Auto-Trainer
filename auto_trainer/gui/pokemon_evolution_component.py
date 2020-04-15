@@ -22,7 +22,7 @@ class PokemonEvolutionComponent(MultiStageFrame):
         self._content_frame.grid(row=0, column=0)
 
         original_evo_display = EvolutionStageDisplayComponent(
-            self._content_frame, pkm_data)
+            self._content_frame, pkm_data['name'], pkm_data['level'])
         self.evo_stage_displays.append(original_evo_display)
         original_evo_display.grid(row=0, column=0, pady=(0, 5))
 
@@ -32,7 +32,8 @@ class PokemonEvolutionComponent(MultiStageFrame):
             self.no_evo_label.grid(row=0, column=1)
         else:
             evo_selection_comp = EvolutionSelectionComponent(
-                self._content_frame, pkm_data, combo_style='G.TCombobox')
+                self._content_frame, pkm_data['name'], pkm_data['level'],
+                combo_style='G.TCombobox')
             self.evo_selection_comps.append(evo_selection_comp)
             evo_selection_comp.grid(row=0, column=1)
     
@@ -52,13 +53,16 @@ class PokemonEvolutionComponent(MultiStageFrame):
                     self._exit_next_action()
                 else:
                     stage_display = EvolutionStageDisplayComponent(
-                        self._content_frame, evo_data)
+                        self._content_frame, evo_data['name'],
+                        evo_data['conditions']['level'])
                     self.evo_stage_displays.append(stage_display)
                     current_column = len(self.evo_selection_comps)
                     evo_selection_comp.grid_forget()
                     stage_display.grid(row=0, column=current_column)
                     next_selection_comp = EvolutionSelectionComponent(
-                        self._content_frame, evo_data, combo_style='G.TCombobox')
+                        self._content_frame, evo_data['name'], 
+                        evo_data['conditions']['level'], 
+                        combo_style='G.TCombobox')
                     self.evo_selection_comps.append(next_selection_comp)
                     next_selection_comp.grid(row=0, column=current_column + 1)
 

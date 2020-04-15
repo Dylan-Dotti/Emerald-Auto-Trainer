@@ -9,7 +9,8 @@ def get_all_learnable_moves(pkm_id, version='emerald', sort=True):
     return moves
 
 
-def get_all_level_up_moves(pkm_id, version='emerald', sort=True):
+def get_all_level_up_moves(pkm_id, version='emerald', sort=True,
+    min_lvl=1, max_lvl=100):
     moves = _get_all_learnable_move_data(pkm_id)
     moves_filtered = []
     for move in moves:
@@ -20,6 +21,8 @@ def get_all_level_up_moves(pkm_id, version='emerald', sort=True):
                     get_learn_level(version_details)))
     if sort:
         moves_filtered = sorted(moves_filtered, key=lambda m: m[1])
+    moves_filtered = [m for m in moves_filtered if 
+        m[1] >= min_lvl and m[1] <= max_lvl]
     return moves_filtered
 
 

@@ -7,11 +7,14 @@ from auto_trainer.gui.pokemon_sprite_component import PokemonSpriteComponent
 
 class EvolutionSelectionComponent(tk.Frame):
 
-    def __init__(self, master, pkm_data, combo_style=None):
+    def __init__(self, master, name, level, combo_style=None):
         super().__init__(master)
+        self.pkm_name = name
+        self.pkm_lvl = level
         self.evolutions = {name : conds for name, conds in 
-            peds.get_level_up_evolutions(pkm_data['name'])}
-        self.pkm_data = pkm_data
+            peds.get_level_up_evolutions(self.pkm_name)}
+        for conditions in self.evolutions.values():
+            conditions['level'] = conditions.pop('min_level')
         self.combo_style = combo_style
         if len(self.evolutions) > 0:
             self.prompt_label = tk.Label(self, text='Select Evolution:')
@@ -29,7 +32,7 @@ class EvolutionSelectionComponent(tk.Frame):
     def get_evo_data(self):
         return {
             'name': self.evo_cbox.get().lower(),
-            'level': self.level_cbox.get_level(),
+            #'level': self.level_cbox.get_level(),
             'conditions': self.evolutions[self.evo_cbox.get().lower()]
         }
     
@@ -47,15 +50,11 @@ class EvolutionSelectionComponent(tk.Frame):
                 self.level_cbox.grid_forget()
             return
         evo_name = self.evo_cbox.get().lower()
-        self.sprite_display = PokemonSpriteComponent(
-            self, evo_name)
-        min_evo_lvl = self.pkm_data['level'] + 1
+        self.sprite_display = PokemonSpriteComponent(self, evo_name)
+        min_evo_lvl = self.pkm_lvl + 1
         conditions = self.evolutions[evo_name]
-        if 'min_level' in conditions:
-            min_evo_lvl = max(
-                min_evo_lvl, conditions['min_level'])
+        min_evo_lvl = max(min_evo_lvl, conditions['level'])
         self.level_cbox = PokemonLevelComponent(self,
-            min_lvl=min_evo_lvl, 
-            combo_style=self.combo_style)
+            min_lvl=min_evo_lvl, combo_style=self.combo_style)
         self.sprite_display.grid(row=0, column=0)
         self.level_cbox.grid(row=2, column=0)
