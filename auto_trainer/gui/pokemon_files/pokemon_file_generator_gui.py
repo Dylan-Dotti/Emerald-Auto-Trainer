@@ -10,12 +10,13 @@ from auto_trainer.gui.pokemon_files.pokemon_evolution_component import PokemonEv
 from auto_trainer.gui.pokemon_files.pokemon_learn_moves_component import PokemonLearnMovesComponent
 from auto_trainer.gui.pokemon_files.pokemon_move_rotation_component import PokemonMoveRotationComponent
 from auto_trainer.gui.pokemon_files.pokemon_name_component import PokemonNameComponent
+from auto_trainer.gui.emerald_gui_toplevel_base import EmeraldGUIToplevelBase
 from auto_trainer.gui.next_back_buttons_group import NextBackButtonsGroup
 from auto_trainer.gui.updatable_component import UpdatableComponent
 from auto_trainer.gui.pokemon_files.pokemon_sprite_component import PokemonSpriteComponent
 
 
-class PokemonFileGeneratorGUI(tk.Toplevel, UpdatableComponent):
+class PokemonFileGeneratorGUI(EmeraldGUIToplevelBase, UpdatableComponent):
 
     def __init__(self):
         super().__init__()

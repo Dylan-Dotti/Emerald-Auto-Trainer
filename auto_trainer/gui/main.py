@@ -19,7 +19,8 @@ if __name__ == '__main__':
     main_gui = EmeraldGUIWindowBase()
 
     main_frame = MainMenuFrame(main_gui, exit_action=main_gui.destroy)
-
+    main_frame.pack()
+    
     gui = None
     
     main_gui.mainloop()

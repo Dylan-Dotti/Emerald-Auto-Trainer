@@ -5,10 +5,13 @@ import auto_trainer.services.image_directory_service as ids
 
 class EmeraldGUIToplevelBase(tk.Toplevel):
 
-    def __init__(self, master):
+    def __init__(self, master, grab_set=True):
         super().__init__(master)
         self.title('Emerald Auto-Trainer')
         self.iconbitmap(ids.get_emerald_icon_direct())
+
+        if grab_set:
+            self.grab_set()
 
         style = ttk.Style()
         style.map('G.TCombobox',
