@@ -1,5 +1,5 @@
 import tkinter as tk
-from auto_trainer.gui.pokemon_sprite_component import PokemonSpriteComponent
+from auto_trainer.gui.pokemon_files.pokemon_sprite_component import PokemonSpriteComponent
 
 
 class EvolutionStageDisplayComponent(tk.Frame):

@@ -1,8 +1,8 @@
 import tkinter as tk
 from tkinter import ttk
 import auto_trainer.services.pokemon_evolution_data_service as peds
-from auto_trainer.gui.pokemon_level_component import PokemonLevelComponent
-from auto_trainer.gui.pokemon_sprite_component import PokemonSpriteComponent
+from auto_trainer.gui.pokemon_files.pokemon_level_component import PokemonLevelComponent
+from auto_trainer.gui.pokemon_files.pokemon_sprite_component import PokemonSpriteComponent
 
 
 class EvolutionSelectionComponent(tk.Frame):

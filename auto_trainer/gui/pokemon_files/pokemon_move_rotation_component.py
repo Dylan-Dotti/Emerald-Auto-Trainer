@@ -1,6 +1,6 @@
 import tkinter as tk
 import tkinter.ttk as ttk
-from auto_trainer.gui.move_rotation_table import MoveRotationTable
+from auto_trainer.gui.pokemon_files.move_rotation_table import MoveRotationTable
 from auto_trainer.gui.multistage_frame import MultiStageFrame
 
 

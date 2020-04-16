@@ -5,17 +5,17 @@ import auto_trainer.services.pokemon_data_directory_service as pdds
 import auto_trainer.services.json_data_service as jds
 from auto_trainer.gui.emerald_gui_window_base import EmeraldGUIWindowBase
 from auto_trainer.gui.next_back_frame import NextBackFrame
-from auto_trainer.gui.pokemon_basic_info_component import PokemonBasicInfoComponent
-from auto_trainer.gui.pokemon_evolution_component import PokemonEvolutionComponent
-from auto_trainer.gui.pokemon_learn_moves_component import PokemonLearnMovesComponent
-from auto_trainer.gui.pokemon_move_rotation_component import PokemonMoveRotationComponent
-from auto_trainer.gui.pokemon_name_component import PokemonNameComponent
+from auto_trainer.gui.pokemon_files.pokemon_basic_info_component import PokemonBasicInfoComponent
+from auto_trainer.gui.pokemon_files.pokemon_evolution_component import PokemonEvolutionComponent
+from auto_trainer.gui.pokemon_files.pokemon_learn_moves_component import PokemonLearnMovesComponent
+from auto_trainer.gui.pokemon_files.pokemon_move_rotation_component import PokemonMoveRotationComponent
+from auto_trainer.gui.pokemon_files.pokemon_name_component import PokemonNameComponent
 from auto_trainer.gui.next_back_buttons_group import NextBackButtonsGroup
 from auto_trainer.gui.updatable_component import UpdatableComponent
-from auto_trainer.gui.pokemon_sprite_component import PokemonSpriteComponent
+from auto_trainer.gui.pokemon_files.pokemon_sprite_component import PokemonSpriteComponent
 
 
-class PokemonFileGeneratorGUI(EmeraldGUIWindowBase, UpdatableComponent):
+class PokemonFileGeneratorGUI(tk.Toplevel, UpdatableComponent):
 
     def __init__(self):
         super().__init__()
@@ -25,7 +25,7 @@ class PokemonFileGeneratorGUI(EmeraldGUIWindowBase, UpdatableComponent):
         self._main_frame = NextBackFrame(self,
             exit_next_action=self._on_component_exit_next,
             exit_back_action=self._on_component_exit_back,
-            quit_action=self.quit)
+            quit_action=self.destroy)
         self.main_frame = tk.Frame(self)
         self._main_frame.grid(row=0, column=0, padx=25, pady=15)
 

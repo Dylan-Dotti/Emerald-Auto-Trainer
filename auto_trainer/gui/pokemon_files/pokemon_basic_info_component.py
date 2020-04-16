@@ -1,13 +1,13 @@
 import tkinter as tk
 from tkinter import ttk
 from auto_trainer.gui.navigable_component import NavigableComponent
-from auto_trainer.gui.pokemon_current_moves_component import PokemonCurrentMovesComponent
-from auto_trainer.gui.pokemon_gender_component import PokemonGenderComponent
-from auto_trainer.gui.pokemon_level_component import PokemonLevelComponent
-from auto_trainer.gui.pokemon_name_component import PokemonNameComponent
+from auto_trainer.gui.pokemon_files.pokemon_current_moves_component import PokemonCurrentMovesComponent
+from auto_trainer.gui.pokemon_files.pokemon_gender_component import PokemonGenderComponent
+from auto_trainer.gui.pokemon_files.pokemon_level_component import PokemonLevelComponent
+from auto_trainer.gui.pokemon_files.pokemon_name_component import PokemonNameComponent
 from auto_trainer.gui.multistage_frame import MultiStageFrame
 from auto_trainer.gui.next_back_frame import NextBackFrame
-from auto_trainer.gui.pokemon_sprite_component import PokemonSpriteComponent
+from auto_trainer.gui.pokemon_files.pokemon_sprite_component import PokemonSpriteComponent
 
 
 class PokemonBasicInfoComponent(MultiStageFrame):

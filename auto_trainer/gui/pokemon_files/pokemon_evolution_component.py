@@ -1,9 +1,9 @@
 import tkinter as tk
 import auto_trainer.services.pokemon_evolution_data_service as peds
-from auto_trainer.gui.evolution_selection_component import EvolutionSelectionComponent
-from auto_trainer.gui.evolution_stage_display_component import EvolutionStageDisplayComponent
+from auto_trainer.gui.pokemon_files.evolution_selection_component import EvolutionSelectionComponent
+from auto_trainer.gui.pokemon_files.evolution_stage_display_component import EvolutionStageDisplayComponent
 from auto_trainer.gui.multistage_frame import MultiStageFrame
-from auto_trainer.gui.pokemon_sprite_component import PokemonSpriteComponent
+from auto_trainer.gui.pokemon_files.pokemon_sprite_component import PokemonSpriteComponent
 
 
 class PokemonEvolutionComponent(MultiStageFrame):

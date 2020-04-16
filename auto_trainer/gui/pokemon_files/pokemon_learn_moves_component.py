@@ -2,7 +2,7 @@ import tkinter as tk
 import tkinter.ttk as ttk
 import auto_trainer.services.pokemon_moves_data_service as pmds
 from auto_trainer.gui.multistage_frame import MultiStageFrame
-from auto_trainer.gui.pokemon_sprite_component import PokemonSpriteComponent
+from auto_trainer.gui.pokemon_files.pokemon_sprite_component import PokemonSpriteComponent
 
 
 class PokemonLearnMovesComponent(MultiStageFrame):
