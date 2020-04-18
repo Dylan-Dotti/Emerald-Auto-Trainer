@@ -8,9 +8,10 @@ import auto_trainer.gui.window_config.sliders_display as sd
 import auto_trainer.gui.window_config.window_config_side_bar as sb
 import auto_trainer.services.config_settings_data_service as csds
 import auto_trainer.services.image_directory_service as ids
+from auto_trainer.gui.emerald_gui_toplevel_base import EmeraldGUIToplevelBase
 
 
-class WindowConfigGUI(tk.Tk):
+class WindowConfigGUI(EmeraldGUIToplevelBase):
 
     def __init__(self):
         super().__init__()

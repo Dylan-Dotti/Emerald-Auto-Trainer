@@ -5,8 +5,8 @@ import auto_trainer.services.image_directory_service as ids
 
 class EmeraldGUIToplevelBase(tk.Toplevel):
 
-    def __init__(self, master, grab_set=True):
-        super().__init__(master)
+    def __init__(self, grab_set=True):
+        super().__init__()
         self.title('Emerald Auto-Trainer')
         self.iconbitmap(ids.get_emerald_icon_direct())
 
