@@ -1,6 +1,7 @@
 import tkinter as tk
 from auto_trainer.gui.menu_frame_base import MenuFrameBase
 from auto_trainer.gui.pokemon_files.pokemon_file_generator_gui import PokemonFileGeneratorGUI
+from auto_trainer.gui.pokemon_files.pokemon_file_selector import PokemonFileSelector
 
 
 class PokemonMenuFrame(MenuFrameBase):
@@ -20,7 +21,7 @@ class PokemonMenuFrame(MenuFrameBase):
         self._edit_button = tk.Button(self._main_frame, text='Edit',
             width=button_width)
         self._delete_button = tk.Button(self._main_frame, text='Delete',
-            width=button_width)
+            width=button_width, command=self._on_del_pressed)
         self._back_button = tk.Button(self._main_frame, text='Back',
             width=button_width, command=back_action)
 
@@ -33,3 +34,7 @@ class PokemonMenuFrame(MenuFrameBase):
     def _on_new_pressed(self):
         file_gen_gui = PokemonFileGeneratorGUI()
         file_gen_gui.mainloop()
+    
+    def _on_del_pressed(self):
+        file_selector = PokemonFileSelector(self)
+        self.set_menu_content(file_selector)

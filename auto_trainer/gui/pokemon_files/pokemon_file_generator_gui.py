@@ -72,6 +72,7 @@ class PokemonFileGeneratorGUI(EmeraldGUIToplevelBase, UpdatableComponent):
                 exit_prev_action=self._on_component_exit_back)
             self._main_frame.set_content(self.learn_moves_frame)
         else:
+            self.pkm_data['moves_to_learn'] = []
             self._generate_pokemon_file()
             self.quit()
 
