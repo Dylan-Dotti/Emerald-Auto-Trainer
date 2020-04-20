@@ -5,10 +5,16 @@ import move_sequence_generator as msg
 
 
 class Pokemon:
-    def __init__(self, name, level, move_priority):
+
+    def __init__(self, name, level, gender, moves, move_priority,
+        evolutions, moves_to_learn):
         self._name = name
         self._level = level
+        self._gender = gender
+        self._moves = moves
         self._move_priority = move_priority
+        self._evolutions = evolutions
+        self._moves_to_learn = moves_to_learn
 
     def get_name(self):
         return self._name
@@ -38,6 +44,10 @@ class Pokemon:
         return Pokemon(
             pkm_data['name'],
             pkm_data['level'],
+            pkm_data['gender'],
+            pkm_data['moves'],
             [pm.PokemonMove.from_dictionary(move)
-             for move in pkm_data['move_priority']]
+                for move in pkm_data['move_priority']],
+            pkm_data['evolutions'],
+            pkm_data['moves_to_learn']
         )
