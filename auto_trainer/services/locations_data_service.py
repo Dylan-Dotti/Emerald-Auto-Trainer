@@ -16,9 +16,23 @@ def get_location_areas(location_name):
     return location['areas']
 
 
+def get_area_encounters(area_name, version='emerald'):
+    area_data = phs.get_one('location-area', area_name)
+    encounters = area_data['pokemon_encounters']
+    encounter_details_map = {}
+    for enc in encounters:
+        name = enc['pokemon']['name']
+        version_details = enc['version_details']
+        for details in version_details:
+            if details['version']['name'] == version:
+                enc_details = details['encounter_details']
+                encounter_details_map[name] = enc_details
+                break
+    return encounter_details_map
+
 def get_area_level_range(area):
-    
+    pass
 
 
 if __name__ == '__main__':
-    print(get_all_locations())
+    print(get_area_encounters('hoenn-route-102-area').keys())
