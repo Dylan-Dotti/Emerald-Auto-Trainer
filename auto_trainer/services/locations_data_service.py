@@ -30,9 +30,20 @@ def get_area_encounters(area_name, version='emerald'):
                 break
     return encounter_details_map
 
-def get_area_level_range(area):
-    pass
+
+def get_area_level_range(area, enc_method='walk'):
+    encounter_details_map = get_area_encounters(area)
+    if len(encounter_details_map) == 0:
+        return None
+    min_levels = []
+    max_levels = []
+    for details in encounter_details_map.values():
+        level_ranges = [(d['min_level'], d['max_level'])
+            for d in details if d['method']['name'] == enc_method]
+        min_levels.extend([lrange[0] for lrange in level_ranges])
+        max_levels.extend([lrange[1] for lrange in level_ranges])
+    return min(min_levels), max(max_levels)
 
 
 if __name__ == '__main__':
-    print(get_area_encounters('hoenn-route-102-area').keys())
+    print(get_area_level_range('hoenn-route-102-area'))
