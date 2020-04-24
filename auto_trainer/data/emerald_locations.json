@@ -1,0 +1,729 @@
+[
+  {
+    "areas": [
+      {
+        "name": "petalburg-city-area",
+        "url": "https://pokeapi.co/api/v2/location-area/350/"
+      }
+    ],
+    "id": 429,
+    "name": "petalburg-city"
+  },
+  {
+    "areas": [
+      {
+        "name": "slateport-city-area",
+        "url": "https://pokeapi.co/api/v2/location-area/351/"
+      }
+    ],
+    "id": 430,
+    "name": "slateport-city"
+  },
+  {
+    "areas": [
+      {
+        "name": "lilycove-city-area",
+        "url": "https://pokeapi.co/api/v2/location-area/352/"
+      }
+    ],
+    "id": 431,
+    "name": "lilycove-city"
+  },
+  {
+    "areas": [
+      {
+        "name": "mossdeep-city-area",
+        "url": "https://pokeapi.co/api/v2/location-area/353/"
+      }
+    ],
+    "id": 432,
+    "name": "mossdeep-city"
+  },
+  {
+    "areas": [
+      {
+        "name": "sootopolis-city-area",
+        "url": "https://pokeapi.co/api/v2/location-area/354/"
+      }
+    ],
+    "id": 433,
+    "name": "sootopolis-city"
+  },
+  {
+    "areas": [
+      {
+        "name": "ever-grande-city-area",
+        "url": "https://pokeapi.co/api/v2/location-area/355/"
+      }
+    ],
+    "id": 434,
+    "name": "ever-grande-city"
+  },
+  {
+    "areas": [
+      {
+        "name": "meteor-falls-backsmall-room",
+        "url": "https://pokeapi.co/api/v2/location-area/359/"
+      },
+      {
+        "name": "meteor-falls-b1f",
+        "url": "https://pokeapi.co/api/v2/location-area/358/"
+      },
+      {
+        "name": "meteor-falls-back",
+        "url": "https://pokeapi.co/api/v2/location-area/357/"
+      },
+      {
+        "name": "meteor-falls-area",
+        "url": "https://pokeapi.co/api/v2/location-area/356/"
+      }
+    ],
+    "id": 435,
+    "name": "meteor-falls"
+  },
+  {
+    "areas": [
+      {
+        "name": "rusturf-tunnel-area",
+        "url": "https://pokeapi.co/api/v2/location-area/360/"
+      }
+    ],
+    "id": 436,
+    "name": "rusturf-tunnel"
+  },
+  {
+    "areas": [
+      {
+        "name": "granite-cave-1fsmall-room",
+        "url": "https://pokeapi.co/api/v2/location-area/364/"
+      },
+      {
+        "name": "granite-cave-b2f",
+        "url": "https://pokeapi.co/api/v2/location-area/363/"
+      },
+      {
+        "name": "granite-cave-b1f",
+        "url": "https://pokeapi.co/api/v2/location-area/362/"
+      },
+      {
+        "name": "granite-cave-1f",
+        "url": "https://pokeapi.co/api/v2/location-area/361/"
+      }
+    ],
+    "id": 437,
+    "name": "granite-cave"
+  },
+  {
+    "areas": [
+      {
+        "name": "petalburg-woods-area",
+        "url": "https://pokeapi.co/api/v2/location-area/365/"
+      }
+    ],
+    "id": 438,
+    "name": "petalburg-woods"
+  },
+  {
+    "areas": [
+      {
+        "name": "jagged-pass-area",
+        "url": "https://pokeapi.co/api/v2/location-area/366/"
+      }
+    ],
+    "id": 439,
+    "name": "jagged-pass"
+  },
+  {
+    "areas": [
+      {
+        "name": "fiery-path-area",
+        "url": "https://pokeapi.co/api/v2/location-area/367/"
+      }
+    ],
+    "id": 440,
+    "name": "fiery-path"
+  },
+  {
+    "areas": [
+      {
+        "name": "mt-pyre-1f",
+        "url": "https://pokeapi.co/api/v2/location-area/368/"
+      },
+      {
+        "name": "mt-pyre-2f",
+        "url": "https://pokeapi.co/api/v2/location-area/369/"
+      },
+      {
+        "name": "mt-pyre-3f",
+        "url": "https://pokeapi.co/api/v2/location-area/370/"
+      },
+      {
+        "name": "mt-pyre-4f",
+        "url": "https://pokeapi.co/api/v2/location-area/371/"
+      },
+      {
+        "name": "mt-pyre-5f",
+        "url": "https://pokeapi.co/api/v2/location-area/372/"
+      },
+      {
+        "name": "mt-pyre-6f",
+        "url": "https://pokeapi.co/api/v2/location-area/373/"
+      },
+      {
+        "name": "mt-pyre-outside",
+        "url": "https://pokeapi.co/api/v2/location-area/374/"
+      },
+      {
+        "name": "mt-pyre-summit",
+        "url": "https://pokeapi.co/api/v2/location-area/375/"
+      }
+    ],
+    "id": 441,
+    "name": "mt-pyre"
+  },
+  {
+    "areas": [
+      {
+        "name": "seafloor-cavern-area",
+        "url": "https://pokeapi.co/api/v2/location-area/376/"
+      }
+    ],
+    "id": 442,
+    "name": "seafloor-cavern"
+  },
+  {
+    "areas": [
+      {
+        "name": "cave-of-origin-b3f",
+        "url": "https://pokeapi.co/api/v2/location-area/381/"
+      },
+      {
+        "name": "cave-of-origin-b2f",
+        "url": "https://pokeapi.co/api/v2/location-area/380/"
+      },
+      {
+        "name": "cave-of-origin-b1f",
+        "url": "https://pokeapi.co/api/v2/location-area/379/"
+      },
+      {
+        "name": "cave-of-origin-1f",
+        "url": "https://pokeapi.co/api/v2/location-area/378/"
+      },
+      {
+        "name": "cave-of-origin-entrance",
+        "url": "https://pokeapi.co/api/v2/location-area/377/"
+      }
+    ],
+    "id": 443,
+    "name": "cave-of-origin"
+  },
+  {
+    "areas": [
+      {
+        "name": "hoenn-victory-road-b2f",
+        "url": "https://pokeapi.co/api/v2/location-area/384/"
+      },
+      {
+        "name": "hoenn-victory-road-b1f",
+        "url": "https://pokeapi.co/api/v2/location-area/383/"
+      },
+      {
+        "name": "hoenn-victory-road-1f",
+        "url": "https://pokeapi.co/api/v2/location-area/382/"
+      }
+    ],
+    "id": 444,
+    "name": "hoenn-victory-road"
+  },
+  {
+    "areas": [
+      {
+        "name": "shoal-cave-area",
+        "url": "https://pokeapi.co/api/v2/location-area/385/"
+      },
+      {
+        "name": "shoal-cave-b1f",
+        "url": "https://pokeapi.co/api/v2/location-area/386/"
+      }
+    ],
+    "id": 445,
+    "name": "shoal-cave"
+  },
+  {
+    "areas": [
+      {
+        "name": "new-mauville-entrance",
+        "url": "https://pokeapi.co/api/v2/location-area/387/"
+      },
+      {
+        "name": "new-mauville-area",
+        "url": "https://pokeapi.co/api/v2/location-area/388/"
+      }
+    ],
+    "id": 446,
+    "name": "new-mauville"
+  },
+  {
+    "areas": [
+      {
+        "name": "abandoned-ship-area",
+        "url": "https://pokeapi.co/api/v2/location-area/389/"
+      }
+    ],
+    "id": 447,
+    "name": "abandoned-ship"
+  },
+  {
+    "areas": [
+      {
+        "name": "hoenn-route-101-area",
+        "url": "https://pokeapi.co/api/v2/location-area/393/"
+      }
+    ],
+    "id": 449,
+    "name": "hoenn-route-101"
+  },
+  {
+    "areas": [
+      {
+        "name": "hoenn-route-102-area",
+        "url": "https://pokeapi.co/api/v2/location-area/394/"
+      }
+    ],
+    "id": 450,
+    "name": "hoenn-route-102"
+  },
+  {
+    "areas": [
+      {
+        "name": "hoenn-route-103-area",
+        "url": "https://pokeapi.co/api/v2/location-area/395/"
+      }
+    ],
+    "id": 451,
+    "name": "hoenn-route-103"
+  },
+  {
+    "areas": [
+      {
+        "name": "hoenn-route-104-area",
+        "url": "https://pokeapi.co/api/v2/location-area/396/"
+      }
+    ],
+    "id": 452,
+    "name": "hoenn-route-104"
+  },
+  {
+    "areas": [
+      {
+        "name": "hoenn-route-105-area",
+        "url": "https://pokeapi.co/api/v2/location-area/397/"
+      }
+    ],
+    "id": 453,
+    "name": "hoenn-route-105"
+  },
+  {
+    "areas": [
+      {
+        "name": "hoenn-route-106-area",
+        "url": "https://pokeapi.co/api/v2/location-area/398/"
+      }
+    ],
+    "id": 454,
+    "name": "hoenn-route-106"
+  },
+  {
+    "areas": [
+      {
+        "name": "hoenn-route-107-area",
+        "url": "https://pokeapi.co/api/v2/location-area/399/"
+      }
+    ],
+    "id": 455,
+    "name": "hoenn-route-107"
+  },
+  {
+    "areas": [
+      {
+        "name": "hoenn-route-108-area",
+        "url": "https://pokeapi.co/api/v2/location-area/400/"
+      }
+    ],
+    "id": 456,
+    "name": "hoenn-route-108"
+  },
+  {
+    "areas": [
+      {
+        "name": "hoenn-route-109-area",
+        "url": "https://pokeapi.co/api/v2/location-area/401/"
+      }
+    ],
+    "id": 457,
+    "name": "hoenn-route-109"
+  },
+  {
+    "areas": [
+      {
+        "name": "hoenn-route-110-area",
+        "url": "https://pokeapi.co/api/v2/location-area/402/"
+      }
+    ],
+    "id": 458,
+    "name": "hoenn-route-110"
+  },
+  {
+    "areas": [
+      {
+        "name": "hoenn-route-111-area",
+        "url": "https://pokeapi.co/api/v2/location-area/403/"
+      }
+    ],
+    "id": 459,
+    "name": "hoenn-route-111"
+  },
+  {
+    "areas": [
+      {
+        "name": "hoenn-route-112-area",
+        "url": "https://pokeapi.co/api/v2/location-area/404/"
+      }
+    ],
+    "id": 460,
+    "name": "hoenn-route-112"
+  },
+  {
+    "areas": [
+      {
+        "name": "hoenn-route-113-area",
+        "url": "https://pokeapi.co/api/v2/location-area/405/"
+      }
+    ],
+    "id": 461,
+    "name": "hoenn-route-113"
+  },
+  {
+    "areas": [
+      {
+        "name": "hoenn-route-114-area",
+        "url": "https://pokeapi.co/api/v2/location-area/406/"
+      }
+    ],
+    "id": 462,
+    "name": "hoenn-route-114"
+  },
+  {
+    "areas": [
+      {
+        "name": "hoenn-route-115-area",
+        "url": "https://pokeapi.co/api/v2/location-area/407/"
+      }
+    ],
+    "id": 463,
+    "name": "hoenn-route-115"
+  },
+  {
+    "areas": [
+      {
+        "name": "hoenn-route-116-area",
+        "url": "https://pokeapi.co/api/v2/location-area/408/"
+      }
+    ],
+    "id": 464,
+    "name": "hoenn-route-116"
+  },
+  {
+    "areas": [
+      {
+        "name": "hoenn-route-117-area",
+        "url": "https://pokeapi.co/api/v2/location-area/409/"
+      }
+    ],
+    "id": 465,
+    "name": "hoenn-route-117"
+  },
+  {
+    "areas": [
+      {
+        "name": "hoenn-route-118-area",
+        "url": "https://pokeapi.co/api/v2/location-area/410/"
+      }
+    ],
+    "id": 466,
+    "name": "hoenn-route-118"
+  },
+  {
+    "areas": [
+      {
+        "name": "hoenn-route-119-area",
+        "url": "https://pokeapi.co/api/v2/location-area/411/"
+      }
+    ],
+    "id": 467,
+    "name": "hoenn-route-119"
+  },
+  {
+    "areas": [
+      {
+        "name": "hoenn-route-120-area",
+        "url": "https://pokeapi.co/api/v2/location-area/412/"
+      }
+    ],
+    "id": 468,
+    "name": "hoenn-route-120"
+  },
+  {
+    "areas": [
+      {
+        "name": "hoenn-route-121-area",
+        "url": "https://pokeapi.co/api/v2/location-area/413/"
+      }
+    ],
+    "id": 469,
+    "name": "hoenn-route-121"
+  },
+  {
+    "areas": [
+      {
+        "name": "hoenn-route-122-area",
+        "url": "https://pokeapi.co/api/v2/location-area/414/"
+      }
+    ],
+    "id": 470,
+    "name": "hoenn-route-122"
+  },
+  {
+    "areas": [
+      {
+        "name": "hoenn-route-123-area",
+        "url": "https://pokeapi.co/api/v2/location-area/415/"
+      }
+    ],
+    "id": 471,
+    "name": "hoenn-route-123"
+  },
+  {
+    "areas": [
+      {
+        "name": "hoenn-route-124-area",
+        "url": "https://pokeapi.co/api/v2/location-area/416/"
+      },
+      {
+        "name": "hoenn-route-124-underwater",
+        "url": "https://pokeapi.co/api/v2/location-area/417/"
+      }
+    ],
+    "id": 472,
+    "name": "hoenn-route-124"
+  },
+  {
+    "areas": [
+      {
+        "name": "hoenn-route-125-area",
+        "url": "https://pokeapi.co/api/v2/location-area/418/"
+      }
+    ],
+    "id": 473,
+    "name": "hoenn-route-125"
+  },
+  {
+    "areas": [
+      {
+        "name": "hoenn-route-126-area",
+        "url": "https://pokeapi.co/api/v2/location-area/419/"
+      },
+      {
+        "name": "hoenn-route-126-underwater",
+        "url": "https://pokeapi.co/api/v2/location-area/420/"
+      }
+    ],
+    "id": 474,
+    "name": "hoenn-route-126"
+  },
+  {
+    "areas": [
+      {
+        "name": "hoenn-route-127-area",
+        "url": "https://pokeapi.co/api/v2/location-area/421/"
+      }
+    ],
+    "id": 475,
+    "name": "hoenn-route-127"
+  },
+  {
+    "areas": [
+      {
+        "name": "hoenn-route-128-area",
+        "url": "https://pokeapi.co/api/v2/location-area/422/"
+      }
+    ],
+    "id": 476,
+    "name": "hoenn-route-128"
+  },
+  {
+    "areas": [
+      {
+        "name": "hoenn-route-129-area",
+        "url": "https://pokeapi.co/api/v2/location-area/423/"
+      }
+    ],
+    "id": 477,
+    "name": "hoenn-route-129"
+  },
+  {
+    "areas": [
+      {
+        "name": "hoenn-route-130-area",
+        "url": "https://pokeapi.co/api/v2/location-area/424/"
+      }
+    ],
+    "id": 478,
+    "name": "hoenn-route-130"
+  },
+  {
+    "areas": [
+      {
+        "name": "hoenn-route-131-area",
+        "url": "https://pokeapi.co/api/v2/location-area/425/"
+      }
+    ],
+    "id": 479,
+    "name": "hoenn-route-131"
+  },
+  {
+    "areas": [
+      {
+        "name": "hoenn-route-132-area",
+        "url": "https://pokeapi.co/api/v2/location-area/426/"
+      }
+    ],
+    "id": 480,
+    "name": "hoenn-route-132"
+  },
+  {
+    "areas": [
+      {
+        "name": "hoenn-route-133-area",
+        "url": "https://pokeapi.co/api/v2/location-area/427/"
+      }
+    ],
+    "id": 481,
+    "name": "hoenn-route-133"
+  },
+  {
+    "areas": [
+      {
+        "name": "hoenn-route-134-area",
+        "url": "https://pokeapi.co/api/v2/location-area/428/"
+      }
+    ],
+    "id": 482,
+    "name": "hoenn-route-134"
+  },
+  {
+    "areas": [
+      {
+        "name": "dewford-town-area",
+        "url": "https://pokeapi.co/api/v2/location-area/433/"
+      }
+    ],
+    "id": 484,
+    "name": "dewford-town"
+  },
+  {
+    "areas": [
+      {
+        "name": "pacifidlog-town-area",
+        "url": "https://pokeapi.co/api/v2/location-area/434/"
+      }
+    ],
+    "id": 485,
+    "name": "pacifidlog-town"
+  },
+  {
+    "areas": [
+      {
+        "name": "magma-hideout-area",
+        "url": "https://pokeapi.co/api/v2/location-area/437/"
+      }
+    ],
+    "id": 486,
+    "name": "magma-hideout"
+  },
+  {
+    "areas": [
+      {
+        "name": "mirage-tower-area",
+        "url": "https://pokeapi.co/api/v2/location-area/438/"
+      }
+    ],
+    "id": 487,
+    "name": "mirage-tower"
+  },
+  {
+    "areas": [
+      {
+        "name": "desert-underpass-area",
+        "url": "https://pokeapi.co/api/v2/location-area/439/"
+      }
+    ],
+    "id": 488,
+    "name": "desert-underpass"
+  },
+  {
+    "areas": [
+      {
+        "name": "artisan-cave-area",
+        "url": "https://pokeapi.co/api/v2/location-area/440/"
+      }
+    ],
+    "id": 489,
+    "name": "artisan-cave"
+  },
+  {
+    "areas": [],
+    "id": 567,
+    "name": "littleroot-town"
+  },
+  {
+    "areas": [],
+    "id": 568,
+    "name": "oldale-town"
+  },
+  {
+    "areas": [],
+    "id": 569,
+    "name": "lavaridge-town"
+  },
+  {
+    "areas": [],
+    "id": 570,
+    "name": "fallarbor-town"
+  },
+  {
+    "areas": [],
+    "id": 571,
+    "name": "verdanturf-town"
+  },
+  {
+    "areas": [],
+    "id": 572,
+    "name": "mauville-city"
+  },
+  {
+    "areas": [],
+    "id": 573,
+    "name": "rustboro-city"
+  },
+  {
+    "areas": [],
+    "id": 574,
+    "name": "fortree-city"
+  },
+  {
+    "areas": [],
+    "id": 693,
+    "name": "sea-mauville"
+  }
+]
