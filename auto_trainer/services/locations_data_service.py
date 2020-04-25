@@ -1,24 +1,11 @@
+import auto_trainer.services.directory_service as ds
+import auto_trainer.services.json_data_service as jds
 import auto_trainer.services.pokeapi_http_service as phs
 
-
+# move functionality to data loader
 def get_all_locations(version='emerald'):
-    if version == 'emerald':
-        region = 'hoenn'
-    locations_index = phs.get_one('region', region)['locations']
-    location_names = [l['name'] for l in locations_index]
-    del location_names[location_names.index('mirage-forest'):]
-    location_names = [l for l in location_names if l not in [
-        'battle-resort', 'inside-of-truck', 'hoenn-altering-cave',
-        'hoenn-safari-zone', 'ss-tidal', 'secret-base', 'sealed-chamber',
-        'island-cave', 'desert-ruins', 'mirage-island', 'southern-island',
-        'scorched-slab', 'hoenn-battle-tower', 'hoenn-pokemon-league',
-        'underwater', 'mt-chimney', 'ancient-tomb', 'team-aqua-hideout',
-        'team-magma-hideout', 'sky-pillar']]
-    locations = [phs.get_one('location', l) for l in location_names]
-    for loc in locations:
-        for key in ['names', 'region', 'game_indices']:
-            if key in loc:
-                loc.pop(key)
+    path = ds.get_data_directory() + '%s_locations.json' % version
+    locations = jds.load_data(path)
     return locations
 
 
@@ -65,4 +52,4 @@ def get_area_level_range(area, enc_method='walk'):
 
 
 if __name__ == '__main__':
-    print(get_all_areas('hoenn-route-102'))
+    print(get_all_locations())

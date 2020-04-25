@@ -6,9 +6,33 @@ import auto_trainer.services.pokeapi_http_service as phs
 
 
 def load_locations(version='emerald'):
-    locations = lds.get_all_locations(version=version)
-    areas = [lds.get_all_areas(l_name) for l_name in [
-        l['name'] for l in locations]]
+    if version == 'emerald':
+        region = 'hoenn'
+    locations_index = phs.get_one('region', region)['locations']
+    location_names = [l['name'] for l in locations_index]
+    del location_names[location_names.index('mirage-forest'):]
+    location_names = [l for l in location_names if l not in [
+        'battle-resort', 'inside-of-truck', 'hoenn-altering-cave',
+        'hoenn-safari-zone', 'ss-tidal', 'secret-base', 'sealed-chamber',
+        'island-cave', 'desert-ruins', 'mirage-island', 'southern-island',
+        'scorched-slab', 'hoenn-battle-tower', 'hoenn-pokemon-league',
+        'underwater', 'mt-chimney', 'ancient-tomb', 'team-aqua-hideout',
+        'team-magma-hideout', 'sky-pillar']]
+    locations = [phs.get_one('location', l) for l in location_names]
+    for loc in locations:
+        for key in ['names', 'region', 'game_indices']:
+            loc.pop(key)
+
+
+    areas = []
+    for loc in locations:
+        area_names = [a['name'] for a in loc['areas']]
+        for a_name in area_names:
+            area = phs.get_one('location-area', a_name)
+            for key in ['encounter_method_rates', 'names']:
+                area.pop(key)
+            areas.append(area)
+
     location_file_url = ds.get_data_directory() + 'emerald_locations.json'
     area_file_url = ds.get_data_directory() + 'emerald_areas.json'
     jds.save_data(location_file_url, locations)
