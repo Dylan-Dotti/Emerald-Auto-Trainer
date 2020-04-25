@@ -9,7 +9,7 @@ def get_all_locations(version='emerald'):
     return locations
 
 
-def get_all_areas(location_name, version='emerald'):
+def get_areas(location_name, version='emerald'):
     locations = get_all_locations()
     location = next((l for l in locations 
         if l['name'] == location_name))
