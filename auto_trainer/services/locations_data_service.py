@@ -9,6 +9,16 @@ def get_all_locations(version='emerald'):
     return locations
 
 
+def get_city_locations(version='emerald'):
+    city_names = ['petalburg-city', 'slateport-city', 'lilycove-city',
+        'mossdeep-city', 'sootopolis-city', 'fallarbor-town',
+        'dewford-town', 'pacifidlog-town', 'littleroot-town',
+        'ever-grande-city', 'lavaridge-town', 'verdanturf-town',
+        'oldale-town', 'mauville-city', 'rustboro-city', 'fortree-city']
+    return list(filter(lambda l: l['name'] in city_names,
+        get_all_locations(version=version)))
+
+
 def get_areas(location_name, version='emerald'):
     path = ds.get_data_directory() + '%s_areas.json' % version
     areas = jds.load_data(path)
@@ -54,4 +64,4 @@ def get_area_level_range(area, enc_method='walk'):
 
 
 if __name__ == '__main__':
-    print(get_area_level_range('petalburg-city-area'))
+    print([l['name'] for l in get_city_locations()])
