@@ -12,5 +12,13 @@ class PokemonFileSelector(tk.Listbox):
         for name, ident in pfs.get_file_name_id_pairs():
             self.insert(tk.END, '%s %s' % (name.title(), ident))
     
+    def get_selected(self):
+        return self.get(self.curselection())
+    
+    def pop_selected(self):
+        selected_val = self.get_selected()
+        self.delete(self.curselection())
+        return selected_val
+    
 
         

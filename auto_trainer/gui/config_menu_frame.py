@@ -1,5 +1,6 @@
 import tkinter as tk
 from auto_trainer.gui.menu_frame_base import MenuFrameBase
+from auto_trainer.gui.party_config_window import PartyConfigWindow
 from auto_trainer.gui.window_config.window_config_gui import WindowConfigGUI
 
 
@@ -15,13 +16,20 @@ class ConfigMenuFrame(MenuFrameBase):
             font=(None, 16))
         window_button = tk.Button(main_frame, text='Window Configuration',
             width=20, command=self._on_window_pressed)
+        party_button = tk.Button(main_frame, text='Party Configuration',
+            width=20, command=self._on_party_pressed)
         back_button = tk.Button(main_frame, text='Back', width=20,
             command=back_action)
         
         title_label.grid(row=0, column=0, pady=5)
         window_button.grid(row=1, column=0, pady=3)
-        back_button.grid(row=2, column=0, pady=3)
+        party_button.grid(row=2, column=0, pady=3)
+        back_button.grid(row=3, column=0, pady=3)
     
     def _on_window_pressed(self):
         window_config_gui = WindowConfigGUI()
         window_config_gui.mainloop()
+    
+    def _on_party_pressed(self):
+        pconfig = PartyConfigWindow()
+        pconfig.mainloop()

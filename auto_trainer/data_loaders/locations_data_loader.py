@@ -35,7 +35,6 @@ def load_locations(version='emerald'):
             area['location'] = area['location']['name']
             for enc in area['pokemon_encounters']:
                 enc['pokemon'] = enc['pokemon']['name']
-                #remove encounters that don't happen in emerald
                 for v_details in enc['version_details']:
                     if v_details['version']['name'] == version:
                         for e_details in v_details['encounter_details']:

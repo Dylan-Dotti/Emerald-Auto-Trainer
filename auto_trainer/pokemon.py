@@ -1,7 +1,7 @@
 # class for storing data for a pokemon,
 # and for converting to and from dictionaries
-import pokemon_move as pm
-import move_sequence_generator as msg
+import auto_trainer.pokemon_move as pm
+import auto_trainer.move_sequence_generator as msg
 
 
 class Pokemon:
