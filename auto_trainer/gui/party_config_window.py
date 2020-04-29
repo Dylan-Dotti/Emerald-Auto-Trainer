@@ -1,5 +1,6 @@
 import tkinter as tk
 from auto_trainer.gui.emerald_gui_toplevel_base import EmeraldGUIToplevelBase
+from auto_trainer.gui.emerald_listbox import EmeraldListbox
 from auto_trainer.gui.pokemon_files.pokemon_file_selector import PokemonFileSelector
 
 class PartyConfigWindow(EmeraldGUIToplevelBase):
@@ -25,7 +26,7 @@ class PartyConfigWindow(EmeraldGUIToplevelBase):
             text='Confirm', width=8, command=self._on_confirm_pressed)
         self._confirm_button.grid(row=2, column=0)
 
-        self._party_lbox = tk.Listbox(self)
+        self._party_lbox = EmeraldListbox(self)
         self._party_lbox.grid(row=0, column=2)
     
     def _on_add_pressed(self):
@@ -34,7 +35,8 @@ class PartyConfigWindow(EmeraldGUIToplevelBase):
             self._file_selector.pop_selected())
 
     def _on_removed_pressed(self):
-        pass
+        self._file_selector.insert(tk.END,
+            self._party_lbox.pop_selected())
 
     def _on_confirm_pressed(self):
-        pass
+        self.destroy()
