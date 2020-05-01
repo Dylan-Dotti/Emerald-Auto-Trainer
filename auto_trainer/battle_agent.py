@@ -52,11 +52,11 @@ class BattleAgent:
         self.run_from_battle()
 
     def select_fight_option(self):
-        if self.__menu_state == BAState.Main:
+        if self._menu_state == BAState.Main:
             self.move_cursor_to((0, 0))
             kc.press_a()
-            self.__menu_state = BAState.Moves
-        elif self.__menu_state != BAState.Moves:
+            self._menu_state = BAState.Moves
+        elif self._menu_state != BAState.Moves:
             raise Exception('transition not implemented')
 
     def use_move(self, move_coords):
@@ -64,7 +64,7 @@ class BattleAgent:
         self.select_fight_option()
         self.move_cursor_to(move_coords)
         kc.press_a()
-        self.__menu_state = BAState.Main
+        self._menu_state = BAState.Main
 
     def use_move_and_check_faint(self, move_coords):
         self.use_move(move_coords)
@@ -131,12 +131,12 @@ class BattleAgent:
             timeout=1.0)
 
     def move_cursor_to(self, target_coords):
-        if self.__menu_state == BAState.Main:
+        if self._menu_state == BAState.Main:
             self._press_cursor_buttons(self._main_index, target_coords)
-            self.__main_index = target_coords
-        elif self.__menu_state == BAState.Moves:
+            self._main_index = target_coords
+        elif self._menu_state == BAState.Moves:
             self._press_cursor_buttons(self._moves_index, target_coords)
-            self.__moves_index = target_coords
+            self._moves_index = target_coords
 
     def _press_cursor_buttons(self, curr_coords, tar_coords):
         curr_row, curr_col = curr_coords

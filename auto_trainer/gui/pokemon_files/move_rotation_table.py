@@ -65,9 +65,9 @@ class MoveRotationTable(tk.Frame):
         widgets = self._rows[irow]
         return {
             'move': widgets['move'].get(),
-            'initial': widgets['initial'].get(),
-            'consecutive': widgets['consecutive'].get(),
-            'periodic': widgets['periodic'].get()
+            'initial': int(widgets['initial'].get()),
+            'consecutive': int(widgets['consecutive'].get()),
+            'periodic': int(widgets['periodic'].get())
         }
     
     def _move_row(self, row_widgets, iend):

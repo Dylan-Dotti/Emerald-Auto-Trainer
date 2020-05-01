@@ -33,8 +33,7 @@ class Pokemon:
         return msg.generate_move_sequence(self._move_priority, max_num_moves)
     
     def get_move_coords(self, move):
-        move_names = [m.get_name() for m in self._moves]
-        index = move_names.index(move)
+        index = self._moves.index(move)
         if index == 0:
             return (0, 0)
         if index == 1:
@@ -49,7 +48,8 @@ class Pokemon:
         return {
             'name': self._name,
             'level': self._level,
-            'move_priority': [move.to_dictionary() for move in self._move_priority]
+            'move_priority': [move.to_dictionary() 
+                for move in self._move_priority]
         }
 
     @staticmethod

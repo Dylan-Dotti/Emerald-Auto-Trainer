@@ -126,7 +126,7 @@ def get_row_range_rect(min_row_incl, max_row_excl):
 def get_col_rect(col):
     x, y = local_to_global_coords((col * get_square_width(), 0))
     # may need to change x, y between round and int
-    return (int(x), int(y), int(get_square_height()), 
+    return (round(x), round(y), int(get_square_height()), 
             int(get_game_window_height()))
 
 
