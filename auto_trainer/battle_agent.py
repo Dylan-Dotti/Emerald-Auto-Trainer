@@ -10,10 +10,10 @@ import game_window_grid as gwg
 
 class BattleAgent:
     def __init__(self):
-        self.__active_pokemon = pparty.get_active_pokemon()
-        self.__main_index = (0, 0)
-        self.__moves_index = (0, 0)
-        self.__menu_state = BAState.Main
+        self._active_pokemon = pparty.get_active_pokemon()
+        self._main_index = (0, 0)
+        self._moves_index = (0, 0)
+        self._menu_state = BAState.Main
         self._red_arrow_url = 'img/battle_red_arrow.png'
         self._blk_arrow_url = 'img/battle_black_arrow.png'
         self._fainted_url = 'img/fainted.png'
@@ -26,10 +26,11 @@ class BattleAgent:
         self.wait_for_red_arrow()
         kc.press_a()
         self.wait_for_black_arrow()
-        moves = self.__active_pokemon.get_move_sequence(10)
+        moves = self._active_pokemon.get_move_sequence(10)
         for move in moves:
             # use move and check for enemy faint
-            if self.use_move_and_check_faint(move):
+            if self.use_move_and_check_faint(
+                self._active_pokemon.get_move_coords(move)):
                 self.on_enemy_fainted()
                 # check level up
                 if self.wait_for_level_up():
@@ -93,12 +94,12 @@ class BattleAgent:
 
     def on_pokemon_leveled(self):
         print('pokemon leveled')
-        self.__active_pokemon.increment_level()
+        self._active_pokemon.increment_level()
         for _ in range(3):
             kc.press_a()
 
     def on_move_learned(self):
-        print(self.__active_pokemon.get_name() + ' learned move')
+        print(self._active_pokemon.get_name() + ' learned move')
         self.wait_for_red_arrow()
         kc.press_a()
 
@@ -131,10 +132,10 @@ class BattleAgent:
 
     def move_cursor_to(self, target_coords):
         if self.__menu_state == BAState.Main:
-            self._press_cursor_buttons(self.__main_index, target_coords)
+            self._press_cursor_buttons(self._main_index, target_coords)
             self.__main_index = target_coords
         elif self.__menu_state == BAState.Moves:
-            self._press_cursor_buttons(self.__moves_index, target_coords)
+            self._press_cursor_buttons(self._moves_index, target_coords)
             self.__moves_index = target_coords
 
     def _press_cursor_buttons(self, curr_coords, tar_coords):

@@ -8,7 +8,7 @@ def generate_move_sequence(move_priority, max_num_moves):
     for move in move_priority:
         if i_turn >= move.get_initial():
             for _ in range(move.get_consecutive()):
-                move_sequence.append(move.get_coords())
+                move_sequence.append(move.get_name())
                 i_turn += 1
             if move.get_periodic() is not None:
                 next_move_uses[move] = i_turn + move.get_periodic() - 1
@@ -26,7 +26,7 @@ def generate_move_sequence(move_priority, max_num_moves):
         for move in periodic_moves:
             if i_turn >= next_move_uses[move]:
                 for _ in range(move.get_consecutive()):
-                    move_sequence.append(move.get_coords())
+                    move_sequence.append(move.get_name())
                     i_turn += 1
                 next_move_uses[move] = i_turn + move.get_periodic() - 1
                 break

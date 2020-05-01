@@ -1,9 +1,9 @@
 # loads/saves pokemon data from/to the party_pokemon data file
+import os
+import auto_trainer.pokemon
 import auto_trainer.services.directory_service as ds
 import auto_trainer.services.json_data_service as jds
 import auto_trainer.services.pokemon_file_service as pfs
-import os
-import auto_trainer.pokemon
 
 
 def load_party():

@@ -39,10 +39,7 @@ def save_party():
 
 def __load_party():
     print('loading party from file')
-    pkm_dict = ppds.load_party()
-    party = [pokemon.Pokemon.from_dictionary(
-        pkm) for pkm in pkm_dict['pokemon']]
-    return party
+    return ppds.load_party()
 
 
 _party_pokemon = __load_party()

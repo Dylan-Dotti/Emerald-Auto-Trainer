@@ -31,6 +31,19 @@ class Pokemon:
 
     def get_move_sequence(self, max_num_moves):
         return msg.generate_move_sequence(self._move_priority, max_num_moves)
+    
+    def get_move_coords(self, move):
+        move_names = [m.get_name() for m in self._moves]
+        index = move_names.index(move)
+        if index == 0:
+            return (0, 0)
+        if index == 1:
+            return (0, 1)
+        if index == 2:
+            return (1, 0)
+        if index == 3:
+            return (1, 1)
+        raise ValueError('Invalid index: %s' % index)
 
     def to_dictionary(self):
         return {
