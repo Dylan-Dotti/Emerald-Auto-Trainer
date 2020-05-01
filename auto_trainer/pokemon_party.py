@@ -29,8 +29,7 @@ def increment_pokemon_level(p_index):
 
 
 def to_dictionary():
-    pokemon = [pkm.to_dictionary() for pkm in _party_pokemon]
-    return { 'pokemon': pokemon }
+    return [pkm.to_dictionary() for pkm in _party_pokemon]
 
 
 def save_party():
