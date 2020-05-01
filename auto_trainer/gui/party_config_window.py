@@ -1,4 +1,5 @@
 import tkinter as tk
+import auto_trainer.services.pokemon_party_data_service as ppds
 from auto_trainer.gui.emerald_gui_toplevel_base import EmeraldGUIToplevelBase
 from auto_trainer.gui.emerald_listbox import EmeraldListbox
 from auto_trainer.gui.pokemon_files.pokemon_file_selector import PokemonFileSelector
@@ -28,9 +29,12 @@ class PartyConfigWindow(EmeraldGUIToplevelBase):
 
         self._party_lbox = EmeraldListbox(self)
         self._party_lbox.grid(row=0, column=2)
+        for name, file_id in ppds.get_name_id_pairs():
+            entry_val = '%s %s' % (name, file_id)
+            self._file_selector.pop_item(entry_val)
+            self._party_lbox.append_item(entry_val)
     
     def _on_add_pressed(self):
-        #print(self._file_selector.get_selected())
         self._party_lbox.insert(tk.END,
             self._file_selector.pop_selected())
 

@@ -9,7 +9,10 @@ class EmeraldListbox(tk.Listbox):
             font=(None, 12), width=15, activestyle=None)
     
     def get_values(self):
-        return self.get(0, tk.END)
+        return [v.lower() for v in self.get(0, tk.END)]
+
+    def append_item(self, item, title=True):
+        self.insert(tk.END, item.title() if title else item)
 
     def get_selected(self):
         return self.get(self.curselection())
@@ -18,8 +21,9 @@ class EmeraldListbox(tk.Listbox):
         return self.pop_index(self.curselection())
     
     def pop_item(self, item):
-        values = self.get_values()
-        index = values.index(item)
+        print('popping value:', item)
+        print('current values:', self.get_values())
+        index = self.get_values().index(item)
         return self.pop_index(index)
     
     def pop_index(self, index):

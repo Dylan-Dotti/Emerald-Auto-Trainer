@@ -7,16 +7,18 @@ import auto_trainer.services.pokemon_file_service as pfs
 
 
 def load_party():
-    name_id_pairs = jds.load_data(_party_file_url)
+    name_id_pairs = get_name_id_pairs()
     party_pokemon = [pfs.load_pokemon_from_file(n, i) 
         for (n, i) in name_id_pairs]
-    for p in party_pokemon:
-        print(p.get_name())
     return party_pokemon
 
 
 def save_party(party_dict):
     jds.save_data(_party_file_url, party_dict)
+
+
+def get_name_id_pairs():
+    return [tuple(p) for p in jds.load_data(_party_file_url)]
 
 
 _party_file_url = '%sparty_pokemon.json' % ds.get_data_directory()
