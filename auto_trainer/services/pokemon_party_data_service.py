@@ -13,8 +13,8 @@ def load_party():
     return party_pokemon
 
 
-def save_party(party_dict):
-    jds.save_data(_party_file_url, party_dict)
+def save_party(name_id_pairs):
+    jds.save_data(_party_file_url, name_id_pairs)
 
 
 def get_name_id_pairs():

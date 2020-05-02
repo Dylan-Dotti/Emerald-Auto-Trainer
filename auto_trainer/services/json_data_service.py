@@ -18,6 +18,6 @@ def load_data(file_url):
 def save_data(file_url, data, indent=2):
     f = open(file_url, 'w')
     data_json = json.dumps(data, indent=indent)
-    _cache[file_url] = data_json
+    _cache[file_url] = data
     f.write(data_json)
     f.close()
