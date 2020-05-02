@@ -18,7 +18,9 @@ def save_party(party_dict):
 
 
 def get_name_id_pairs():
-    return [tuple(p) for p in jds.load_data(_party_file_url)]
+    data = jds.load_data(_party_file_url)
+    #print(data)
+    return [(name, fid) for (name, fid) in data]
 
 
 _party_file_url = '%sparty_pokemon.json' % ds.get_data_directory()

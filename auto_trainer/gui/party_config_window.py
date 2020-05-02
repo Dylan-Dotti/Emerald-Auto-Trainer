@@ -29,6 +29,7 @@ class PartyConfigWindow(EmeraldGUIToplevelBase):
 
         self._party_lbox = EmeraldListbox(self)
         self._party_lbox.grid(row=0, column=2)
+        print(ppds.get_name_id_pairs())
         for name, file_id in ppds.get_name_id_pairs():
             entry_val = '%s %s' % (name, file_id)
             self._file_selector.pop_item(entry_val)
@@ -43,4 +44,7 @@ class PartyConfigWindow(EmeraldGUIToplevelBase):
             self._party_lbox.pop_selected())
 
     def _on_confirm_pressed(self):
+        party_vals = self._party_lbox.get_values()
+        name_id_pairs = [v.split(' ') for v in party_vals]
+        ppds.save_party(name_id_pairs)
         self.destroy()
