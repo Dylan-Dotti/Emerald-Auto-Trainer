@@ -2,6 +2,7 @@
 # and for converting to and from dictionaries
 import auto_trainer.pokemon_move as pm
 import auto_trainer.move_sequence_generator as msg
+import auto_trainer.services.pokemon_moves_data_service as pmds
 
 
 class Pokemon:
@@ -28,6 +29,13 @@ class Pokemon:
     def increment_level(self):
         self._level += 1
         print('%s is now level %s' % (self._name, self._level))
+    
+    def get_moves(self):
+        return self._moves
+    
+    def get_ooc_moves(self):
+        return list(filter(
+            lambda m: m in pmds.get_ooc_moves(), self._moves))
 
     def get_move_sequence(self, max_num_moves):
         return msg.generate_move_sequence(self._move_priority, max_num_moves)

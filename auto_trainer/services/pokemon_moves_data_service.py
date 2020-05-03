@@ -30,6 +30,14 @@ def get_learn_level(move_version_details):
     return int(move_version_details['level_learned_at'])
 
 
+def get_ooc_moves(version='emerald'):
+    if version == 'emerald':
+        return ['cut', 'fly', 'surf', 'strength', 'flash',
+            'rock-smash', 'waterfall', 'dive', 'dig', 'teleport',
+            'sweet-scent', 'milk-drink', 'softboiled', 'secret-power']
+    return None
+
+
 def _is_level_up_move(move_version_details):
     return move_version_details['move_learn_method']['name'] == 'level-up'
 
