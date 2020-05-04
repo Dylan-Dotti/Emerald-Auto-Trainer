@@ -1,8 +1,8 @@
 # class for storing data for a pokemon,
 # and for converting to and from dictionaries
 import auto_trainer.pokemon_move as pm
-import auto_trainer.move_sequence_generator as msg
 import auto_trainer.services.pokemon_moves_data_service as pmds
+from auto_trainer.move_priority import MovePriority
 
 
 class Pokemon:
@@ -38,7 +38,8 @@ class Pokemon:
             lambda m: m in pmds.get_ooc_moves(), self._moves))
 
     def get_move_sequence(self, max_num_moves):
-        return msg.generate_move_sequence(self._move_priority, max_num_moves)
+        return self._move_priority.generate_move_sequence(
+            self._move_priority, max_num_moves)
     
     def get_move_coords(self, move):
         index = self._moves.index(move)
@@ -67,8 +68,7 @@ class Pokemon:
             pkm_data['level'],
             pkm_data['gender'],
             pkm_data['moves'],
-            [pm.PokemonMove.from_dictionary(move)
-                for move in pkm_data['move_priority']],
+            MovePriority(pkm_data['move_priority']),
             pkm_data['evolutions'],
             pkm_data['moves_to_learn']
         )
