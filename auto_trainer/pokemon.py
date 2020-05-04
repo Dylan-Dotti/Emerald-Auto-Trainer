@@ -39,7 +39,7 @@ class Pokemon:
 
     def get_move_sequence(self, max_num_moves):
         return self._move_priority.generate_move_sequence(
-            self._move_priority, max_num_moves)
+            max_num_moves)
     
     def get_move_coords(self, move):
         index = self._moves.index(move)

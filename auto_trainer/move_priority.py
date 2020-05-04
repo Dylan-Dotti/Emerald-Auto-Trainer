@@ -12,7 +12,8 @@ class MovePriority:
 
     def generate_move_sequence(self, max_num_moves):
         move_sequence = []
-        next_move_uses = {move: self._get_initial(move)
+        # dict can't be key
+        next_move_uses = {self._get_name(move): self._get_initial(move)
                             for move in self._prio_data}
         i_turn = 1
         # initial moves
@@ -22,7 +23,7 @@ class MovePriority:
                     move_sequence.append(self._get_name(move))
                     i_turn += 1
                 if self._get_periodic(move) is not None:
-                    next_move_uses[move] = (i_turn + 
+                    next_move_uses[self._get_name(move)] = (i_turn + 
                         self._get_periodic(move) - 1)
         # check valid initial params
         if len(move_sequence) < len(self._prio_data):
@@ -36,11 +37,11 @@ class MovePriority:
         # add periodic moves
         while len(move_sequence) < max_num_moves:
             for move in periodic_moves:
-                if i_turn >= next_move_uses[move]:
+                if i_turn >= next_move_uses[self._get_name(move)]:
                     for _ in range(self._get_consecutive(move)):
                         move_sequence.append(self._get_name(move))
                         i_turn += 1
-                    next_move_uses[move] = (
+                    next_move_uses[self._get_name(move)] = (
                         i_turn + self._get_periodic(move) - 1)
                     break
         return move_sequence[:max_num_moves]
