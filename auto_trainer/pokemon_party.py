@@ -2,12 +2,8 @@ import pokemon
 import services.pokemon_party_data_service as ppds
 
 
-def get_party():
+def get_all_pokemon():
     return _party_pokemon
-
-
-def party_size():
-    return len(_party_pokemon)
 
 
 def get_pokemon(index):
@@ -16,6 +12,10 @@ def get_pokemon(index):
 
 def get_active_pokemon():
     return _party_pokemon[0]
+
+
+def party_size():
+    return len(_party_pokemon)
 
 
 def switch_pokemon(index_1, index_2):
