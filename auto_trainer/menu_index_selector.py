@@ -8,7 +8,7 @@ class MenuIndexSelector:
         self._start_index = start_index
         self._menu_index = start_index
 
-    def _move_to_index(self, index):
+    def move_to_index(self, index):
         i_difference = abs(index - self._menu_index)
         half_size = self._menu_size / 2
         if i_difference < half_size:
@@ -32,7 +32,6 @@ class MenuIndexSelector:
         if _menu_index < 0:
             _menu_index = 7
         kc.press_up()
-
 
     def _move_cursor_down(self):
         self._menu_index = (self._menu_index + 1) % 8

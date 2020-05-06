@@ -1,10 +1,11 @@
+import time
 import auto_trainer.keyboard_controller as kc
 import auto_trainer.window_controller as wc
-import random
+from auto_trainer.menu_index_selector import MenuIndexSelector
 
 
 _menu_on = False
-_menu_index = 0
+_selector = MenuIndexSelector(8)
 
 
 def toggle_menu():
@@ -23,39 +24,13 @@ def disable_menu():
         toggle_menu()
 
 
-def select_pokemon():
-    _move_to_index(1)
+def select_pokemon_menu():
+    enable_menu()
+    _selector.move_to_index(1)
     kc.press_a()
+    time.sleep(.8)
 
 
-def _move_to_index(index):
+if __name__ == '__main__':
     wc.set_window_foreground_and_resize()
-    i_difference = abs(index - _menu_index)
-    if i_difference < 4:
-        key_func = (_move_cursor_up if index < _menu_index 
-            else _move_cursor_down)
-        for _ in range(i_difference):
-            key_func()
-    elif i_difference > 4:
-        key_func = (_move_cursor_up if _menu_index < index
-            else _move_cursor_down)
-        for _ in range(8 - i_difference):
-            key_func()
-    else:
-        key_func = random.choice([_move_cursor_up, _move_cursor_down])
-        for _ in range(4):
-            key_func()
-
-
-def _move_cursor_up():
-    global _menu_index
-    _menu_index -= 1
-    if _menu_index < 0:
-        _menu_index = 7
-    kc.press_up()
-
-
-def _move_cursor_down():
-    global _menu_index
-    _menu_index = (_menu_index + 1) % 8
-    kc.press_down()
+    select_pokemon_menu()
