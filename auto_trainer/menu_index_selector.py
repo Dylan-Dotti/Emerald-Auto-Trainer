@@ -11,15 +11,15 @@ class MenuIndexSelector:
     def _move_to_index(self, index):
         i_difference = abs(index - self._menu_index)
         half_size = self._menu_size / 2
-        if i_difference < 4:
+        if i_difference < half_size:
             key_func = (self._move_cursor_up if index < self._menu_index 
                 else self._move_cursor_down)
             for _ in range(i_difference):
                 key_func()
-        elif i_difference > 4:
+        elif i_difference > half_size:
             key_func = (self._move_cursor_up if self._menu_index < index
                 else self._move_cursor_down)
-            for _ in range(8 - i_difference):
+            for _ in range(self._menu_size - i_difference):
                 key_func()
         else:
             key_func = random.choice(
