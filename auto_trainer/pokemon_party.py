@@ -1,5 +1,5 @@
-import pokemon
-import services.pokemon_party_data_service as ppds
+import auto_trainer.pokemon
+import auto_trainer.services.pokemon_party_data_service as ppds
 
 
 def get_all_pokemon():
@@ -12,6 +12,18 @@ def get_pokemon(index):
 
 def get_active_pokemon():
     return _party_pokemon[0]
+
+
+def get_pokemon_with_move(move_name):
+    for pkm in get_all_pokemon():
+        if move_name in pkm.get_moves():
+            return pkm
+
+
+def get_index_of(pokemon):
+    for i, pkm in enumerate(get_all_pokemon()):
+        if pkm == pokemon:
+            return i
 
 
 def party_size():
