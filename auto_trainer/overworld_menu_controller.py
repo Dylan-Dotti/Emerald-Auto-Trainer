@@ -1,11 +1,11 @@
 import time
 import auto_trainer.keyboard_controller as kc
 import auto_trainer.window_controller as wc
-from auto_trainer.menu_index_selector import MenuIndexSelector
+from auto_trainer.menu_controller import MenuController
 
 
 _menu_on = False
-_selector = MenuIndexSelector(8)
+_selector = MenuController(8)
 
 
 def toggle_menu():

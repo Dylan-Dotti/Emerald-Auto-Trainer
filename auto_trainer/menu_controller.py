@@ -1,7 +1,7 @@
 import random
 import auto_trainer.keyboard_controller as kc
 
-class MenuIndexSelector:
+class MenuController:
 
     def __init__(self, menu_size, start_index=0):
         self._menu_size = menu_size
@@ -26,6 +26,10 @@ class MenuIndexSelector:
                 [self._move_cursor_up, self._move_cursor_down])
             for _ in range(4):
                 key_func()
+    
+    def select_index(self, index):
+        self.move_to_index(index)
+        kc.press_a()
 
     def _move_cursor_up(self):
         self._menu_index -= 1
