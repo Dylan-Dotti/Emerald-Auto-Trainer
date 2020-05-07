@@ -1,4 +1,4 @@
-import keyboard_controller as kc
+import auto_trainer.keyboard_controller as kc
 
 
 def activate_speedup():

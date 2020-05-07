@@ -1,5 +1,5 @@
-import mouse_controller as mc
-import keyboard_controller as kc
+import auto_trainer.mouse_controller as mc
+import auto_trainer.keyboard_controller as kc
 import time
 
 

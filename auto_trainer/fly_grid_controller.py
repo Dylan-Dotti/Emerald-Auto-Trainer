@@ -1,9 +1,9 @@
-import keyboard_controller as kc
-import mouse_controller as mc
-import time_controller as tc
-import window_controller as wc
-import window_options_controller as woc
-import services.cities_data_service as cds
+import auto_trainer.keyboard_controller as kc
+import auto_trainer.mouse_controller as mc
+import auto_trainer.time_controller as tc
+import auto_trainer.window_controller as wc
+import auto_trainer.window_options_controller as woc
+import auto_trainer.services.cities_data_service as cds
 import time
 import sys
 

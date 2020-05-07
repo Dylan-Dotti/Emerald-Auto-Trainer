@@ -1,5 +1,5 @@
-import services.json_data_service as jds
-from city import City
+import auto_trainer.services.json_data_service as jds
+from auto_trainer.city import City
 
 
 def get_all_cities():
