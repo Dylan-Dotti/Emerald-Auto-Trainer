@@ -8,27 +8,27 @@ import time
 import sys
 
 
-def get_num_rows():
-    return 15
-
-
-def get_num_cols():
-    return 28
-
-
-def get_city_by_name(city_name):
-    for city in _cities:
-        if city.get_name() == city_name:
-            return city
-    return None
-
-
 def fly_to_city(city):
     _move_to_city(city)
     kc.press_a()
     tc.activate_speedup()
     time.sleep(.5)
     tc.deactivate_speedup()
+
+
+def _get_num_rows():
+    return 15
+
+
+def _get_num_cols():
+    return 28
+
+
+def _get_city_by_name(city_name):
+    for city in _cities:
+        if city.get_name() == city_name:
+            return city
+    return None
 
 
 def _move_to_city(city):
@@ -144,9 +144,9 @@ def _demo():
 
 
 _corner_coords = [
-    (0, 0), (0, get_num_cols() - 1),
-    (get_num_rows() - 1, 0), 
-    (get_num_rows() - 1, get_num_cols() - 1)
+    (0, 0), (0, _get_num_cols() - 1),
+    (_get_num_rows() - 1, 0), 
+    (_get_num_rows() - 1, _get_num_cols() - 1)
 ]
 _cities = cds.get_all_cities()
 
@@ -159,4 +159,4 @@ if __name__ == '__main__':
     if sys.argv[1] == 'demo':
         _demo()
     else:
-        fly_to_city(get_city_by_name(sys.argv[1]))
+        fly_to_city(_get_city_by_name(sys.argv[1]))
