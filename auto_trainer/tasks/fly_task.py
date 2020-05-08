@@ -15,6 +15,7 @@ class FlyTask(Task):
     def execute(self):
         fly_pokemon = pp.get_pokemon_with_move('fly')
         fly_pokemon_index = pp.get_index_of(fly_pokemon)
+        omc.enable_menu()
         omc.select_pokemon_menu()
         pkm_menu_control = PokemonMenuController()
         pkm_menu_control.select_index(fly_pokemon_index)
@@ -28,5 +29,9 @@ class FlyTask(Task):
     
 
 if __name__ == '__main__':
-    ftask = FlyTask('sootopolis-city')
-    ftask.execute()
+    FlyTask('sootopolis-city').execute()
+    FlyTask('rustboro-city').execute()
+    FlyTask('dewford-town').execute()
+    FlyTask('lilycove-city').execute()
+    FlyTask('verdanturf-town').execute()
+    FlyTask('oldale-town').execute()
