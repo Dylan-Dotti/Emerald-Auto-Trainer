@@ -9,8 +9,7 @@ _selector = MenuController(8)
 
 
 def toggle_menu():
-    global _menu_on
-    _menu_on = not _menu_on
+    set_menu_enabled(not _menu_on)
     kc.press_start()
 
 
@@ -25,11 +24,11 @@ def disable_menu():
 
 
 def set_menu_enabled(enabled):
+    global _menu_on
     _menu_on = enabled
 
 
 def select_pokemon_menu():
-    enable_menu()
     _selector.move_to_index(1)
     kc.press_a()
     time.sleep(.8)
