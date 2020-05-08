@@ -2,83 +2,67 @@
     "cities": [
         {
             "name": "dewford-town",
-            "coords": [[14, 2]],
-            "img": "fly_locations/dewford.png"
+            "coords": [[14, 2]]
         },
         {
             "name": "ever grande city - center",
-            "coords": [[9, 27]],
-            "img": "fly_locations/center.png"
+            "coords": [[9, 27]]
         },
         {
             "name": "ever grande city - league",
-            "coords": [[8, 27]],
-            "img": "fly_locations/league.png"
+            "coords": [[8, 27]]
         },
         {
             "name": "fallarbor-town",
-            "coords": [[0, 3]],
-            "img": "fly_locations/fallarbor.png"
+            "coords": [[0, 3]]
         },
         {
             "name": "fortree-city",
-            "coords": [[0, 12]],
-            "img": "fly_locations/fortree.png"
+            "coords": [[0, 12]]
         },
         {
             "name": "lavaridge-town",
-            "coords": [[3, 5]],
-            "img": "fly_locations/lavaridge.png"
+            "coords": [[3, 5]]
         },
         {
             "name": "lilycove-city",
-            "coords": [[3, 18], [3, 19]],
-            "img": "fly_locations/lilycove.png"
+            "coords": [[3, 18], [3, 19]]
         },
         {
             "name": "littleroot-town",
-            "coords": [[11, 4]],
-            "img": "fly_locations/littleroot.png"
+            "coords": [[11, 4]]
         },
         {
             "name": "mauville-city",
-            "coords": [[6, 8], [6, 9]],
-            "img": "fly_locations/mauville.png"
+            "coords": [[6, 8], [6, 9]]
         },
         {
             "name": "oldale-town",
-            "coords": [[9, 4]],
-            "img": "fly_locations/oldale.png"
+            "coords": [[9, 4]]
         },
         {
             "name": "pacifidlog-town",
-            "coords": [[10, 17]],
-            "img": "fly_locations/pacifidlog.png"
+            "coords": [[10, 17]]
         },
         {
             "name": "petalburg-city",
-            "coords": [[9, 1]],
-            "img": "fly_locations/petalburg.png"
+            "coords": [[9, 1]]
         },
         {
             "name": "rustboro-city",
-            "coords": [[5, 0], [6, 0]],
-            "img": "fly_locations/rustboro.png"
+            "coords": [[5, 0], [6, 0]]
         },
         {
             "name": "slateport-city",
-            "coords": [[10, 8], [11, 8]],
-            "img": "fly_locations/slateport.png"
+            "coords": [[10, 8], [11, 8]]
         },
         {
             "name": "sootopolis-city",
-            "coords": [[7, 21]],
-            "img": "fly_locations/sootopolis.png"
+            "coords": [[7, 21]]
         },
         {
             "name": "verdanturf-town",
-            "coords": [[6, 4]],
-            "img": "fly_locations/verdanturf.png"
+            "coords": [[6, 4]]
         }
     ]
 }

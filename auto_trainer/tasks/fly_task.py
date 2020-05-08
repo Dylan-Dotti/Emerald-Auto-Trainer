@@ -4,6 +4,7 @@ import auto_trainer.pokemon_party as pp
 from auto_trainer.pokemon_menu_controller import PokemonMenuController
 from auto_trainer.pokemon_options_menu_controller import PokemonOptionsMenuController
 from auto_trainer.tasks.task import Task
+import time
 
 class FlyTask(Task):
 
@@ -20,10 +21,12 @@ class FlyTask(Task):
         pkm_options_control = PokemonOptionsMenuController(
             fly_pokemon, False)
         pkm_options_control.select_move('fly')
+        time.sleep(1)
         fgc.fly_to_city(self._destination)
+        omc.set_menu_enabled(False)
 
     
 
 if __name__ == '__main__':
-    ftask = FlyTask('verdanturf-town')
+    ftask = FlyTask('sootopolis-city')
     ftask.execute()

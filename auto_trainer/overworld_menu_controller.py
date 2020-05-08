@@ -24,6 +24,10 @@ def disable_menu():
         toggle_menu()
 
 
+def set_menu_enabled(enabled):
+    _menu_on = enabled
+
+
 def select_pokemon_menu():
     enable_menu()
     _selector.move_to_index(1)

@@ -8,8 +8,8 @@ import time
 import sys
 
 
-def fly_to_city(city):
-    _move_to_city(city)
+def fly_to_city(city_name):
+    _move_to_city(city_name)
     kc.press_a()
     tc.activate_speedup()
     time.sleep(.5)
@@ -24,16 +24,9 @@ def _get_num_cols():
     return 28
 
 
-def _get_city_by_name(city_name):
-    for city in _cities:
-        if city.get_name() == city_name:
-            return city
-    return None
-
-
-def _move_to_city(city):
+def _move_to_city(city_name):
     woc.set_frame_skip(0)
-    city_coords = city.get_coords()[0]
+    city_coords = _city_coords[city_name][0]
     corner_index = _get_closest_reachable_corner(city_coords)
     _move_to_corner(corner_index)
     _move_to_coords(_corner_coords[corner_index], city_coords)
@@ -138,8 +131,8 @@ def _get_corner_dists(start_coords):
 
 
 def _demo():
-    for city in _cities:
-        _move_to_city(city)
+    for city_name in _city_coords.keys():
+        _move_to_city(city_name)
         time.sleep(1)
 
 
@@ -148,7 +141,24 @@ _corner_coords = [
     (_get_num_rows() - 1, 0), 
     (_get_num_rows() - 1, _get_num_cols() - 1)
 ]
-_cities = cds.get_all_cities()
+_city_coords = {
+    'dewford-town': [[14, 2]],
+    'ever grande city - center': [[9, 27]],
+    'ever grande city - league': [[8, 27]],
+    'fallarbor-town': [[0, 3]],
+    'fortree-city': [[0, 12]],
+    'lavaridge-town': [[3, 5]],
+    'lilycove-city': [[3, 18], [3, 19]],
+    'littleroot-town': [[11, 4]],
+    'mauville-city': [[6, 8], [6, 9]],
+    'oldale-town': [[9, 4]],
+    'pacifidlog-town': [[10, 17]],
+    'petalburg-city': [[9, 1]],
+    'rustboro-city': [[5, 0], [6, 0]],
+    'slateport-city': [[10, 8], [11, 8]],
+    'sootopolis-city': [[7, 21]],
+    'verdanturf-town': [[6, 4]]
+}
 
 
 if __name__ == '__main__':
@@ -159,4 +169,4 @@ if __name__ == '__main__':
     if sys.argv[1] == 'demo':
         _demo()
     else:
-        fly_to_city(_get_city_by_name(sys.argv[1]))
+        fly_to_city((sys.argv[1]))
