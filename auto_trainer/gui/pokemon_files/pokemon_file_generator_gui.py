@@ -85,7 +85,7 @@ class PokemonFileGeneratorGUI(EmeraldGUIToplevelBase, UpdatableComponent):
     def _generate_pokemon_file(self):
         pkm_name = self.pkm_data['name']
         direct = pdds.get_pokemon_data_directory()
-        id_index = 0
+        id_index = 1
         while (os.path.exists(
             '%s%s_%i.json' % (direct, pkm_name, id_index)) or
             os.path.exists(
