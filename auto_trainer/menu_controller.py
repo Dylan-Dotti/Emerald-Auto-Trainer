@@ -1,5 +1,6 @@
 import random
-import auto_trainer.keyboard_controller as kc
+import auto_trainer.controllers.keyboard_controller as kc
+
 
 class MenuController:
 
@@ -12,13 +13,13 @@ class MenuController:
         i_difference = abs(index - self._menu_index)
         half_size = self._menu_size / 2
         if i_difference < half_size or self._menu_size % 2 == 0:
-            key_func = (self._move_cursor_up if index < self._menu_index 
-                else self._move_cursor_down)
+            key_func = (self._move_cursor_up if index < self._menu_index
+                        else self._move_cursor_down)
             for _ in range(i_difference):
                 key_func()
         elif i_difference > half_size:
             key_func = (self._move_cursor_up if self._menu_index < index
-                else self._move_cursor_down)
+                        else self._move_cursor_down)
             for _ in range(self._menu_size - i_difference):
                 key_func()
         else:
@@ -27,7 +28,7 @@ class MenuController:
             # change 4
             for _ in range(4):
                 key_func()
-    
+
     def select_index(self, index):
         self.move_to_index(index)
         kc.press_a()

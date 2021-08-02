@@ -1,10 +1,8 @@
 import enum
 import vision_agent as va
-import keyboard_controller as kc
+import auto_trainer.controllers.keyboard_controller as kc
+import auto_trainer.controllers.time_controller as tc
 import pokemon_party as pparty
-import pyautogui as pag
-import time
-import time_controller as tc
 import game_window_grid as gwg
 
 
@@ -30,7 +28,7 @@ class BattleAgent:
         for move in moves:
             # use move and check for enemy faint
             if self.use_move_and_check_faint(
-                self._active_pokemon.get_move_coords(move)):
+                    self._active_pokemon.get_move_coords(move)):
                 self.on_enemy_fainted()
                 # check level up
                 if self.wait_for_level_up():
@@ -107,28 +105,28 @@ class BattleAgent:
         pass
 
     def wait_for_red_arrow(self, timeout=5.0):
-        return va.wait_for_one_image(self._red_arrow_url, 
-            confidence=.85, timeout=timeout,
-            region=gwg.get_half_rect('bottom'))
+        return va.wait_for_one_image(self._red_arrow_url,
+                                     confidence=.85, timeout=timeout,
+                                     region=gwg.get_half_rect('bottom'))
 
     def wait_for_black_arrow(self, timeout=5.0):
-        return va.wait_for_one_image(self._blk_arrow_url, 
-            confidence=.85, timeout=timeout)
+        return va.wait_for_one_image(self._blk_arrow_url,
+                                     confidence=.85, timeout=timeout)
 
     def wait_for_red_or_black_arrow(self, timeout=5.0):
-        return va.wait_for_one_image(self._red_arrow_url, 
-            self._blk_arrow_url, confidence=.85, timeout=timeout,
-            region=gwg.get_half_rect('bottom'))
+        return va.wait_for_one_image(self._red_arrow_url,
+                                     self._blk_arrow_url, confidence=.85, timeout=timeout,
+                                     region=gwg.get_half_rect('bottom'))
 
     def wait_for_level_up(self):
         print('checking for level-up')
         return va.wait_for_one_image(self._leveled_url, confidence=.80,
-            timeout=5.0)
+                                     timeout=5.0)
 
     def wait_for_move_learned(self):
         print('checking for move learned')
         return va.wait_for_one_image(self._learned_url, confidence=.85,
-            timeout=1.0)
+                                     timeout=1.0)
 
     def move_cursor_to(self, target_coords):
         if self._menu_state == BAState.Main:
@@ -159,6 +157,6 @@ class BAState(enum.Enum):
 
 
 if __name__ == '__main__':
-    import window_controller as wc
+    import auto_trainer.controllers.window_controller as wc
     wc.set_window_foreground_and_resize()
     BattleAgent().handle_battle()

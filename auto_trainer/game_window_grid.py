@@ -1,4 +1,4 @@
-import auto_trainer.window_controller as wc
+import auto_trainer.controllers.window_controller as wc
 import auto_trainer.services.config_settings_data_service as csds
 
 
@@ -45,7 +45,6 @@ def get_game_window_rect():
     return x, y, w, h
 
 
-
 def get_quadrant_rect(index):
     x, y, _, _ = get_game_window_rect()
     mid_x, mid_y = get_game_window_center()
@@ -84,7 +83,7 @@ def get_center_rect(width_percentage, height_percentage):
     half_percent_width = round(width * width_percentage / 2)
     half_percent_height = round(height * height_percentage / 2)
     return (center_x - half_percent_width, center_y - half_percent_height,
-        half_percent_width * 2, half_percent_height * 2)
+            half_percent_width * 2, half_percent_height * 2)
 
 
 def coords_in_range(row, col):
@@ -126,7 +125,7 @@ def get_row_range_rect(min_row_incl, max_row_excl):
 def get_col_rect(col):
     x, y = local_to_global_coords((col * get_square_width(), 0))
     # may need to change x, y between round and int
-    return (round(x), round(y), int(get_square_height()), 
+    return (round(x), round(y), int(get_square_height()),
             int(get_game_window_height()))
 
 

@@ -1,8 +1,8 @@
-import auto_trainer.fly_grid_controller as fgc
-import auto_trainer.overworld_menu_controller as omc
+import auto_trainer.controllers.fly_grid_controller as fgc
+import auto_trainer.controllers.overworld_menu_controller as omc
 import auto_trainer.pokemon_party as pp
-from auto_trainer.pokemon_menu_controller import PokemonMenuController
-from auto_trainer.pokemon_options_menu_controller import PokemonOptionsMenuController
+from auto_trainer.controllers.pokemon_menu_controller import PokemonMenuController
+from auto_trainer.controllers.pokemon_options_menu_controller import PokemonOptionsMenuController
 from auto_trainer.tasks.task import Task
 import time
 

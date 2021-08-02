@@ -1,6 +1,6 @@
 import time
-import auto_trainer.keyboard_controller as kc
-import auto_trainer.window_controller as wc
+import auto_trainer.controllers.keyboard_controller as kc
+import auto_trainer.controllers.window_controller as wc
 from auto_trainer.menu_controller import MenuController
 
 

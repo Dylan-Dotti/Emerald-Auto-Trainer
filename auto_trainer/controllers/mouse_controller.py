@@ -1,7 +1,7 @@
 import pyautogui as pag
 import time
 import auto_trainer.game_window_grid as gwg
-import auto_trainer.window_controller as wc
+import auto_trainer.controllers.window_controller as wc
 
 
 def get_mouse_position():

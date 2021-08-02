@@ -1,8 +1,8 @@
-import auto_trainer.keyboard_controller as kc
-import auto_trainer.mouse_controller as mc
-import auto_trainer.time_controller as tc
-import auto_trainer.window_controller as wc
-import auto_trainer.window_options_controller as woc
+import auto_trainer.controllers.keyboard_controller as kc
+import auto_trainer.controllers.mouse_controller as mc
+import auto_trainer.controllers.time_controller as tc
+import auto_trainer.controllers.window_controller as wc
+import auto_trainer.controllers.window_options_controller as woc
 import auto_trainer.services.cities_data_service as cds
 import time
 import sys
@@ -103,8 +103,7 @@ def _get_closest_reachable_corner(coords):
         if _is_reachable_from_coords(coords, c_coords):
             reachable_corner_dists[c_index] = dist
     return min(reachable_corner_dists,
-        key=reachable_corner_dists.get)
-
+               key=reachable_corner_dists.get)
 
 
 def _is_reachable_from_coords(start_coords, end_coords):
@@ -120,14 +119,14 @@ def _is_reachable_from_coords(start_coords, end_coords):
 def _get_manhattan_dist(start_coords, end_coords):
     start_row, start_col = start_coords
     end_row, end_col = end_coords
-    return (abs(end_row - start_row) + 
+    return (abs(end_row - start_row) +
             abs(end_col - start_col))
 
 
 def _get_corner_dists(start_coords):
-    return { i: _get_manhattan_dist(
+    return {i: _get_manhattan_dist(
         start_coords, _corner_coords[i])
-        for i in range(len(_corner_coords)) }
+        for i in range(len(_corner_coords))}
 
 
 def _demo():
@@ -138,7 +137,7 @@ def _demo():
 
 _corner_coords = [
     (0, 0), (0, _get_num_cols() - 1),
-    (_get_num_rows() - 1, 0), 
+    (_get_num_rows() - 1, 0),
     (_get_num_rows() - 1, _get_num_cols() - 1)
 ]
 _city_coords = {

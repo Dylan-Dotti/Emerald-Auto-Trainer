@@ -1,10 +1,9 @@
 import battle_agent as ba
 from navigation.direction import Direction
 from navigation.localizer import Localizer
-import keyboard_controller as kc
+import auto_trainer.controllers.keyboard_controller as kc
 import vision_agent as va
 import time
-import time_controller as tc
 
 
 def attempt_follow_path(path, check_combat=False, reversed=False):
@@ -13,7 +12,7 @@ def attempt_follow_path(path, check_combat=False, reversed=False):
     print('Attempting to follow path...')
     for direct in path:
         if not attempt_move_in_direction(direct, check_combat=check_combat):
-            print('Aborted path: unsuccessful move')
+            print('Cancelled path: unsuccessful move')
             return False
     print('Path successful')
     return True

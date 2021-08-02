@@ -1,6 +1,5 @@
 import auto_trainer.services.config_settings_data_service as csds
 from auto_trainer.exceptions import WindowNotFoundError
-import pyautogui as pag
 import win32gui as wgui
 import win32con as wcon
 import time
@@ -51,7 +50,7 @@ def resize_window(width, height):
 def resize_window_default():
     settings = csds.get_config_settings()
     resize_window(settings['default_win_height'],
-        settings['default_win_width'])
+                  settings['default_win_width'])
 
 
 def get_window_position_global():

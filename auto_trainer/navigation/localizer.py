@@ -1,7 +1,7 @@
 from navigation.direction import Direction
 import vision_agent as va
 import game_window_grid as gwg
-import window_controller as wc
+import auto_trainer.controllers.window_controller as wc
 
 
 class Localizer:
@@ -21,7 +21,7 @@ class Localizer:
         else:
             raise ValueError('Invalid direction')
         Localizer._old_region_img = va.screenshot(
-            #'img/ss_test/localizer/old_img.png',
+            # 'img/ss_test/localizer/old_img.png',
             region=old_region)
 
     @staticmethod
@@ -39,4 +39,4 @@ class Localizer:
             raise ValueError('Invalid direction: ' + direct)
         #va.screenshot('img/ss_test/localizer/new_img.png', region=new_region)
         return va.is_in_region(Localizer._old_region_img,
-            region=new_region, confidence=confidence)
+                               region=new_region, confidence=confidence)
