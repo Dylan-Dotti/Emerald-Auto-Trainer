@@ -1,10 +1,10 @@
 import auto_trainer.controllers.fly_grid_controller as fgc
 import auto_trainer.controllers.overworld_menu_controller as omc
 import auto_trainer.pokemon_party as pp
+import auto_trainer.controllers.time_controller as tc
 from auto_trainer.controllers.pokemon_menu_controller import PokemonMenuController
 from auto_trainer.controllers.pokemon_options_menu_controller import PokemonOptionsMenuController
 from auto_trainer.tasks.task import Task
-import time
 
 
 class FlyTask(Task):
@@ -23,6 +23,6 @@ class FlyTask(Task):
         pkm_options_control = PokemonOptionsMenuController(
             fly_pokemon, False)
         pkm_options_control.select_move('fly')
-        time.sleep(1)
+        tc.wait_for_seconds(1)
         fgc.fly_to_city(self._destination)
         omc.set_menu_enabled(False)

@@ -1,5 +1,6 @@
 import random
 import auto_trainer.controllers.keyboard_controller as kc
+import auto_trainer.controllers.time_controller as tc
 
 
 class MenuController:
@@ -10,6 +11,7 @@ class MenuController:
         self._menu_index = start_index
 
     def move_to_index(self, index):
+        tc.set_speed_multiplier(2)
         i_difference = abs(index - self._menu_index)
         half_size = self._menu_size / 2
         if i_difference < half_size or self._menu_size % 2 == 0:
