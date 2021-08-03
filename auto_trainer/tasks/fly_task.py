@@ -5,6 +5,7 @@ import auto_trainer.controllers.time_controller as tc
 from auto_trainer.controllers.pokemon_menu_controller import PokemonMenuController
 from auto_trainer.controllers.pokemon_options_menu_controller import PokemonOptionsMenuController
 from auto_trainer.tasks.task import Task
+from auto_trainer.tasks.use_hm_task import UseHmTask
 
 
 class FlyTask(Task):
@@ -14,15 +15,7 @@ class FlyTask(Task):
         self._destination = destination_city
 
     def execute(self):
-        fly_pokemon = pp.get_pokemon_with_move('fly')
-        fly_pokemon_index = pp.get_index_of(fly_pokemon)
-        omc.enable_menu()
-        omc.select_pokemon_menu()
-        pkm_menu_control = PokemonMenuController()
-        pkm_menu_control.select_index(fly_pokemon_index)
-        pkm_options_control = PokemonOptionsMenuController(
-            fly_pokemon, False)
-        pkm_options_control.select_move('fly')
+        UseHmTask('fly').execute()
         tc.wait_for_seconds(1)
         fgc.fly_to_city(self._destination)
         omc.set_menu_enabled(False)

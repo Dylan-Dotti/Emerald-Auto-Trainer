@@ -18,12 +18,14 @@ def get_pokemon_with_move(move_name):
     for pkm in get_all_pokemon():
         if move_name in pkm.get_moves():
             return pkm
+    return None
 
 
 def get_index_of(pokemon):
     for i, pkm in enumerate(get_all_pokemon()):
         if pkm == pokemon:
             return i
+    return None
 
 
 def party_size():
